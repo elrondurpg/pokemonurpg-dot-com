@@ -1,0 +1,18 @@
+.sidebar {
+    position: fixed;
+    left: 0px;
+    top: 42px;
+    background-color: #FAFAFA;
+    z-index:1;
+    width: 250px;
+    height: 100%;
+    box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);
+	overflow-y: scroll;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding-left: 25px;
+    padding-top: 25px;
+    margin:0;
+}

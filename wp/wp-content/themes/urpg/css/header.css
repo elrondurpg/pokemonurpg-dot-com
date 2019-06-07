@@ -1,0 +1,69 @@
+.site-header {
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: #252525;
+    color: #CBCBCB;
+    width: 100%;
+    min-width: 800px;
+    line-height: 32px;
+    z-index: 100;
+    
+    display:table;
+    table-layout:fixed;
+    font-weight:400;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    border:0;
+}
+
+.site-header table {
+    width: 100%;
+}
+
+.site-header a {
+	color:#369de2;
+}
+
+.site-header #site-home-link {
+	color: #CBCBCB;
+}
+
+.site-header #site-home-link:hover {
+	color: white;
+}
+
+.site-header .hamburger {
+    text-align: left;
+    padding-left: 30px;
+    width: 25%;
+    min-width: 214px;
+}
+
+.site-header .hamburger img {
+    vertical-align: middle;
+    margin-right: 30px;
+    float: left;
+}
+
+.site-header .logo {
+    vertical-align: middle;
+    line-height: 35px;
+}
+
+.site-header .search-bar {
+    width: 45%;
+}
+
+.site-header .user-info {
+    width: 30%;
+    text-align: right;
+    padding-right: 30px;
+}
+
+.site-header .logout-button {
+	margin-left: 10px;
+	margin-bottom: -4px;
+}

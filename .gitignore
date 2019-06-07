@@ -5,7 +5,11 @@
 .htaccess
 
 # Ignore the wp-content directory
-/wp/wp-content
+wp/wp-content/plugins/
+wp/wp-content/upgrade/
+wp/wp-content/uploads/
+wp/wp-content/index.php
+wp/wp-content/themes/*
 
 # Don't ignore the urpg theme
-!/wp/wp-content/themes/urpg
+!wp/wp-content/themes/urpg
