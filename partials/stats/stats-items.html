@@ -1,0 +1,212 @@
+<div class="items">
+
+	<div class="stats-command">
+		<table ng-if="sessionService.username == ctrl.name">
+		
+			<tr>
+				<th colspan="1" ng-click="ctrl.showCommands = !ctrl.showCommands">
+					<span>Hi, {{ ctrl.name }}!</span>&nbsp;<span class="stats-hide-commands">[{{ ctrl.showCommands == true ? 'Hide' : 'Show Console'}}]</span>
+				</th>
+			</tr>
+			<tr ng-show="ctrl.showCommands == true">
+			
+				<td>
+					<span class="stats-action" ng-click="ctrl.toggleModal('money', $event)">Edit Money</span>
+					<hr>
+					<div>
+						<table class="stats-update-items">
+							<tr>
+								<td>
+									<h1>Update Items</h1>
+									<br>
+									<h2>Add items here or update them in your stats.</h2>
+									<br>
+									<table>
+										<tr>
+											<td>Item:</td>
+											<td colspan="2">
+												<select ng-model="itemSelector" 
+				                                ng-options="item as item.name for item in ctrl.config.items"
+				                                ng-change="ctrl.itemInFocus = itemSelector"></select>
+											</td>
+										</tr>
+										<tr>
+											<td>Quantity:</td>
+											<td>
+												<input type="number" 
+		 										   min="1"
+							                       name="quantity" 
+							                       ng-model="new.quantity"
+							                       ng-change="ctrl.itemQuantity = new.quantity"></input>
+						                   	</td>
+						                    <td>
+						                    	<input type="button"
+								                   ng-click="ctrl.updateItem(ctrl.itemInFocus.name, ctrl.items[ctrl.itemInFocus.name].quantity + ctrl.itemQuantity)"
+								                   value="Add"></input>
+								            </td>
+										</tr>
+									</table>
+								</td>
+	
+								<td>
+									<table class="stats-item-changes">
+									
+										<tr>
+											<th>Changes</th>
+										</tr>
+										
+										<tr ng-repeat="(name, quantity) in ctrl.changes.items" class="static"
+			        						ng-if="quantity - ctrl.items[name].originalQuantity != 0">
+			        						<td ng-class="$index % 2 == 0 ? 'even' : 'odd'">{{ quantity - ctrl.items[name].originalQuantity > 0 ? 'Add ' + (quantity - ctrl.items[name].originalQuantity) : 'Remove ' + (-1 * (quantity - ctrl.items[name].originalQuantity)) }}&nbsp;{{ name }}</td>
+			        					</tr>	
+									
+									</table>
+								</td>
+							</tr>
+						
+							<tr>
+								<td colspan="2" class="static">
+									<span class="stats-action" ng-click="ctrl.save()">Save Items</span> 		
+			        			</td>
+							</tr>
+						
+						</table>
+					</div>
+				</td>
+			
+			</tr>
+		
+		</table>
+	</div>
+
+	<div class="stats-money">
+		<table>
+		
+		<tr>
+		
+			<th>
+				Money
+			</th>
+			
+			<th>
+     			Contest Credits
+			</th>
+		
+		</tr>
+		
+		<tr>
+		
+			<td>
+				${{ ctrl.money | number }}
+			</td>
+			
+			<td>
+     			{{ ctrl.contestCredits | number}} CC
+			</td>
+		
+		</tr>
+		
+		</table>
+	</div>
+
+    <div class="items-left">
+        <div class="item-box"
+             ng-repeat="type in ctrl.items.left">
+            <div class="item-type">
+                <img class="item-image" ng-src="/img/{{ ctrl.itemImages[type] }}.png" height="32" width="32" />
+                <span class="item-title">{{ ctrl.itemTitles[type] }}</span>
+            </div>
+            <div class="item-list">
+                <table>
+                    <tr ng-repeat="item in ctrl.items[type]">
+                        <td class='item-name' ng-class="$index % 2 == 0 ? 'even' : 'odd'"
+                            colspan="{{ item.quantity > 1 && sessionService.username != ctrl.name ? '1' : '2'}}">
+                            {{ item.name }}
+                        </td>
+                        <td class='item-quantity' ng-class="$index % 2 == 0 ? 'even' : 'odd'"
+                            ng-if="item.quantity > 1 && sessionService.username != ctrl.name">
+                            {{ item.quantity }}
+                        </td>
+                        <td class='item-quantity' ng-class="$index % 2 == 0 ? 'even' : 'odd'"
+                            ng-if="sessionService.username == ctrl.name">
+                            <input type="number" 
+                            		min="0" 
+                            		ng-model="item.quantity"
+                            		ng-change="ctrl.updateItem(item.name, item.quantity)"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="items-right">
+        <div class="item-box"
+             ng-repeat="type in ctrl.items.right">
+            <div class="item-type">
+                <img class="item-image" ng-src="/img/{{ ctrl.itemImages[type] }}.png" height="32" width="32" />
+                <span class="item-title">{{ ctrl.itemTitles[type] }}</span>
+            </div>
+            <div class="item-list">
+                <table>
+                    <tr ng-repeat="item in ctrl.items[type]">
+                        <td class='item-name' ng-class="$index % 2 == 0 ? 'even' : 'odd'"
+                            colspan="{{ item.quantity > 1 && sessionService.username != ctrl.name ? '1' : '2'}}">
+                            {{ item.name }}
+                        </td>
+                        <td class='item-quantity' ng-class="$index % 2 == 0 ? 'even' : 'odd'"
+                            ng-if="item.quantity > 1 && sessionService.username != ctrl.name">
+                            {{ item.quantity }}
+                        </td>
+                        <td class='item-quantity' ng-class="$index % 2 == 0 ? 'even' : 'odd'"
+                            ng-if="sessionService.username == ctrl.name">
+                            <input type="number" 
+                            		min="0" 
+                            		ng-model="item.quantity"
+                            		ng-change="ctrl.updateItem(item.name, item.quantity)"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+   <div class="spacer"></div>
+    
+</div>
+
+<div class="modal edit-money close-modal" ng-if="ctrl.showModal['money'] == true" ng-click="ctrl.toggleModal('money', $event)">
+
+      <!-- Modal content -->
+    <div class="modal-content static">
+        <div class="modal-header static">
+            <span class="close" ng-click="ctrl.toggleModal('money')">&times;</span>&nbsp;Edit Money:
+        </div>
+        <div class="modal-body static">
+        	<table class="static">
+        	
+        		<tr class="static"><th class="static">Money:</th>
+        			<td class="static"><input type="text" 
+                       name="money" 
+                       ng-model="new.money"
+                       ng-change="ctrl.update('money', new.money)"
+                       class="static"></td>
+                </tr>
+        		<tr class="static"><th class="static">Contest Credits:</th>
+        			<td class="static"><input type="text" 
+                       name="contestCredits" 
+                       ng-model="new.contestCredits"
+                       class="static"
+                       ng-change="ctrl.update('contestCredits', new.contestCredits)"></td>
+                </tr>
+        	
+        	</table>
+            <input type="button"
+                   ng-click="ctrl.save(); ctrl.toggleModal('money')"
+                   value="Save">
+        </div>
+        <div class="modal-footer static">
+            <h3 class="static">Enter numerals without any special characters.</h3>
+        </div>
+    </div>
+</div>

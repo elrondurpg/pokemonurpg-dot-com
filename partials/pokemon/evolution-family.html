@@ -1,0 +1,18 @@
+<div class="dex-evolution-chain-div">
+<table class="dex-evolution-chain">
+    <tr ng-repeat="evolution in ctrl.largestEvolutionStage(ctrl.evolutionFamily)">
+        <td ng-repeat="stage in ctrl.evolutionFamily" rowspan="{{ stage.length != ctrl.largestEvolutionStage(ctrl.evolutionFamily).length ? ctrl.largestEvolutionStageLength(ctrl.evolutionFamily) : 1}}" ng-show="stage[$parent.$index] != null">
+            <span class="{{ ctrl.rowspanClass(stage, ctrl.evolutionFamily) }}">
+                <a href="{{ stage[$parent.$index].url }}" target="_self">
+                    <img ng-src="{{ stage[$parent.$index].icon }}" class="align-left frame"/>
+                    {{ stage[$parent.$index].displayName }}
+                </a>
+                <br>
+                <span class="dex-evolution-chain-method"> 
+                    {{ stage[$parent.$index].method == 'Basic' ? '-' : ctrl.evolveString(stage[$parent.$index].method, ctrl.evolutionFamily) }}
+                </span>
+            </span>
+        </td>
+    </tr>
+</table>
+</div>

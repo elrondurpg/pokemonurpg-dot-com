@@ -1,0 +1,52 @@
+.dex-header {
+    overflow:hidden;
+    text-align:center;
+    line-height:32px;
+    font-size:11px;
+    margin-bottom:2px;
+    width:1000px;
+}
+
+.dex-header a {
+    display:inline-block;
+    border:1px solid transparent;
+}
+
+.dex-header a:hover {
+    border:1px solid #2980b9;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+}
+
+.dex-header-prev {
+    float:left;
+    text-align:left;
+}
+
+.dex-header-next {
+    float:right;
+    text-align:right;
+}
+
+.dex-header-prev,.dex-header-next {
+    width:16em;
+}
+
+.dex-header-prev img,.dex-header-next img {
+    vertical-align:middle;
+}
+
+button-prev {
+    padding-left:8px;
+    margin-right:0;
+}
+
+button-next {
+    padding-right:8px;
+    margin-left:0;
+}
+
+.sprite-icon {
+    margin-top:-6px;
+}

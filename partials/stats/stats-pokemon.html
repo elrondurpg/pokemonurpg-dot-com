@@ -1,0 +1,767 @@
+<link rel='stylesheet' href='/css/dex-body.css' type='text/css' />
+<div class="pokemon-container">
+
+	<div class="pokemon-searchbar">
+		<table>
+		
+		<tr>
+		
+			<td>
+				<span class="back-button"
+						ng-if="ctrl.pokemonSearchType == 'limit' && ctrl.index > 0"
+						ng-click="ctrl.backPage()"
+				>Back</span>
+				<span class="back-button"
+						ng-if="ctrl.pokemonSearchType == 'species'"
+						ng-click="ctrl.resetPage()">Back</span>
+			</td>
+			
+			<td>
+            	<input type="text" 
+               		name="pokemonSearchText" 
+               		ng-model="pokemonSearchTextModel"
+               		ng-change="ctrl.updatePokemonSearchText(pokemonSearchTextModel)" 
+               		ng-keypress="$event.keyCode === 13 ? ctrl.searchPokemon() : ''">
+               	<input type="button" ng-click="ctrl.searchPokemon()" value="Search">
+			</td>
+			
+			<td>
+				<span class="next-button"
+						ng-if="ctrl.pokemonSearchType == 'limit'"
+						ng-click="ctrl.nextPage()">Next</span>
+			</td>
+		
+		</tr>
+		
+		</table>
+	</div>
+	
+	<div class="stats-command">
+		<table ng-if="sessionService.username == ctrl.name">
+		
+			<tr>
+				<th colspan="1" ng-click="ctrl.showModal.visible == false ? ctrl.showCommands = !ctrl.showCommands : ''">
+					<span>Hi, {{ ctrl.name }}!</span>&nbsp;<span class="stats-hide-commands">[{{ ctrl.showCommands == true ? 'Hide' : 'Show Console'}}]</span>
+				</th>
+			</tr>
+			<tr ng-show="ctrl.showCommands == true">
+			
+				<td>
+					<span class="stats-action" ng-click="ctrl.toggleModal('species', $event)">Add Pokemon</span>
+				</td>
+			
+			</tr>
+		
+		</table>
+	</div>
+
+	<div class="pokemon-box"
+		ng-repeat="pokemon in ctrl.pokemon">
+		
+		<div class="pokemon-frame">
+			<div class="pokemon-image">
+				<img ng-src="{{ modelBase }}{{ pokemon.dex + ctrl.suffix(pokemon.displayName, pokemon.name) }}.gif" />
+			</div>
+		</div>
+	
+		<div class="pokemon-header">
+			<div class="pokemon-title">
+				<span>{{ pokemon.nickname != "" ? pokemon.nickname + ' the ' + pokemon.displayName : pokemon.displayName }}</span>	
+				<span ng-show="pokemon.gender == 'M'" class="gender male">M</span>
+	            <span ng-show="pokemon.gender == 'F'" class="gender female">F</span>
+	            <span ng-show="pokemon.gender == 'G'" class="gender genderless">G</span>
+            </div>
+            <div class="pokemon-types">
+            	<span class="type" ng-class="pokemon.type1 | lowercase"> {{ pokemon.type1 }} </span>
+            	<span class="type" ng-class="pokemon.type2 | lowercase" ng-show="pokemon.type2 !== 'NONE'"> {{ pokemon.type2 }} </span>
+            </div>
+			<!-- span class="pokemon-starter" 
+				ng-if="pokemon.starter == true">
+				<img src="/img/star.png" height="20" width="20">
+				Starter
+			</span-->
+			<span class="pokemon-edit"
+				  ng-if="sessionService.username == ctrl.name"
+				  ng-click="ctrl.toggleModal('edit'); ctrl.loadOwnedPokemon(pokemon)">
+				<img src="/img/star.png" height="20" width="20">
+				Edit	  
+			</span>
+			
+			<!-- div class="pokemon-headline">
+		        <table>       
+		            <tr>
+		                <td ng-click="pokemon.displayPane = 'info'">
+		                    <span>INFO</span>
+		                    <div class="underline" ng-if="pokemon.displayPane == 'info'"></div>
+		                </td>
+		                <td ng-click="pokemon.displayPane = 'battle'">
+		                	<span>MOVES AND ABILITIES</span>
+		                    <div class="underline" ng-if="pokemon.displayPane == 'battle'"></div>
+		                </td>
+		                <td ng-click="pokemon.displayPane = 'contest'">
+		                    <span>CONTEST STATS</span>
+		                    <div class="underline" ng-if="pokemon.displayPane == 'contest'"></div>
+		                </td>
+		                <td ng-click="pokemon.displayPane = 'wishlist'">
+		                    <span>WISHLIST</span>
+		                    <div class="underline" ng-if="pokemon.displayPane == 'wishlist'"></div>
+		                </td>
+		            </tr>  
+		        </table>
+		    </div-->
+		</div>
+		
+		<table class="pokemon-table">
+			<tr>
+				<td class="pokemon-sidebar">
+					<div>
+						<table>
+							<tr>
+								<td ng-click="pokemon.displayPane = 'info'">
+				                    <span ng-style="{ 'font-weight' : pokemon.displayPane == 'info' ? 'bold' : '' }">Overview</span>
+				                </td>
+							</tr>			
+							<tr>
+								<td ng-click="pokemon.displayPane = 'battle'">
+				                	<span ng-style="{ 'font-weight' : pokemon.displayPane == 'battle' ? 'bold' : '' }">Moves and Abilities</span>
+				                </td>
+							</tr>			
+							<tr>
+								<td ng-click="pokemon.displayPane = 'contest'">
+				                    <span ng-style="{ 'font-weight' : pokemon.displayPane == 'contest' ? 'bold' : '' }">Contest Info</span>
+				                </td>
+							</tr>		
+							<tr>
+								<td ng-click="pokemon.displayPane = 'wishlist'">
+				                    <span ng-style="{ 'font-weight' : pokemon.displayPane == 'wishlist' ? 'bold' : '' }">Wishlist</span>
+				                </td>
+							</tr>
+						</table>
+					</div>
+				</td>
+				<td class="pokemon-content">
+					<div>
+						<pokemon-info ng-if="pokemon.displayPane == 'info'"></pokemon-info>
+						<pokemon-battle ng-if="pokemon.displayPane == 'battle'"></pokemon-battle>
+					</div>
+				</td>
+			</tr>
+		</table>
+	
+		
+
+	</div>
+
+</div>
+
+<div class="modal alert close-modal" ng-if="ctrl.showModal['alert'] == true" ng-click="ctrl.toggleModal('alert', $event)">
+	<div class="modal-content">
+		<div class="modal-header">
+            <span class="close-modal" ng-click="ctrl.toggleModal('alert', $event)">&times;</span>
+            {{ ctrl.modal.alert.header }}
+        </div>
+        <div class="modal-body">
+        	{{ ctrl.modal.alert.message }}
+        </div>
+        <div class="modal-footer">
+            <h3>{{ ctrl.modal.alert.footer }}</h3>
+        </div>
+	</div>
+</div>
+
+<div class="modal add-pokemon close-modal" ng-if="ctrl.showModal['species'] == true" ng-click="ctrl.toggleModal('species', $event)">
+
+      <!-- Modal content -->
+    <div class="modal-content">
+    
+    	<div class="pokemon-modal-frame" ng-if="ctrl.modal.species.name !== undefined">
+			<div class="pokemon-image">
+				<img ng-if="ctrl.modal.species.name !== undefined && 
+							ctrl.modal.species.name != '' && 
+							ctrl.modal.species.dex !== undefined && 
+							ctrl.modal.species.dex != ''" 
+					 ng-src="{{ modelBase }}{{ ctrl.modal.species.dex + ctrl.suffix(ctrl.modal.species.displayName, ctrl.modal.species.name) }}.gif" />
+			</div>
+			<span class="type" ng-class="ctrl.modal.species.type1 | lowercase"> {{ ctrl.modal.species.type1 }} </span>
+			<span class="type" ng-class="ctrl.modal.species.type2 | lowercase" ng-show="ctrl.modal.species.type2 !== 'NONE'"> {{ ctrl.modal.species.type2 }} </span>
+		</div>
+    
+        <div class="modal-header">
+            <span class="close-modal" ng-click="ctrl.toggleModal('species', $event)">&times;</span>
+            Add Pokemon:
+        </div>
+        <div class="modal-body">
+        	<table class="stats-table">
+        	
+        		<tr>
+        		
+        			<td>Species:</td>
+        			<td>
+        				<select ng-model="ctrl.modal.species.name" 
+                        	ng-options="species for species in ctrl.pokemonNames"
+                        	ng-change="ctrl.loadSpecies(ctrl.modal.species.name)"></select>
+                    </td>
+        		
+        		</tr>
+        		
+        		<tr ng-if="ctrl.modal.species.name !== undefined">
+        			<td>Nickname: </td>
+        			<td>
+        				<input type="text"
+	                       ng-model="ctrl.modal.species.nickname"
+	                       ng-class="ctrl.modal.species.nickname === undefined || ctrl.modal.species.nickname.length <= 30 ? 'valid' : 'invalid'">
+	                </td>
+        		</tr>
+        		
+        		<tr ng-if="ctrl.modal.species.name !== undefined">
+        		
+        			<td>Gender:</td>
+        			<td>
+        				<label ng-if="ctrl.modal.species.maleAllowed == true">
+	        				<input type="radio"
+	        					ng-model="ctrl.modal.species.gender"
+	        					value="M">
+	                        Male
+	                    </label>
+                        <label ng-if="ctrl.modal.species.femaleAllowed == true">
+	        				<input type="radio"
+	        					ng-model="ctrl.modal.species.gender"
+	        					value="F">
+	                        Female
+	                    </label>
+                        <label ng-if="ctrl.modal.species.maleAllowed == false && ctrl.modal.species.femaleAllowed == false">
+	        				<input type="radio"
+	        					ng-model="ctrl.modal.species.gender"
+	        					value="G">
+	                        Genderless
+	                    </label>
+                    </td>
+        		
+        		</tr>
+        		
+        		<tr ng-if="ctrl.modal.species.name !== undefined">
+        			<td>Abilities:</td>        			
+        		</tr>
+        		
+        		<tr ng-repeat="ability in ctrl.modal.species.abilities" ng-if="ctrl.modal.species.name !== undefined">
+        			<td></td>
+        			<td>
+        				<input type="checkbox" 
+                    	   ng-model="ability.obtained"
+                    	   ng-if="ability.hidden == true"> 
+                    	{{ ability.name }} 
+                    </td>   			
+        		</tr>
+        		
+        		<tr ng-if="ctrl.modal.species.name !== undefined">
+        			<td>EXP: </td>
+        			<td>
+        				<input type="number" min="0"
+	                       ng-model="ctrl.modal.species.exp">
+	                </td>
+        		</tr>
+        		
+        		<tr ng-if="ctrl.modal.species.name !== undefined">
+        			<td>Nature: </td>
+        			<td>
+        				<select ng-model="ctrl.modal.species.nature" 
+                        	ng-options="nature for nature in ctrl.natures"></select>
+	                </td>
+        		</tr>
+        		
+        		<tr ng-if="ctrl.modal.species.name !== undefined">
+        			<td>Obtained: </td>
+        			<td>
+        				<select ng-model="ctrl.modal.species.obtained" 
+                        	ng-options="obtained for obtained in ctrl.obtainedMethods"></select>
+	                </td>
+        		</tr>
+	       	</table>
+	       	 
+	       	<div ng-if="ctrl.modal.species.name !== undefined"> 
+	       	       	
+		       	<hr>
+		       	
+	       		<h2>Technical Machines</h2>
+	       		
+	       		<table class="pokemon-add-moves">
+	       			<tr>
+	       				<td>
+				       		<select ng-model="ctrl.modal.species.selected.TM"
+			   						ng-options="TM as TM.name for TM in ctrl.modal.species.TMs">
+			   				</select>
+		   				</td>
+		   				
+		   				<td><span ng-click="ctrl.addMove(ctrl.modal.species.selected.TM, ctrl.modal.species.owned.TMs, 'TMs')">Add</span></td>
+		   				
+		   				<td><span ng-click="ctrl.bulkType = 'TMs'; ctrl.toggleModal('bulk')">Bulk Import</span></td>
+	  					</tr>
+	       		</table>
+	       		
+	       		<table class="pokemon-moves">
+	       			<tr ng-repeat="row in ctrl.modal.species.owned.TMs">
+	       				<td ng-repeat="col in row" 
+	       					ng-class="(($index + 1) + ($parent.$index + 1)) % 2 == 1 ? 'odd' : 'even'">
+	       					{{ col }}
+	       				</td>
+	       			</tr>
+	       		</table>
+	       		
+	       		<hr>
+		       	
+	       		<h2>Hidden Machines</h2>
+	       		
+	       		<table class="pokemon-add-moves">
+	       			<tr>
+	       				<td>
+				       		<select ng-model="ctrl.modal.species.selected.HM"
+			   						ng-options="HM as HM.name for HM in ctrl.modal.species.HMs">
+			   				</select>
+		   				</td>
+		   				
+		   				<td><span ng-click="ctrl.addMove(ctrl.modal.species.selected.HM, ctrl.modal.species.owned.HMs, 'HMs')">Add</span></td>
+		   				
+		   				<td><span ng-click="ctrl.bulkType = 'HMs'; ctrl.toggleModal('bulk')">Bulk Import</span></td>
+	  					</tr>
+	       		</table>
+	       		
+	       		<table class="pokemon-moves">
+	       			<tr ng-repeat="row in ctrl.modal.species.owned.HMs">
+	       				<td ng-repeat="col in row" 
+	       					ng-class="(($index + 1) + ($parent.$index + 1)) % 2 == 1 ? 'odd' : 'even'">
+	       					{{ col }}
+	       				</td>
+	       			</tr>
+	       		</table>
+		       	
+		       	<hr>
+		       	
+	       		<h2>Breeding Moves</h2>
+	       		
+	       		<table class="pokemon-add-moves">
+	       			<tr>
+	       				<td>
+				       		<select ng-model="ctrl.modal.species.selected.BM"
+			   						ng-options="bm as bm.name for bm in ctrl.modal.species.BMs">
+			   				</select>
+		   				</td>
+		   				
+		   				<td><span ng-click="ctrl.addMove(ctrl.modal.species.selected.BM, ctrl.modal.species.owned.BMs, 'BMs')">Add</span></td>
+		   				
+		   				<td><span ng-click="ctrl.bulkType = 'BMs'; ctrl.toggleModal('bulk')">Bulk Import</span></td>
+	  					</tr>
+	       		</table>
+	       		
+	       		<table class="pokemon-moves">
+	       			<tr ng-repeat="row in ctrl.modal.species.owned.BMs">
+	       				<td ng-repeat="col in row" 
+	       					ng-class="(($index + 1) + ($parent.$index + 1)) % 2 == 1 ? 'odd' : 'even'">
+	       					{{ col }}
+	       				</td>
+	       			</tr>
+	       		</table>
+		       		
+		       	<hr>
+		       	
+		       	<h2>Move Tutor Moves</h2>
+		       		
+	       		<table class="pokemon-add-moves">
+	       			<tr>
+	       				<td>
+				       		<select ng-model="ctrl.modal.species.selected.MT"
+			   						ng-options="MT as MT.name for MT in ctrl.modal.species.MTs">
+			   				</select>
+		   				</td>
+		   				
+		   				<td><span ng-click="ctrl.addMove(ctrl.modal.species.selected.MT, ctrl.modal.species.owned.MTs, 'MTs')">Add</span></td>
+		   				
+		   				<td><span ng-click="ctrl.bulkType = 'MTs'; ctrl.toggleModal('bulk')">Bulk Import</span></td>
+	  					</tr>
+	       		</table>
+	       		
+	       		<table class="pokemon-moves">
+	       			<tr ng-repeat="row in ctrl.modal.species.owned.MTs">
+	       				<td ng-repeat="col in row" 
+	       					ng-class="(($index + 1) + ($parent.$index + 1)) % 2 == 1 ? 'odd' : 'even'">
+	       					{{ col }}
+	       				</td>
+	       			</tr>
+	       		</table>
+	       		
+		       	<hr>
+		       	
+		       	<h2>Special Moves</h2>
+		       		
+	       		<table class="pokemon-add-moves">
+	       			<tr>
+	       				<td>
+				       		<select ng-model="ctrl.modal.species.selected.SM"
+			   						ng-options="SM as SM.name for SM in ctrl.modal.species.SMs">
+			   				</select>
+		   				</td>
+		   				
+		   				<td><span ng-click="ctrl.addMove(ctrl.modal.species.selected.SM, ctrl.modal.species.owned.SMs, 'SMs')">Add</span></td>
+		   				
+		   				<td><span ng-click="ctrl.bulkType = 'SMs'; ctrl.toggleModal('bulk')">Bulk Import</span></td>
+	  					</tr>
+	       		</table>
+	       		
+	       		<table class="pokemon-moves">
+	       			<tr ng-repeat="row in ctrl.modal.species.owned.SMs">
+	       				<td ng-repeat="col in row" 
+	       					ng-class="(($index + 1) + ($parent.$index + 1)) % 2 == 1 ? 'odd' : 'even'">
+	       					{{ col }}
+	       				</td>
+	       			</tr>
+	       		</table>
+	       		
+		       	<hr>
+		       	
+		    </div>
+	       	
+            <input type="button"
+                   ng-click="ctrl.createPokemon()"
+                   value="Save"
+                   ng-if="ctrl.modal.species.name !== undefined">
+        </div>
+        <div class="modal-footer">
+            <h3>Enter numerals without any special characters.</h3>
+        </div>
+    </div>
+</div>
+
+<div class="modal bulk-import close-modal" ng-if="ctrl.showModal['bulk'] == true" ng-click="ctrl.toggleModal('bulk', $event)">
+
+      <!-- Modal content -->
+    <div class="modal-content">
+       
+        <div class="modal-header">
+            <span class="close-modal" ng-click="ctrl.toggleModal('bulk', $event)">&times;</span>
+            Bulk Import:
+        </div>
+        <div class="modal-body">
+        	
+        	<textarea type="text"       
+                rows="3"
+                cols="50"
+                ng-model="ctrl.modal.bulk.contents">
+            </textarea>
+        	
+            <input type="button"
+                   ng-click="ctrl.addMoves(ctrl.modal.bulk.contents); ctrl.toggleModal('bulk')"
+                   value="Add">
+        </div>
+        <div class="modal-footer">
+            <h3>Enter moves in a comma-separated list.</h3>
+        </div>
+    </div>
+</div>
+
+<div class="modal evolve-pokemon close-modal" ng-if="ctrl.showModal['evolve'] == true" ng-click="ctrl.toggleModal('evolve', $event)">
+	
+	<div class="modal-content">
+	
+		<div class="modal-header">
+	        <span class="close-modal" ng-click="ctrl.toggleModal('evolve', $event)">&times;</span>
+	        Evolve Pokemon
+	    </div>
+	    
+	    <div class="modal-body">
+	    	<img ng-src="{{ iconBase }}{{ ctrl.modal.species.dex }}{{ ctrl.suffix(ctrl.modal.species.displayName, ctrl.modal.species.name) }}.png" />
+	    	=>
+	    	<img ng-src="{{ iconBase }}{{ ctrl.modal.evolve.evolution.dex }}{{ ctrl.suffix(ctrl.modal.evolve.evolution.displayName, ctrl.modal.evolve.evolution.name) }}.png" />
+			<p>WARNING: Once you evolve this Pokemon, you cannot return it to its former state.</p>
+			<p>Continue?</p>
+			<table class='yes-no-table'>	
+				<tr>		
+					<td>
+						<span class="yes" ng-click="ctrl.evolvePokemon()">YES</span>
+					</td>
+					<td>
+						<span class='no close-modal' ng-click="ctrl.toggleModal('evolve', $event)">NO</span>
+					</td>		
+				</tr>	
+			</table>
+		</div>
+		
+	</div>
+</div>
+
+<div class="modal delete-pokemon close-modal" ng-if="ctrl.showModal['delete'] == true" ng-click="ctrl.toggleModal('delete', $event)">
+	
+	<div class="modal-content">
+	
+		<div class="modal-header">
+	        <span class="close-modal" ng-click="ctrl.toggleModal('delete', $event)">&times;</span>
+	        Delete Pokemon
+	    </div>
+	    
+	    <div class="modal-body">
+	    	<img ng-src="{{ iconBase }}{{ ctrl.modal.species.dex }}{{ ctrl.suffix(ctrl.modal.species.displayName, ctrl.modal.species.name) }}.png" />
+			<p>WARNING: Once you delete this Pokemon, you cannot restore it.</p>
+			<p>Continue?</p>
+			<table class='yes-no-table'>	
+				<tr>		
+					<td>
+						<span class="yes" ng-click="ctrl.deletePokemon()">YES</span>
+					</td>
+					<td>
+						<span class='no close-modal' ng-click="ctrl.toggleModal('delete', $event)">NO</span>
+					</td>		
+				</tr>	
+			</table>
+		</div>
+		
+	</div>
+</div>
+
+<div class="modal edit-pokemon close-modal" ng-if="ctrl.showModal['edit'] == true" ng-click="ctrl.toggleModal('edit', $event)">
+
+      <!-- Modal content -->
+    <div class="modal-content">
+    
+    	<div class="pokemon-modal-frame" ng-if="ctrl.modal.species.name !== undefined">
+			<div class="pokemon-image">
+				<img ng-if="ctrl.modal.species.name !== undefined && 
+							ctrl.modal.species.name != '' && 
+							ctrl.modal.species.dex !== undefined && 
+							ctrl.modal.species.dex != ''" 
+					 ng-src="{{ modelBase }}{{ ctrl.modal.species.dex + ctrl.suffix(ctrl.modal.species.displayName, ctrl.modal.species.name) }}.gif" />
+			</div>
+			<span class="type" ng-class="ctrl.modal.species.type1 | lowercase"> {{ ctrl.modal.species.type1 }} </span>
+			<span class="type" ng-class="ctrl.modal.species.type2 | lowercase" ng-show="ctrl.modal.species.type2 !== 'NONE'"> {{ ctrl.modal.species.type2 }} </span>
+		</div>
+    
+        <div class="modal-header">
+            <span class="close-modal" ng-click="ctrl.toggleModal('edit', $event)">&times;</span>
+            Edit Pokemon:
+        </div>
+        <div class="modal-body">
+        	<table class="stats-table">
+        	
+        		<tr>
+        		
+        			<td>Species:</td>
+        			<td>
+        				<span>{{ ctrl.modal.species.name }}</span>
+                    </td>
+        		
+        		</tr>
+        		
+        		<tr ng-if="ctrl.modal.species.name !== undefined">
+        			<td>Nickname: </td>
+        			<td>
+        				<input type="text"
+	                       ng-model="ctrl.modal.species.nickname"
+	                       ng-class="ctrl.modal.species.nickname === undefined || ctrl.modal.species.nickname.length <= 30 ? 'valid' : 'invalid'">
+	                </td>
+        		</tr>
+        		
+        		<tr ng-if="ctrl.modal.species.name !== undefined">
+        			<td>Abilities:</td>        			
+        		</tr>
+        		
+        		<tr ng-repeat="ability in ctrl.modal.species.abilities" ng-if="ctrl.modal.species.name !== undefined">
+        			<td></td>
+        			<td>
+        				<input type="checkbox" 
+                    	   ng-model="ability.obtained"
+                    	   ng-if="ability.hidden == true"> 
+                    	{{ ability.name }} 
+                    </td>   			
+        		</tr>
+        		
+        		<tr ng-if="ctrl.modal.species.name !== undefined">
+        			<td>EXP: </td>
+        			<td>
+        				<input type="number" min="0"
+	                       ng-model="ctrl.modal.species.exp">
+	                </td>
+        		</tr>
+        		
+        		<tr ng-if="ctrl.modal.species.name !== undefined">
+        			<td>Nature: </td>
+        			<td>
+        				<select ng-model="ctrl.modal.species.nature" 
+                        	ng-options="nature for nature in ctrl.natures"></select>
+	                </td>
+        		</tr>
+        	
+	       	</table>
+	       
+	       	<div ng-if="ctrl.modal.species.name !== undefined"> 
+	       	       	
+	       	    <hr ng-if="ctrl.modal.species.evolutions.length > 0">   	
+	       	       	
+	       	    <div ng-repeat="evolution in ctrl.modal.species.evolutions" class="pokemon-evo"
+	       	    	ng-class="evolution.canEvolve == true ? 'fulfilled' : 'unfulfilled'"
+	       	    	ng-click="evolution.canEvolve == true ? ctrl.prepareEvolution(evolution, $event) : ''">
+	       	    	<table>
+	       	    		<tr ng-repeat="(requirement, fulfilled) in evolution.requirements">
+	       	    			<th>
+	       	    				<img ng-if="$index == 0"
+	       	    					ng-src="{{ iconBase }}{{ evolution.dex }}{{ ctrl.suffix(evolution.displayName, evolution.name) }}.png" />
+	       	    			</th>
+	       	    			<th>
+	       	    				<span ng-if="$index == 0">{{ evolution.displayName }}</span>
+	       	    			</th>
+	       	    			<td>{{ requirement }}</td>	
+	       	    			<td class="evo-req-fulfilled"><img ng-src="{{ fulfilled == true ? '/img/check.png' : '/img/uncheck.png' }}" width="12" height="12" /></td>
+	       	    		</tr>
+	       	    	</table>
+	       	    </div>
+	       	       	
+		       	<hr>
+		       	
+	       		<h2>Technical Machines</h2>
+	       		
+	       		<table class="pokemon-add-moves">
+	       			<tr>
+	       				<td>
+				       		<select ng-model="ctrl.modal.species.selected.TM"
+			   						ng-options="TM as TM.name for TM in ctrl.modal.species.TMs">
+			   				</select>
+		   				</td>
+		   				
+		   				<td><span ng-click="ctrl.addMove(ctrl.modal.species.selected.TM, ctrl.modal.species.owned.TMs, 'TMs')">Add</span></td>
+		   				
+		   				<td><span ng-click="ctrl.bulkType = 'TMs'; ctrl.toggleModal('bulk')">Bulk Import</span></td>
+	  					</tr>
+	       		</table>
+	       		
+	       		<table class="pokemon-moves">
+	       			<tr ng-repeat="row in ctrl.modal.species.owned.TMs">
+	       				<td ng-repeat="col in row" 
+	       					ng-class="(($index + 1) + ($parent.$index + 1)) % 2 == 1 ? 'odd' : 'even'">
+	       					{{ col }}
+	       				</td>
+	       			</tr>
+	       		</table>
+	       		
+	       		<hr>
+		       	
+	       		<h2>Hidden Machines</h2>
+	       		
+	       		<table class="pokemon-add-moves">
+	       			<tr>
+	       				<td>
+				       		<select ng-model="ctrl.modal.species.selected.HM"
+			   						ng-options="HM as HM.name for HM in ctrl.modal.species.HMs">
+			   				</select>
+		   				</td>
+		   				
+		   				<td><span ng-click="ctrl.addMove(ctrl.modal.species.selected.HM, ctrl.modal.species.owned.HMs, 'HMs')">Add</span></td>
+		   				
+		   				<td><span ng-click="ctrl.bulkType = 'HMs'; ctrl.toggleModal('bulk')">Bulk Import</span></td>
+	  					</tr>
+	       		</table>
+	       		
+	       		<table class="pokemon-moves">
+	       			<tr ng-repeat="row in ctrl.modal.species.owned.HMs">
+	       				<td ng-repeat="col in row" 
+	       					ng-class="(($index + 1) + ($parent.$index + 1)) % 2 == 1 ? 'odd' : 'even'">
+	       					{{ col }}
+	       				</td>
+	       			</tr>
+	       		</table>
+		       	
+		       	<hr>
+		       	
+	       		<h2>Breeding Moves</h2>
+	       		
+	       		<table class="pokemon-add-moves">
+	       			<tr>
+	       				<td>
+				       		<select ng-model="ctrl.modal.species.selected.BM"
+			   						ng-options="bm as bm.name for bm in ctrl.modal.species.BMs">
+			   				</select>
+		   				</td>
+		   				
+		   				<td><span ng-click="ctrl.addMove(ctrl.modal.species.selected.BM, ctrl.modal.species.owned.BMs, 'BMs')">Add</span></td>
+		   				
+		   				<td><span ng-click="ctrl.bulkType = 'BMs'; ctrl.toggleModal('bulk')">Bulk Import</span></td>
+	  					</tr>
+	       		</table>
+	       		
+	       		<table class="pokemon-moves">
+	       			<tr ng-repeat="row in ctrl.modal.species.owned.BMs">
+	       				<td ng-repeat="col in row" 
+	       					ng-class="(($index + 1) + ($parent.$index + 1)) % 2 == 1 ? 'odd' : 'even'">
+	       					{{ col }}
+	       				</td>
+	       			</tr>
+	       		</table>
+		       		
+		       	<hr>
+		       	
+		       	<h2>Move Tutor Moves</h2>
+		       		
+	       		<table class="pokemon-add-moves">
+	       			<tr>
+	       				<td>
+				       		<select ng-model="ctrl.modal.species.selected.MT"
+			   						ng-options="MT as MT.name for MT in ctrl.modal.species.MTs">
+			   				</select>
+		   				</td>
+		   				
+		   				<td><span ng-click="ctrl.addMove(ctrl.modal.species.selected.MT, ctrl.modal.species.owned.MTs, 'MTs')">Add</span></td>
+		   				
+		   				<td><span ng-click="ctrl.bulkType = 'MTs'; ctrl.toggleModal('bulk')">Bulk Import</span></td>
+	  					</tr>
+	       		</table>
+	       		
+	       		<table class="pokemon-moves">
+	       			<tr ng-repeat="row in ctrl.modal.species.owned.MTs">
+	       				<td ng-repeat="col in row" 
+	       					ng-class="(($index + 1) + ($parent.$index + 1)) % 2 == 1 ? 'odd' : 'even'">
+	       					{{ col }}
+	       				</td>
+	       			</tr>
+	       		</table>
+	       		
+		       	<hr>
+		       	
+		       	<h2>Special Moves</h2>
+		       		
+	       		<table class="pokemon-add-moves">
+	       			<tr>
+	       				<td>
+				       		<select ng-model="ctrl.modal.species.selected.SM"
+			   						ng-options="SM as SM.name for SM in ctrl.modal.species.SMs">
+			   				</select>
+		   				</td>
+		   				
+		   				<td><span ng-click="ctrl.addMove(ctrl.modal.species.selected.SM, ctrl.modal.species.owned.SMs, 'SMs')">Add</span></td>
+		   				
+		   				<td><span ng-click="ctrl.bulkType = 'SMs'; ctrl.toggleModal('bulk')">Bulk Import</span></td>
+	  					</tr>
+	       		</table>
+	       		
+	       		<table class="pokemon-moves">
+	       			<tr ng-repeat="row in ctrl.modal.species.owned.SMs">
+	       				<td ng-repeat="col in row" 
+	       					ng-class="(($index + 1) + ($parent.$index + 1)) % 2 == 1 ? 'odd' : 'even'">
+	       					{{ col }}
+	       				</td>
+	       			</tr>
+	       		</table>
+	       		
+		       	<hr>
+		       	
+		    </div>
+	       	
+            <input type="button"
+                   ng-click="ctrl.updatePokemon()"
+                   value="Save"
+                   ng-if="ctrl.modal.species.name !== undefined">
+                   
+            <input type="button"
+                   ng-click="ctrl.toggleModal('delete')"
+                   value="Delete"
+                   ng-if="ctrl.modal.species.name !== undefined">
+        </div>
+        <div class="modal-footer">
+            <h3>Enter numerals without any special characters.</h3>
+        </div>
+    </div>
+</div>

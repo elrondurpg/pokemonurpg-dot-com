@@ -1,0 +1,109 @@
+<div class="mega-info" ng-repeat="mega in ctrl.megaEvolutions">
+    <horizontal-line></horizontal-line>
+    <table class="dex-info-table">
+        <tr>
+            <td class="mega-icon">
+                <img class="mega-icon-image" ng-src="{{ ctrl.megaImages[$index] }}" />
+            </td>
+            <td class="pokemon-dex-info">
+                <h3> #{{ ctrl.threeDigit(ctrl.dex) }} </h3>
+                <h2> {{ mega.displayName }} </h2>
+                <h6></h6>
+                <h7>The {{ ctrl.classification }} Pokemon</h7>
+                <br>
+                <span class="type" ng-class="mega.type1 | lowercase"> {{ mega.type1 }} </span><span ng-show="mega.type2 !== 'NONE'" class="type" ng-class="mega.type2 | lowercase"> {{ mega.type2 }} </span>
+            </td>
+            <td>
+                <vertical-line></vertical-line>
+            </td>
+            <td class="mega-ability">
+                <dl>
+                    <div>
+                        <dt> {{ mega.ability.name }} </dt>
+                        <dd>
+                            <p> {{ mega.ability.description }} </p>
+                        </dd>
+                    </div>
+                </dl>
+            </td>
+            <td>
+                <vertical-line></vertical-line>
+            </td>
+            <td class="mega-stats">
+                <dl>
+                    <dt>HP</dt>
+                    <dd><div ng-class="ctrl.statBarClassHP(mega.hp)" ng-style="{ 'width': ctrl.statBarHP(mega.hp) + 'px' }">{{ mega.hp }}</div></dd>
+                </dl>
+                <dl>
+                    <dt>Atk</dt>
+                    <dd><div ng-class="ctrl.statBarClass(mega.attack)" ng-style="{ 'width': ctrl.statBar(mega.attack) + 'px' }">{{ mega.attack }}</div></dd>
+                </dl>
+                <dl>
+                    <dt>Def</dt>
+                    <dd><div ng-class="ctrl.statBarClass(mega.defense)" ng-style="{ 'width': ctrl.statBar(mega.defense) + 'px' }">{{ mega.defense }}</div></dd>
+                </dl>
+                <dl>
+                    <dt>SpA</dt>
+                    <dd><div ng-class="ctrl.statBarClass(mega.specialAttack)" ng-style="{ 'width': ctrl.statBar(mega.specialAttack) + 'px' }">{{ mega.specialAttack }}</div></dd>
+                </dl>
+                <dl>
+                    <dt>SpD</dt>
+                    <dd><div ng-class="ctrl.statBarClass(mega.specialDefense)" ng-style="{ 'width': ctrl.statBar(mega.specialDefense) + 'px' }">{{ mega.specialDefense }}</div></dd>
+                </dl>
+                <dl>
+                    <dt>Spe</dt>
+                    <dd><div ng-class="ctrl.statBarClass(mega.speed)" ng-style="{ 'width': ctrl.statBar(mega.speed) + 'px' }">{{ mega.speed }}</div></dd>   
+                </dl>
+            </td>
+        </tr>   
+    </table>
+    <table>
+        <tr>
+            <td><h5>Damage Taken</h5></td>
+        </tr>
+    </table>
+    <table class="type-table">
+        <tr>
+            <th ng-repeat="type in mega.typeMatchups">
+                <span class="type-block type" ng-class="type.name | lowercase"> {{ type.name.substring(0, 3).toUpperCase() }} </span>
+            </th>
+        </tr>
+        <tr>
+            <td ng-repeat="type in mega.typeMatchups" class="type-box" ng-class="ctrl.matchupClass(type.multiplier)">
+                {{ ctrl.fraction(type.multiplier) }}
+            </td>
+        </tr>
+    </table>
+    <table class="mega-misc">
+        <tr>
+            <td>
+                <dl>
+                    <dt>
+                        Available Gender
+                    </dt>
+                    <dd>
+                        <span ng-show="mega.maleAllowed == '1'" class="gender male">M</span>
+                        <span ng-show="mega.femaleAllowed == '1'" class="gender female">F</span>
+                        <span ng-show="mega.maleAllowed == '0' && mega.femaleAllowed == '0'" class="gender genderless">G</span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        Grass Knot / Low Kick
+                    </dt>
+                    <dd>
+                        {{ ctrl.grassKnot() }} BP
+                    </dd>
+                </dl>
+                <dl>
+                    <dt> Height </dt>
+                    <dd> {{ mega.height }} m / {{ ctrl.imperialHeight(mega.height) }}</dd>
+                </dl>
+                <dl>
+                    <dt> Weight </dt>
+                    <dd> {{ mega.weight}} kg / {{ ctrl.imperialWeight(mega.weight) }} lbs</dd>
+                </dl>
+            </td>
+        </tr>
+    </table>
+</div>

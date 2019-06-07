@@ -1,0 +1,171 @@
+body {
+	font-family: Calibri, Arial, sans-serif;
+	font-size: 14px;
+	padding-top: 0px;
+	margin-top: 0px;
+	background-color: #F2F2F2;
+}
+
+header {
+	top: 0;
+	left: 0;
+	right: 0;
+	position: fixed;
+	height: 30px;
+	border-bottom: 1px solid black;
+	background-color: grey;
+	color: white;
+	z-index: 20;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	border: none;
+}
+
+h1 {
+	margin: 0;
+	text-align: center;
+	font-size: 20px;
+}
+
+h2 {
+	margin: 0px 0px 5px 0px;
+	text-align: center;
+	font-size: 16px;
+}
+
+div {
+	/* border: 1px solid #DDDDDD; */
+	margin: 0;
+}
+
+button {
+	border: 1px solid #A9A9A9;
+	border-radius: 5px;
+	background: #F2F2F2;
+}
+
+button:hover {
+	background: #0022AA;
+	color: white;
+}
+
+button:focus {
+	outline: none;
+}
+
+button:focus:after {
+	outline: none;
+}
+
+.navbar, #wrapper{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	max-width: 960px;
+	min-width: 600px;
+}
+
+.navbar {
+	z-index: 20;
+}
+
+#wrapper {
+	border: 1px solid black;
+	border-radius: 10px;
+	background: white;
+}
+
+.navbar ul {
+	height: 30px;
+	margin: auto;
+	padding: 0px;
+}
+
+.navbar a:first-child>li {
+	background: #AF082D;
+	color: #3F0211;
+}
+
+.navbar a:nth-child(2)>li {
+	background: #749AE8;
+	color: #26334C;
+}
+
+.navbar a:nth-child(3)>li {
+	background: #F9DA5B;
+	color: #7F6100;
+}
+
+.navbar a:nth-child(4)>li {
+	background: #5B9E1B;
+	color: #1E3309;
+}
+
+.navbar .navitem {
+	float: left;
+	position: relative;
+	list-style-type: none;
+	width: calc(25% - 1px);
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 20px;
+	border-right: 1px solid black;
+	padding: 5px 0px;
+}
+
+.navbar:first-child {
+	border-left: 1px solid black;
+}
+
+#content {
+	width: 250px;
+	margin: 10px auto;
+}
+
+div .row {
+	margin: 2px 0px;
+	padding: 2px;
+}
+
+div .row p{
+	margin: 0;
+	vertical-align: middle;
+	display: inline;
+}
+
+div .row select {
+	position: relative;
+	float: right;
+	margin: 0px 1%;
+	border-radius: 5px;
+}
+
+div.single select, div .single input {
+	width: 50%;
+	float: right;
+}
+
+div .single button {
+	float: none;
+	height: 26px;
+	width: 120px;
+	margin: 5px -60px;
+	position: relative;
+	left: 50%;
+}
+
+input[type="text"] {
+	border: 1px solid #A9A9A9;
+	border-radius: 5px;
+	padding: 1px 5px;
+}
+
+div .single select, div .single input {
+	width: 50%;
+	margin: 0px 1%;
+}

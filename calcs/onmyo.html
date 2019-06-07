@@ -1,0 +1,120 @@
+<html>
+	<!--
+		URPG Onmyo Stats-at-Level Calculator
+		Written by Monbrey
+		Really very basic and doesnt have to be Onymo specific
+	-->
+	<head>
+		<title>URPG Stats-at-Level Calculator</title>
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/battle.css">
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="js/selectize.js"></script>
+		<script src="js/jquery-csv.js"></script>
+		<script src="js/sb.js"></script>
+	</head>
+	<body onload="PopulateLists()">
+		<header>
+			<nav class="navbar">
+				<ul>
+					<a href="battlev3.html"><li class="navitem">Battle Calculator</li></a>
+					<a href="ffa.htm"><li class="navitem">FFA Calculator</li></a>
+					<a href="parkv2.html"><li class="navitem">Park Calculator</li></a>
+					<a href="https://pokemonurpg.com/pokemon/bulbasaur" target="_blank"><li class="navitem">UltraDex</li></a>
+				</ul>
+			</nav>
+		</header>
+		<div id="wrapper">
+			<div id="content">
+				<h1 class="heading">URPG Stats-at-Level Calculator</h1>
+				<div class="columns2 left"> <!--Pokemon A-->
+					<h2 class="subheading">Pokemon A:</h2>
+					<div class="row single"> <!--Pokemon-->
+						<p>Pokemon:</p>
+						<select id="pokemon1" onchange="calcStatsByLevel(this)">
+							<option value="-1" selected>(none)</option>
+						</select>
+					</div>
+					<div class="row halfsingle"> <!--HP-->
+						<p>Level:</p>
+						<input id="Level1" type="number" onchange="calcStatsByLevel(this);"/>
+					</div>
+					<div class="row halfdouble"> <!--HP-->
+						<p>HP:</p>
+						<input id="HP1" readonly type="text"/>
+						<input id="CurrentHP1" placeholder="Current HP" type="number"/>
+					</div>
+					<div class="row halfdouble"> <!--Attack-->
+						<p>Attack:</p>
+						<select id="AS1" onchange="statMod(this);"></select>
+						<input id="attack1" readonly type="text"/>
+					</div>
+					<div class="row halfdouble"> <!--Defence-->
+						<p>Defence:</p>
+						<select id="DS1" onchange="statMod(this);"></select>
+						<input id="defence1" readonly type="text"/>
+					</div>
+					<div class="row halfdouble"> <!--Special Att-->
+						<p>Special Att:</p>
+						<select id="SAS1" onchange="statMod(this);"></select>
+						<input id="SA1" readonly type="text"/>
+					</div>
+					<div class="row halfdouble"> <!--Special Defence-->
+						<p>Special Def:</p>
+						<select id="SDS1" onchange="statMod(this);"></select>
+						<input id="SD1" readonly type="text"/>
+					</div>
+					<div class="row halfdouble"> <!--Speed-->
+						<p>Speed:</p>
+						<select id="SS1" onchange="statMod(this);"></select>
+						<input id="speed1" readonly type="text"/>
+					</div>
+				</div>
+				<div class="columns2 right"> <!--Pokemon A-->
+					<h2 class="subheading">Pokemon B:</h2>
+					<div class="row single"> <!--Pokemon-->
+						<p>Pokemon:</p>
+						<select id="pokemon2" onchange="calcStatsByLevel(this)">
+							<option value="-1" selected>(none)</option>
+						</select>
+					</div>
+					<div class="row halfsingle"> <!--HP-->
+						<p>Level:</p>
+						<input id="Level2" type="number" onchange="calcStatsByLevel(this);"/>
+					</div>
+					<div class="row halfdouble"> <!--HP-->
+						<p>HP:</p>
+						<input id="HP2" readonly type="text"/>
+						<input id="CurrentHP2" placeholder="Current HP" type="number"/>
+					</div>
+					<div class="row halfdouble"> <!--Attack-->
+						<p>Attack:</p>
+						<select id="AS2" onchange="statMod(this);"></select>
+						<input id="attack2" readonly type="text"/>
+					</div>
+					<div class="row halfdouble"> <!--Defence-->
+						<p>Defence:</p>
+						<select id="DS2" onchange="statMod(this);"></select>
+						<input id="defence2" readonly type="text"/>
+					</div>
+					<div class="row halfdouble"> <!--Special Att-->
+						<p>Special Att:</p>
+						<select id="SAS2" onchange="statMod(this);"></select>
+						<input id="SA2" readonly type="text"/>
+					</div>
+					<div class="row halfdouble"> <!--Special Defence-->
+						<p>Special Def:</p>
+						<select id="SDS2" onchange="statMod(this);"></select>
+						<input id="SD2" readonly type="text"/>
+					</div>
+					<div class="row halfdouble"> <!--Speed-->
+						<p>Speed:</p>
+						<select id="SS2" onchange="statMod(this);"></select>
+						<input id="speed2" readonly type="text"/>
+					</div>
+				</div>
+			</div>
+			<div id="clear"/>
+		</div>
+	</body>
+</html>

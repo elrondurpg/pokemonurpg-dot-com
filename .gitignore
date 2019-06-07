@@ -1,0 +1,11 @@
+.idea
+
+# Ignore wp-config.php and .htaccess
+/wp/wp-config.php
+.htaccess
+
+# Ignore the wp-content directory
+/wp/wp-content
+
+# Don't ignore the urpg theme
+!/wp/wp-content/themes/urpg

@@ -1,0 +1,6 @@
+<div ng-class="sprite-container">
+    <img ng-repeat="form in ctrl.alteredForms"
+         ng-src="{{ modelBase }}{{ ctrl.dex }}{{ ctrl.suffix(form.displayName, form.name) }}.gif"
+         ng-show="ctrl.currentForm == $index" />
+</div>
+<h8 ng-show="ctrl.alteredFormType == 'cosmetic'">{{ctrl.alteredForms[ctrl.currentForm].formName}}</h8>

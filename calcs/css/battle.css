@@ -1,0 +1,429 @@
+* {
+	margin: 0px;
+}
+
+body {
+	font-family: Calibri, Arial, sans-serif;
+	font-size: 14px;
+	padding-top: 0px;
+	margin-top: 0px;
+	background-color: #F2F2F2;
+}
+
+header {
+	top: 0;
+	left: 0;
+	right: 0;
+	position: fixed;
+	height: 24px;
+	border-bottom: 1px solid black;
+	background-color: grey;
+	color: white;
+	z-index: 20;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	border: none;
+}
+
+h1 {
+	margin: 0;
+	text-align: center;
+	font-size: 20px;
+}
+
+h2 {
+	margin: 0px 0px 5px 0px;
+	text-align: center;
+	font-size: 16px;
+}
+
+div {
+	/* border: 1px solid #DDDDDD; */
+	margin: 0;
+}
+
+button {
+	border: 1px solid #A9A9A9;
+	border-radius: 5px;
+	background: #F2F2F2;
+}
+
+button:hover {
+	background: #0022AA;
+	color: white;
+}
+
+button:focus {
+	outline: none;
+}
+
+button:focus:after {
+	outline: none;
+}
+
+input[type="text"], input[type="number"] {
+	border: 1px solid #A9A9A9;
+	border-radius: 5px;
+	padding: 1px 5px;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+	outline: none;
+	border-color: #0022AA;
+}
+
+.selectize-input > input[type="text"] {
+	padding: 1px 0px;
+}
+
+#wrapper {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	border: 1px solid black;
+	border-radius: 10px;
+	background: white;
+	padding-left: 50px;
+    padding-right: 50px;
+    max-width: 900px;
+    min-width: 600px;
+    margin: 0px auto;	
+}
+
+#content {
+	padding: 0px;
+	position: relative;
+	margin: 1%;
+}
+
+#clear {
+	clear: both;
+	border: none;
+}
+
+div .columns1 {
+	width: 45%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5px 2%;
+}
+
+div .columns2{
+	width: 45%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5px 2%;
+}
+
+div .left {
+	float: left;
+}
+
+div .right {
+	float: right;
+}
+
+div .row {
+	margin: 2px 0px;
+	padding: 2px;
+}
+
+div .row p{
+	margin: 0;
+	vertical-align: middle;
+	display: inline;
+}
+
+div .row select {
+	position: relative;
+	float: right;
+	margin: 0px 1%;
+	border-radius: 5px;
+}
+
+div .selectize-control, div button {
+	float: right;
+	position: relative;
+	box-sizing: border-box;
+	border: 1px solid #A9A9A9;
+	border-radius: 5px;
+}
+
+div .single .selectize-control, div .single select, div .single input {
+	width: 66%;
+	margin: 0px 1%;
+}
+
+div .double .selectize-control, div .double select, div .double button, div .double input[type="text"] {
+	width: 32%;
+	margin: 0px 1%;
+	float: right;
+}
+
+div .double .selectize-control input {
+	float: none;
+}
+
+div .triple input {
+	width: 32%;
+	margin: 0px 0.5%;
+	text-align: center;
+}
+
+div .triple input:first-child {
+	margin-left: 0px;
+}
+
+div .triple input:last-child {
+	margin-right: 0px;
+}
+
+div .fivebtn {
+	text-align: center;
+}
+
+div .fivebtn button {
+	float: none;
+	width: 15%;
+	margin: 0px;
+	padding: 0px;
+	min-width: 45px;
+}
+
+div .twobtn button {
+	float: right;
+	width: 15%;
+	margin: 0px 1%;
+	padding: 0px;
+}
+
+div .twobtn>input {
+	float: right;
+}
+
+div .halfsingle .selectize-control, div.halfsingle select{
+	width: 32%;
+	margin-right: 35%;
+}
+
+.topspace {
+	margin-top: 20px !important;
+}
+
+div .halfsingle > input[type="text"], div .halfsingle > input[type="number"] {
+	float: right;
+	width: 32%;
+	margin: 0;
+	margin-right: 35%;
+}
+
+div .halfdouble > input[type="text"], div .halfdouble > input[type="number"] {
+	float: right;
+	width: 32%;
+	margin: 0px 1%;
+}
+
+div .halfdouble > button, div .halfdouble select, div .halfdouble .selectize-control { 
+	float: right;
+	width: 15%;
+	margin: 0px 18% 0px 1%;
+	min-width: 45px;
+}
+
+.selectize-input {
+	padding: 0px 5px;
+	border: none;
+	width: 100%;
+	box-sizing: border-box;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.selectize-input:after {
+	content: ' ';
+	position: absolute;
+	top: 50%;
+	margin-top: -3px;
+	right: 6px;
+	border-style: solid;
+	border-width: 6px 3px 0px 3px;
+	border-color: black transparent transparent transparent;
+}
+
+.atkbtnleft:after, .atkbtnright:before {
+	content: ' ';
+	position: absolute;
+	top: 50%;
+	margin-top: -4px;
+	border-style: solid;
+}
+
+.atkbtnleft:after{
+	right: 6px;
+	border-width: 4px 0px 4px 6px;
+	border-color: transparent transparent transparent black;
+}
+
+.atkbtnleft:hover:after {
+	border-color: transparent transparent transparent white;
+}
+
+.atkbtnright:before{
+	left: 6px;
+	border-width: 4px 6px 4px 0px;
+	border-color: transparent black transparent transparent;
+}
+
+.atkbtnright:hover:before {
+	border-color: transparent white transparent transparent;
+}
+
+.selectize-input > * {
+	display: inline-block;
+}
+
+.selectize-input input {
+	margin: 0;
+	border: none;
+	outline: none;
+}
+
+.selectize-input.input-active input, .selectize-input.input-active {
+	cursor: text;
+}
+
+.selectize-dropdown {
+	position: absolute;
+	z-index: 10;
+	box-sizing: border-box;
+	border: 1px solid #A9A9A9;
+	border-top: none;
+	border-radius: 0px 0px 5px 5px;
+	background: #FFFFFF;
+}
+
+.selectize-dropdown-content {
+	overflow-y: auto;
+	overflow-x: hidden;
+	max-height: 125px;
+}
+
+.selectize-dropdown .active {
+	background-color: #0022AA;
+	color: white;
+}
+
+.selectize-dropdown [data-selectable] {
+	padding: 2px;
+	cursor: pointer;
+}
+
+/* Mobile adaptive */
+@media (max-width: 740px) {
+	.navbar, #wrapper {
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		width: 600px;
+	}
+	div .single .selectize-control, div .double select {
+		width: 62%;
+	}
+	
+	div .double .selectize-control, div .double select, div .double button, div .double input[type="text"] {
+		width: 30%;
+	}
+	
+	div .triple input {
+		width: 31.5%;
+	}
+	
+	div .halfsingle .selectize-control, div .halfsingle select, div .halfsingle input[type="text"]{
+		width: 30%;
+		margin-right: 33%;
+	}
+	
+	div .halfdouble > button, div .halfdouble select, div .halfdouble .selectize-control { 
+		width: 15%;
+		margin: 0px 12% 0px 1%;
+	}
+	
+	div .threebtn button {
+		float: right;
+		width: 10%;
+		margin: 0px 0.5%;
+		padding: 0px;
+		min-width: 27px;
+	}
+
+	div.halfsingle > div.selectize-control, div.halfsingle > div.selectize-control > div.selectize-input {
+		min-width: 100px;
+		margin-right: 61px;
+	}
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+div#storageTab {
+	position: relative;
+	overflow: hidden;
+	width: 150px;
+	height: 30px;
+	margin: auto;
+	text-align: center;
+	border: 1px solid black;
+	border-bottom: none;
+	background: white;
+	border-radius: 5px 5px 0px 0px;
+	cursor: pointer;
+}
+
+div#storageTab h3 {
+	margin: 5px 0px 15px 0px;
+}
+
+div#storageTab button {
+	float: none;
+}
+
+div#closeStorage {
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	left: 375;
+	top: 5;
+	border: 1px solid black;
+	border-radius: 3px;
+	cursor: pointer;
+	background: red;
+	color: white;
+	font-weight: bold;
+}
+
+div.storageTeam {
+	margin: 10px 0px;
+}
+
+div.storageRow {
+	padding: 3px 0px;
+}
+
+input.storedPokemonName {
+	border: 1px solid #A9A9A9;
+	border-radius: 5px;
+	width: 150px;
+}
+
+input.storedPokemonHP, input.storedPokemonStatus {
+	border: 1px solid #A9A9A9;
+	border-radius: 5px;
+	width: 50px;
+}

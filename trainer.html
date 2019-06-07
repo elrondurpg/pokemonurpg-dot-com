@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="urpg-infohub" ng-controller="statsCtrl as ctrl">
+<head>
+	<meta charset="utf-8">
+	<title ng-if="ctrl.name == ''">Pokemon URPG InfoHub</title>
+	<title ng-if="ctrl.name != ''">{{ ctrl.name }}</title>
+    <link rel="stylesheet" href="/css/style-main.css" />
+    <link rel="stylesheet" href="/css/stats.css" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+	<link rel="icon" type="image/png" href="https://pokemonurpg.com/img/wooper.png" />
+</head>
+<body>
+    <site-header></site-header>
+	<stats-header></stats-header>
+	<stats-news ng-if="ctrl.displayPane == 'news'"></stats-news>
+	<stats-pokemon ng-if="ctrl.displayPane == 'pokemon'"></stats-pokemon>
+	<stats-items ng-if="ctrl.displayPane == 'items'"s></stats-items>
+	<stats-matches ng-if="ctrl.displayPane == 'matches'"></stats-matches>
+	<stats-achievements ng-if="ctrl.displayPane == 'achievements'"></stats-achievements>
+	<stats-about ng-if="ctrl.displayPane == 'about'"></stats-about>
+    <site-footer></site-footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+
+    <script src="/js/app.js"></script>
+
+    <script src="/js/directives/loginDrc.js"></script>
+    <script src="/js/directives/registerDrc.js"></script>
+
+    <script src="/js/controllers/loginCtrl.js"></script>
+    <script src="/js/controllers/homeCtrl.js"></script>
+    <script src="/js/controllers/pokemonCtrl.js"></script>
+    <script src="/js/controllers/adminCtrl.js"></script>
+    <script src="/js/controllers/registerCtrl.js"></script>
+    <script src="/js/controllers/statsCtrl.js"></script>
+    <script src="/js/controllers/infoCtrl.js"></script>
+    <script src="/js/controllers/headerCtrl.js"></script>
+    
+    <script src="/js/services/loginService.js"></script>
+    <script src="/js/services/sessionService.js"></script>
+    <script src="/js/services/secureService.js"></script>
+    <script src="/js/services/registerService.js"></script>
+    <script src="/js/services/badgeService.js"></script>
+    <script type="/text/JavaScript" src="/js/sha512.js"></script> 
+    <script type="/text/JavaScript" src="/js/forms.js"></script> 
+</body>
+</html>

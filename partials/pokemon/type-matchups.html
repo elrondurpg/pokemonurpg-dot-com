@@ -1,0 +1,17 @@
+<table>
+    <tr>
+        <td><h5>Damage Taken</h5></td>
+    </tr>
+</table>
+<table class="type-table">
+    <tr>
+        <th ng-repeat="type in ctrl.typeMatchups">
+            <span class="type-block type" ng-class="type.name | lowercase"> {{ type.name.substring(0, 3).toUpperCase() }} </span>
+        </th>
+    </tr>
+    <tr>
+        <td ng-repeat="type in ctrl.typeMatchups" class="type-box" ng-class="ctrl.matchupClass(type.multiplier)">
+            {{ ctrl.fraction(type.multiplier) }}
+        </td>
+    </tr>
+</table>

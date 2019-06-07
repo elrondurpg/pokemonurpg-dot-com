@@ -1,0 +1,64 @@
+<div class="pokemon-body">
+	<div class="pokemon-field">
+		<div class="hover-label">Abilities</div>
+		<table>
+			<tr>
+				<td class="pokemon-ability" ng-repeat="ability in pokemon.abilities">{{ ability.name }}</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="pokemon-field" >
+		<div class="hover-label">Level Up Moves</div>
+		<div class="pokemon-movelist">
+			<span ng-repeat="move in pokemon.levelUpMoves">
+                {{ move.name }}{{ $last ? '' : ',' }}
+            </span>
+           </div>
+	</div>
+	
+	<div class="pokemon-field" ng-if="pokemon.sortedTMs.length > 0">
+		<div class="hover-label">Technical Machines</div>
+		<div class="pokemon-movelist">
+			<span ng-repeat="move in pokemon.sortedTMs">
+                {{ move.name }}{{ $last ? '' : ',' }}
+            </span>
+           </div>
+	</div>
+	
+	<div class="pokemon-field" ng-if="pokemon.hms.length > 0">
+		<div class="hover-label">Hidden Machines</div>
+		<div class="pokemon-movelist">
+			<span ng-repeat="move in pokemon.hms">
+                {{ move.name }}{{ $last ? '' : ',' }}
+            </span>
+           </div>
+	</div>
+	
+	<div class="pokemon-field" ng-if="pokemon.bms.length > 0">
+		<div class="hover-label">Breeding Moves</div>
+		<div class="pokemon-movelist">
+			<span ng-repeat="move in pokemon.bms">
+                {{ move.name }}{{ $last ? '' : ',' }}
+            </span>
+           </div>
+	</div>
+	
+	<div class="pokemon-field" ng-if="pokemon.mts.length > 0">
+		<div class="hover-label">Move Tutors</div>
+		<div class="pokemon-movelist">
+			<span ng-repeat="move in pokemon.mts">
+                {{ move.name }}{{ $last ? '' : ',' }}
+            </span>
+           </div>
+	</div>
+	
+	<div class="pokemon-field" ng-if="pokemon.sms.length > 0">
+		<div class="hover-label">Special Moves</div>
+		<div class="pokemon-movelist">
+			<span ng-repeat="move in pokemon.sms">
+                {{ move.name }}{{ $last ? '' : ',' }}
+            </span>
+           </div>
+	</div>
+</div>

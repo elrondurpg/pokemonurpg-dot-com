@@ -1,0 +1,32 @@
+<table>
+    <tr>
+        <td>
+            <dl>
+                <dt>
+                    Available Gender
+                </dt>
+                <dd>
+                    <span ng-show="ctrl.maleAllowed == '1'" class="gender male">M</span>
+                    <span ng-show="ctrl.femaleAllowed == '1'" class="gender female">F</span>
+                    <span ng-show="ctrl.maleAllowed == '0' && ctrl.femaleAllowed == '0'" class="gender genderless">G</span>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    Grass Knot / Low Kick
+                </dt>
+                <dd>
+                    {{ ctrl.grassKnot() }} BP
+                </dd>
+            </dl>
+            <dl>
+                <dt> Height </dt>
+                <dd> {{ ctrl.height }} m / {{ ctrl.imperialHeight(ctrl.height) }}</dd>
+            </dl>
+            <dl>
+                <dt> Weight </dt>
+                <dd> {{ ctrl.weight}} kg / {{ ctrl.imperialWeight(ctrl.weight) }} lbs</dd>
+            </dl>
+        </td>
+    </tr>
+</table>
