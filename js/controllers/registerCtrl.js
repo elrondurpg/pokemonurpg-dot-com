@@ -4,7 +4,7 @@ app.controller('registerCtrl', ['registerService', 'sessionService', '$location'
     var ctrl = this;
     ctrl.starterNames = {};
     
-    $http.get($rootScope.serviceHost + ':8443/pokemon/starters').success(function (data) {
+    $http.get($rootScope.serviceHost + '/pokemon/starters').success(function (data) {
         ctrl.starterNames = data;
     });
     

@@ -56,12 +56,12 @@ app.controller("adminCtrl", [ '$http', '$location', '$scope', 'sessionService', 
     
     admin.abilityNames = {};
     
-    $http.get($rootScope.serviceHost + ':8443/ability/').success(function (data) {
+    $http.get($rootScope.serviceHost + '/ability/').success(function (data) {
         admin.abilityNames = data;
     });
     
     admin.loadAbility = function (ability, name) {
-        $http.get($rootScope.serviceHost + ':8443/ability/name/' + name).success(function (data) {
+        $http.get($rootScope.serviceHost + '/ability/name/' + name).success(function (data) {
             ability.new = true;
             ability.name = name;
             ability.description = data.description;
@@ -608,7 +608,7 @@ app.controller("adminCtrl", [ '$http', '$location', '$scope', 'sessionService', 
     }
     
     admin.captureMethods = {};
-    $http.get($rootScope.serviceHost + ':8443/captureInfo/').success(function(data) {
+    $http.get($rootScope.serviceHost + '/captureInfo/').success(function(data) {
         admin.captureMethods = data;
     });
     
@@ -701,7 +701,7 @@ app.controller("adminCtrl", [ '$http', '$location', '$scope', 'sessionService', 
     admin.loadEvolutions = function(pokemon)
     {
         if (pokemon.name == undefined || pokemon.name == "") return {};
-        $http.get($rootScope.serviceHost + ':8443/pokemon/name/' + pokemon.name + '/evolutions/').success(function(data) {
+        $http.get($rootScope.serviceHost + '/pokemon/name/' + pokemon.name + '/evolutions/').success(function(data) {
             pokemon.evolutions = data;
         });
     };
@@ -1074,7 +1074,7 @@ app.controller("adminCtrl", [ '$http', '$location', '$scope', 'sessionService', 
     };
     
     admin.loadPokemon = function(pokemon) {
-        $http.get($rootScope.serviceHost + ':8443/pokemon/name/' + pokemon).success(function(data) {
+        $http.get($rootScope.serviceHost + '/pokemon/name/' + pokemon).success(function(data) {
 			admin.pokemon = {};
             admin.pokemon.name = data.name;
             admin.pokemon.dex = data.dex;
@@ -1642,7 +1642,7 @@ app.controller("adminCtrl", [ '$http', '$location', '$scope', 'sessionService', 
             "pokemon": admin.changes
         };
         
-        $http.post($rootScope.serviceHost + ':8443/pokemon/name/' + admin.instance.name + '/update', payload).then(function(data) { 
+        $http.post($rootScope.serviceHost + '/pokemon/name/' + admin.instance.name + '/update', payload).then(function(data) {
             admin.loadPokemon(admin.prototype.name);
             alert(JSON.stringify(data.data));
         });
@@ -1657,7 +1657,7 @@ app.controller("adminCtrl", [ '$http', '$location', '$scope', 'sessionService', 
             "pokemon": admin.changes
         };
         
-        $http.post($rootScope.serviceHost + ':8443/pokemon/name/' + admin.instance.name + "/create", payload).then(function(data) { 
+        $http.post($rootScope.serviceHost + '/pokemon/name/' + admin.instance.name + "/create", payload).then(function(data) {
             //$location.path('/admin/add-pokemon');
         });
     };
@@ -1678,7 +1678,7 @@ app.controller("adminCtrl", [ '$http', '$location', '$scope', 'sessionService', 
     };
     
     admin.attackTypes = {};
-    $http.get($rootScope.serviceHost + ':8443/type/').success(function (data) {
+    $http.get($rootScope.serviceHost + '/type/').success(function (data) {
         admin.attackTypes = data;
     });
     admin.attackTypeValid = true;

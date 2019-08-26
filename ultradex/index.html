@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" ng-app="urpg-infohub" ng-controller="dexCtrl as ctrl">
+<head>
+    <meta charset="utf-8">
+    <title ng-if="ctrl.pokemon.displayName == '' || ctrl.pokemon.dexno == ''">Pokemon URPG InfoHub</title>
+    <title ng-if="ctrl.pokemon.displayName != '' && ctrl.pokemon.dexno != ''">#{{ ctrl.pokemon.dexno }}: {{ ctrl.pokemon.displayName }}</title>
+    <!--link rel="stylesheet" href="/css/app.css" /-->
+    <link rel="stylesheet" href="/css/style-main.css" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+    <link rel="icon" type="image/png" href="https://pokemonurpg.com/img/wooper.png" />
+    <link rel='stylesheet' href='/css/dex-header.css' type='text/css' />
+</head>
+<body>
+<site-header></site-header>
+<dex-header ng-if="ctrl.loaded == true"></dex-header>
+<dex-body ng-if="ctrl.loaded == true"></dex-body>
+<site-footer></site-footer>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+
+<script src="/app.js"></script>
+
+<script src="/js/controllers/headerCtrl.js"></script>
+<script src="/ultradex/dexCtrl.js"></script>
+<script src="/services/speciesService.js"></script>
+</body>
+</html>

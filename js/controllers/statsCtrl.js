@@ -113,7 +113,7 @@ app.controller("statsCtrl", [ '$http', '$location', '$scope', 'sessionService', 
     
     stats.modal.wld = {};
     stats.loadTrainer = function () {
-	    $http.get($rootScope.serviceHost + ':8443/stats/name/' + stats.name).success(function(data) {
+	    $http.get($rootScope.serviceHost + '/stats/name/' + stats.name).success(function(data) {
 	        stats.name = data.name;
 	        stats.changes.name = data.name;
 	        stats.avatar = data.avatar;
@@ -136,13 +136,13 @@ app.controller("statsCtrl", [ '$http', '$location', '$scope', 'sessionService', 
     stats.pokemonLoaded = false;
     
     stats.pokemonNames = {};
-    $http.get($rootScope.serviceHost + ':8443/pokemon/').success(function (data) {
+    $http.get($rootScope.serviceHost + '/pokemon/').success(function (data) {
         stats.pokemonNames = data;
     });
     
     stats.loadPokemon = function(payload) {
     	stats.pokemonLoaded = true;
-        $http.post($rootScope.serviceHost + ':8443/stats/name/' + stats.name + '/pokemon', payload).success(function(data) {
+        $http.post($rootScope.serviceHost + '/stats/name/' + stats.name + '/pokemon', payload).success(function(data) {
             stats.pokemon = data;
             stats.pokemon.forEach(function(element) {
                 element.displayPane = 'info';
@@ -225,7 +225,7 @@ app.controller("statsCtrl", [ '$http', '$location', '$scope', 'sessionService', 
 	
 	stats.modal.species = {};
 	stats.loadSpecies = function(species) {
-        $http.get($rootScope.serviceHost + ':8443/pokemon/name/' + species).success(function(data) {
+        $http.get($rootScope.serviceHost + '/pokemon/name/' + species).success(function(data) {
         	stats.modal.species = {};
         	
             stats.modal.species.name = data.name;
@@ -305,7 +305,7 @@ app.controller("statsCtrl", [ '$http', '$location', '$scope', 'sessionService', 
     stats.loadOwnedPokemon = function (pokemon) {
     	stats.modal.species = {};
     	
-    	$http.get($rootScope.serviceHost + ':8443/pokemon/name/' + pokemon.name).success(function(data) {
+    	$http.get($rootScope.serviceHost + '/pokemon/name/' + pokemon.name).success(function(data) {
         	stats.modal.species = {};
         	
             stats.modal.species.name = data.name;
@@ -541,7 +541,7 @@ app.controller("statsCtrl", [ '$http', '$location', '$scope', 'sessionService', 
     $scope.itemSelector = "";
     
     stats.changes.items = {};
-    $http.get($rootScope.serviceHost + ':8443/items/').success(function(data) {
+    $http.get($rootScope.serviceHost + '/items/').success(function(data) {
     	for (var i = 0; i < data.length; i++)
     	{
     		var item = data[i];
@@ -556,7 +556,7 @@ app.controller("statsCtrl", [ '$http', '$location', '$scope', 'sessionService', 
         stats.items.right = [];
         stats.left = 0;
         stats.right = 0;
-        $http.get($rootScope.serviceHost + ':8443/stats/name/' + stats.name + '/items').success(function(data) {
+        $http.get($rootScope.serviceHost + '/stats/name/' + stats.name + '/items').success(function(data) {
             for (var i = 0; i < data.length; i++)
             {
                 var item = data[i];
@@ -695,7 +695,7 @@ app.controller("statsCtrl", [ '$http', '$location', '$scope', 'sessionService', 
             "id": sessionService.id, 
             "stats": stats.changes
         };
-        $http.post($rootScope.serviceHost + ':8443/stats/name/' + stats.name + '/update', payload).then(function(data) { 
+        $http.post($rootScope.serviceHost + '/stats/name/' + stats.name + '/update', payload).then(function(data) {
             stats.loadTrainer();
             stats.pokemonLoaded = false;
             stats.itemsLoaded = false;
@@ -711,7 +711,7 @@ app.controller("statsCtrl", [ '$http', '$location', '$scope', 'sessionService', 
             "id": sessionService.id, 
             "pokemon": stats.modal.species
     	};
-        $http.post($rootScope.serviceHost + ':8443/stats/name/' + stats.name + '/pokemon/create', payload).then(function(msg) { 
+        $http.post($rootScope.serviceHost + '/stats/name/' + stats.name + '/pokemon/create', payload).then(function(msg) {
         	var data = msg.data;
         	if (data.responseCode == "200")
         	{
@@ -747,7 +747,7 @@ app.controller("statsCtrl", [ '$http', '$location', '$scope', 'sessionService', 
             "id": sessionService.id, 
             "pokemon": stats.modal.species
     	};
-        $http.post($rootScope.serviceHost + ':8443/stats/name/' + stats.name + '/pokemon/update', payload).then(function(msg) { 
+        $http.post($rootScope.serviceHost + '/stats/name/' + stats.name + '/pokemon/update', payload).then(function(msg) {
         	var data = msg.data;
         	if (data.responseCode == "200")
         	{
@@ -821,7 +821,7 @@ app.controller("statsCtrl", [ '$http', '$location', '$scope', 'sessionService', 
     	
     	if (valid)
     	{
-    		$http.post($rootScope.serviceHost + ':8443/stats/name/' + stats.name + '/wld', payload).then(function(msg) { 
+    		$http.post($rootScope.serviceHost + '/stats/name/' + stats.name + '/wld', payload).then(function(msg) {
             	var data = msg.data;
             	if (data.responseCode == "200")
             	{
@@ -873,7 +873,7 @@ app.controller("statsCtrl", [ '$http', '$location', '$scope', 'sessionService', 
             "pokemon": stats.modal.species,
             "evolution": stats.modal.evolve.evolution.name
     	};
-        $http.post($rootScope.serviceHost + ':8443/stats/name/' + stats.name + '/pokemon/evolve', payload).then(function(msg) { 
+        $http.post($rootScope.serviceHost + '/stats/name/' + stats.name + '/pokemon/evolve', payload).then(function(msg) {
         	var data = msg.data;
         	if (data.responseCode == "200")
         	{
@@ -911,7 +911,7 @@ app.controller("statsCtrl", [ '$http', '$location', '$scope', 'sessionService', 
             "id": sessionService.id, 
             "pokemon": stats.modal.species,
     	};
-        $http.post($rootScope.serviceHost + ':8443/stats/name/' + stats.name + '/pokemon/delete', payload).then(function(msg) { 
+        $http.post($rootScope.serviceHost + '/stats/name/' + stats.name + '/pokemon/delete', payload).then(function(msg) {
         	var data = msg.data;
         	if (data.responseCode == "200")
         	{

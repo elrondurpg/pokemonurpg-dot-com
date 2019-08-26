@@ -1,0 +1,18 @@
+<div class="dex-evolution-chain-div">
+<table class="dex-evolution-chain">
+    <tr ng-repeat="evolution in ctrl.largestEvolutionStage()">
+        <td ng-repeat="stage in ctrl.pokemon.evolutionFamily" rowspan="{{ stage.length != ctrl.largestEvolutionStage(ctrl.pokemon.evolutionFamily).length ? ctrl.largestEvolutionStageLength() : 1}}" ng-show="stage[$parent.$index] != null">
+            <span class="{{ ctrl.rowspanClass(stage) }}">
+                <a href="/pokemon/{{ stage[$parent.$index].name }}" target="_self">
+                    <img ng-src="{{ iconBase }}{{ stage[$parent.$index].dexno }}{{ ctrl.suffix(stage[$parent.$index].displayName, stage[$parent.$index].name) }}.png" class="align-left frame"/>
+                    {{ stage[$parent.$index].displayName }}
+                </a>
+                <br>
+                <span class="dex-evolution-chain-method"> 
+                    {{ stage[$parent.$index].method == null ? '-' : ctrl.evolveString(stage[$parent.$index].method) }}
+                </span>
+            </span>
+        </td>
+    </tr>
+</table>
+</div>

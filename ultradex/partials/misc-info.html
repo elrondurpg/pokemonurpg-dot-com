@@ -1,0 +1,32 @@
+<table>
+    <tr>
+        <td>
+            <dl>
+                <dt>
+                    Available Gender
+                </dt>
+                <dd>
+                    <span ng-show="ctrl.pokemon.maleAllowed == '1'" class="gender male">M</span>
+                    <span ng-show="ctrl.pokemon.femaleAllowed == '1'" class="gender female">F</span>
+                    <span ng-show="ctrl.pokemon.maleAllowed == '0' && ctrl.pokemon.femaleAllowed == '0'" class="gender genderless">G</span>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    Grass Knot / Low Kick
+                </dt>
+                <dd>
+                    {{ ctrl.getGrassKnotDamage(ctrl.pokemon.weight) }} BP
+                </dd>
+            </dl>
+            <dl>
+                <dt> Height </dt>
+                <dd> {{ ctrl.pokemon.height }} m / {{ ctrl.toImperialHeight(ctrl.pokemon.height) }}</dd>
+            </dl>
+            <dl>
+                <dt> Weight </dt>
+                <dd> {{ ctrl.pokemon.weight}} kg / {{ ctrl.toImperialWeight(ctrl.pokemon.weight) }} lbs</dd>
+            </dl>
+        </td>
+    </tr>
+</table>

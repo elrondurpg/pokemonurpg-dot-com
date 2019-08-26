@@ -1,68 +1,3 @@
-<table class="learnset">
-    
-    <th class="category" colspan="2">Level-Up Moves</th>
-    <tr>
-        <td colspan="2">
-            <span ng-repeat="move in ctrl.levelUpMoves" ng-mouseover="ctrl.hoverMove(move)" ng-class="ctrl.displayMove == move ? 'hover' : ''">
-                {{ move.name }}{{ $last  ? '' : ',' }}
-            </span>
-        </td>
-    </tr>
-    
-    <th class="category" colspan="2">Technical Machines</th>
-    <tr ng-repeat="generation in ctrl.TMs"  ng-if="$index != 0">
-        <td class="tm-generation">
-            Gen {{ $index }}
-        </td>
-        <td>
-            {{ generation.length <= 0 ? '-' : '' }}
-            <span ng-repeat="move in generation" ng-mouseover="ctrl.hoverMove(move)" ng-class="ctrl.displayMove == move ? 'hover' : ''">
-                {{ move.name }}{{ $last ? '' : ',' }}
-            </span>
-        </td>
-    </tr>
-
-    <th class="category" colspan="2">Hidden Machines</th>
-    <tr>
-        <td colspan="2">
-            {{ ctrl.HMs.length <= 0 ? 'None' : '' }}
-            <span ng-repeat="move in ctrl.HMs" ng-mouseover="ctrl.hoverMove(move)" ng-class="ctrl.displayMove == move ? 'hover' : ''">
-                {{ move.name }}{{ $last ? '' : ',' }}
-            </span>
-        </td>
-    </tr>
-
-    <th class="category" colspan="2">Breeding Moves</th>
-    <tr>
-        <td colspan="2">
-            {{ ctrl.BMs.length <= 0 ? 'None' : '' }}
-            <span ng-repeat="move in ctrl.BMs" ng-mouseover="ctrl.hoverMove(move)" ng-class="ctrl.displayMove == move ? 'hover' : ''">
-                {{ move.name }}{{ $last ? '' : ',' }}
-            </span>
-        </td>
-    </tr>
-
-    <th class="category" colspan="2">Move Tutors</th>
-    <tr>
-        <td colspan="2">
-            {{ ctrl.MTs.length <= 0 ? 'None' : '' }}
-            <span ng-repeat="move in ctrl.MTs" ng-mouseover="ctrl.hoverMove(move)" ng-class="ctrl.displayMove == move ? 'hover' : ''">
-                {{ move.name }}{{ $last ? '' : ',' }}
-            </span>
-        </td>
-    </tr>
-
-    <th class="category" colspan="2">Special Moves</th>
-    <tr>
-        <td colspan="2">
-            {{ ctrl.SMs.length <= 0 ? 'None' : '' }}
-            <span ng-repeat="move in ctrl.SMs" ng-mouseover="ctrl.hoverMove(move)" ng-class="ctrl.displayMove == move ? 'hover' : ''">
-                {{ move.name }}{{ $last ? '' : ',' }}
-            </span>
-        </td>
-    </tr>
-    
-</table>
 <div class="move-hints-container">
     <div class="move-hints-type" ng-show="ctrl.displayMove.name != null">
         <table>
@@ -85,11 +20,11 @@
         <table class="move-info">
             <tr>
                 <td>
-                    <h2>{{ ctrl.displayMove.power }}</h2>
+                    <h2>{{ ctrl.displayMove.power != null ? ctrl.displayMove.power : '-' }}</h2>
                     <h4>BP</h4>
                 </td>
                 <td>
-                    <h2>{{ ctrl.displayMove.accuracy }}{{ ctrl.displayMove.accuracy != "-" && ctrl.displayMove.accuracy != null ? '%' : '' }}</h2>
+                    <h2>{{ ctrl.displayMove.accuracy != null ? ctrl.displayMove.accuracy : '-' }}{{ ctrl.displayMove.accuracy != null ? '%' : '' }}</h2>
                     <h4>ACC</h4>
                 </td>
             </tr>
@@ -108,11 +43,11 @@
             <tr>
                 <td>{{ ctrl.displayMove.description }}</td>
                 <td>
-                    <img ng-src="{{ ctrl.categoryIcon(ctrl.displayMove.category) }}" />
+                    <img ng-src="{{ iconBase }}{{ ctrl.displayMove.category | lowercase }}.png" />
                 </td>
             </tr>
         </table>
-        <p>{{ ctrl.prettyTarget(ctrl.displayMove.target) }}</p>
+        <p>{{ ctrl.displayMove.target.description }}</p>
         <p ng-show="ctrl.displayMove.contact == '1'">Makes contact.</p>
         <p ng-show="ctrl.displayMove.sheerForce == '1'">Affected by Sheer Force.</p>
         <p ng-show="ctrl.displayMove.substitute == '1'">Negated by Substitute.</p>

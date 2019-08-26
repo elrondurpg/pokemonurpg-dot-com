@@ -1,31 +1,145 @@
 'use strict';
 
 app.controller("pokemonCtrl", [ '$http', '$location', '$scope', 'sessionService', '$rootScope', '$window', function($http, $location, $scope, sessionService, $rootScope, $window) {
-        var pokemon = this;
+        var page = this;
     
         var path = $location.$$path;
         var regex = path.match(/^\/pokemon\/([^\/#]+)$/);
-		pokemon.dex = "";
-		pokemon.displayName = "";
-        pokemon.name = regex[1];
-        pokemon.typeMatchups = [];
+
+        page.pokemon = {};
+        page.pokemon.name = regex[1];
+
+        page.displayMove = {};
+        page.moveHintsType = "battle";
     
-        pokemon.currentForm = null;
-        pokemon.forms = [ "Bulbasaur", "Charmander", "Squirtle" ];
+        page.showSidebar = false;
         
-        pokemon.mod = 0;
-        pokemon.currentSprite = 0;
-        this.switchSprite = function(index) {
-            pokemon.currentSprite = index;
+        $http.get($rootScope.serviceHost + '/pokemon/' + page.pokemon.name).then(function(response) {
+            if (response.status != 200) {
+                $window.location.assign('/notfound.html');
+            }
+            else {
+                page.pokemon = response.data;
+                for (var i = 0; i < page.pokemon.alteredForms.length; i++)
+                {
+                    var form = page.pokemon.alteredForms[i];
+                    if (form.name == page.pokemon.name)
+                    {
+                        page.pokemon.currentForm = i;
+                    }
+                }
+                if (page.pokemon.currentForm === undefined)
+                    page.pokemon.currentForm = 0;
+                console.log(page.pokemon);
+                page.loaded = true;
+            }
+        });
+
+        this.hoverMove = function(move)
+        {
+            page.displayMove = move;
+        };
+
+        this.suffix = function(base, input) {
+            if (input.toLowerCase().indexOf("ultra") != -1)
+            {
+                return "-ultra";
+            }
+
+            base = base.toLowerCase();
+            input = input.toLowerCase();
+
+            base = base.replace("\\", "");
+            input = input.replace("\\", "");
+
+            if ($rootScope.dashExceptions.indexOf(input) == -1)
+            {
+                return input.replace(base, "");
+            }
+            return "";
+        };
+
+        this.threeDigit = function(input) {
+            if (input < 10)
+            {
+                return "00" + input;
+            }
+            else if (input < 100)
+            {
+                return "0" + input;
+            }
+            else return input;
+        };
+
+        this.getHpBarSize = function(stat) {
+            var maxWidth = 217;
+
+            if (stat >= 714)
+                return 217;
+            else
+                return (stat/714)*217;
         }
-        
-        pokemon.displayMove = {};
-        pokemon.moveHintsType = "battle";
-    
-        pokemon.showSidebar = false;
-        
-        pokemon.pokemonNames = {};
-        $http.get($rootScope.serviceHost + ':8443/pokemon/').success(function (data) {
+
+        this.getHpBarClass = function(stat) {
+            if (stat < 325)
+                return "low";
+            else if (stat < 400)
+                return "medium";
+            else
+                return "high";
+        }
+
+        this.getStatBarSize = function(stat) {
+            var maxWidth = 217;
+
+            if (stat >= 559)
+                return 217;
+            else
+                return (stat/559)*217;
+        }
+
+        this.getStatBarClass = function(stat) {
+            if (stat < 239)
+                return "low";
+            else if (stat < 299)
+                return "medium";
+            else
+                return "high";
+        };
+
+        this.getGrassKnotDamage = function(weight) {
+            if (weight < 10)
+                return 20;
+            else if (weight < 25)
+                return 40;
+            else if (weight < 50)
+                return 60;
+            else if (weight < 100)
+                return 80;
+            else if (weight < 200)
+                return 100;
+            else
+                return 120;
+        };
+
+        this.toImperialHeight = function(height) {
+            var inches = Math.floor(height * 39.3701);
+            var feet = Math.floor(inches / 12);
+            inches = inches % 12;
+
+            return "" + feet + "'" + inches + "\"";
+        };
+
+        this.toImperialWeight = function(weight) {
+            var pounds = (weight * 2.20462).toFixed(1);
+            return pounds;
+        };
+
+        this.filter = function(out) {
+            console.log("Trying to filter on gen " + out);
+        }
+
+        /*$http.get($rootScope.serviceHost + '/pokemon/').success(function (data) {
         	pokemon.pokemonNames = data.map(function(value) {
         	      return value.toUpperCase();
             });
@@ -35,7 +149,9 @@ app.controller("pokemonCtrl", [ '$http', '$location', '$scope', 'sessionService'
             	$window.location.assign('/notfound.html');
             }
             else {
-	            $http.get($rootScope.serviceHost + ':8443/pokemon/name/' + pokemon.name).success(function(data) {
+	            $http.get($rootScope.serviceHost + '/pokemon/name/' + pokemon.name).success(function(data) {
+	                console.log($rootScope.serviceHost);
+	                console.log(pokemon);
 	                pokemon.name = data.name;
 	                pokemon.displayName = data.displayName;
 	                pokemon.dex = data.dex;
@@ -514,7 +630,7 @@ app.controller("pokemonCtrl", [ '$http', '$location', '$scope', 'sessionService'
             else 
                 return "high";
         }
-        
+        */
     }]);
 
     app.directive('pokemon', function() {

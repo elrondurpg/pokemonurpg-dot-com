@@ -1,0 +1,14 @@
+<h3> #{{ ctrl.threeDigit(ctrl.pokemon.dexno) }} </h3>
+<h2> {{ ctrl.pokemon.displayName }} </h2>
+<h7>The {{ ctrl.pokemon.classification }} Pokemon</h7>
+<br>
+<span class="type" ng-class="ctrl.pokemon.type1 | lowercase"> {{ ctrl.pokemon.type1 }} </span>
+<span class="type" ng-class="ctrl.pokemon.type2 | lowercase" ng-show="ctrl.pokemon.type2 !== 'NONE'"> {{ ctrl.pokemon.type2 }} </span>
+<a href="#" class="mega-tab" ng-repeat="mega in ctrl.pokemon.megaEvolutions">
+    <table class="mega-table">
+        <td><img ng-src="{{ iconBase }}{{ mega.dexno }}{{ ctrl.suffix(ctrl.pokemon.displayName, mega.name) }}.png" /></td>
+        <td>{{ ctrl.getMegaText() }}
+        <br>
+            <span class="mega-stone">{{ ctrl.getMegaRingText() }}{{ mega.megaStone }}</span></td>
+    </table>
+</a>

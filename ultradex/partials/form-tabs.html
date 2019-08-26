@@ -1,0 +1,9 @@
+<div ng-show="ctrl.pokemon.alteredForms.length > 1">
+    <a class="form-tab" 
+       ng-repeat="form in ctrl.pokemon.alteredForms"
+       ng-click="ctrl.pokemon.currentForm = ctrl.getForm(form, $index)"
+       target="_self"
+       ng-href="{{ form.baseName != ctrl.pokemon.name ? '/pokemon/' + form.baseName : '#' }}" title="" >
+        <img ng-src="{{ iconBase }}{{ ctrl.pokemon.dexno }}{{ ctrl.suffix(form.displayName, form.name) }}.png" />
+    </a>
+</div>

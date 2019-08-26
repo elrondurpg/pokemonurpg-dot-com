@@ -2,9 +2,12 @@
 // Declare app level module which depends on filters, and services
 var app= angular.module('urpg-infohub', ['ngRoute']);
 
-app.run(['$rootScope', function($rootScope){
-	  
-}]);
+app.directive('siteHeader', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/site-header.html"
+   };
+});
 
 //set the configuration
 app.directive('siteFooter', function() {
@@ -23,17 +26,22 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 }]);
 
 //
-app.run(function($rootScope, $location, loginService, sessionService){
+app.run(function($rootScope, $location){
 	var routespermission=['/home'];  //route that require login
 	
 	$rootScope.webHost = "https://pokemonurpg.com";
-	$rootScope.serviceHost = "https://pokemonurpg.com";
+	$rootScope.serviceHost = "http://localhost:8080";
 	
 	$rootScope.spriteBase = "https://pokemonurpg.com/img/sprites/";
 	$rootScope.iconBase = "https://pokemonurpg.com/img/icons/";
 	$rootScope.modelBase = "https://pokemonurpg.com/img/models/";
+
+	$rootScope.numSpecies = 807;
+	$rootScope.numGenerations = 7;
+
+	$rootScope.dashExceptions = ["nidoran-f", "nidoran-m", "ho-oh", "meowstic-m", "basculin-red-striped", "unown-a", "porygon-z" ];
 	
-	$rootScope.logout=function(){
+	/*$rootScope.logout=function(){
 		loginService.logout();
 	}
 	
@@ -62,5 +70,5 @@ app.run(function($rootScope, $location, loginService, sessionService){
             sessionService.loginString = msg.data.loginString;
             sessionService.id = msg.data.id;
         }
-    });
+    });*/
 }); // */

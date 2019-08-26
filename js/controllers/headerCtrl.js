@@ -13,10 +13,3 @@ app.controller('headerCtrl', [ '$window', function($window) {
     }
 
 }]);
-
-app.directive('siteHeader', function() {
-   return {
-       restrict: 'E', 
-       templateUrl: "/site-header.html"
-   };
-});
