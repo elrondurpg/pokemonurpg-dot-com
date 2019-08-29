@@ -6,7 +6,7 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', function(pokemonServic
     ctrl.searchKey = "muk-alola";
 
 	ctrl.load = function() {
-	    if (ctrl.searchKey !== undefined || ctrl.searchKey == '') {
+	    if (ctrl.searchKey !== undefined && ctrl.searchKey != '') {
 	        pokemonService.findByName(ctrl.searchKey).then(function (response) {
 	            if (response.status == 200) {
 	                ctrl.notFound = false;
