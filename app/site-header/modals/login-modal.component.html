@@ -1,0 +1,74 @@
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true" ng-controller="loginCtrl as ctrl">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" ng-if="ctrl.action == 'login'">
+            <div class="modal-header">
+                <h5 class="modal-title">Log In</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <label class="col-sm-2">Username</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="ctrl.loginDto.username" placeholder="Enter username">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" ng-model="ctrl.loginDto.password" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="row" ng-if="ctrl.loginError">
+                        <p class="text-danger">
+                            Error: Couldn't log in.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="ctrl.login()">Login</button>
+                <button type="button" class="btn btn-primary" ng-click="ctrl.action = 'registerBeta'">Go to Register (Beta)</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+        <div class="modal-content" ng-if="ctrl.action == 'registerBeta'">
+            <div class="modal-header">
+                <h5 class="modal-title">Register (Beta)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <label class="col-sm-2">Username</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="ctrl.registerBetaDto.username" placeholder="Enter username">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2">Beta Key</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" ng-model="ctrl.registerBetaDto.betaKey" placeholder="Enter beta key">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" ng-model="ctrl.registerBetaDto.password" placeholder="Create a password">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Register</button>
+                <button type="button" class="btn btn-primary" ng-click="ctrl.action = 'login'">Go to Login</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

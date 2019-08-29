@@ -1,0 +1,24 @@
+<div class="pb-3">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Search</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Enter Pokemon name"
+                       ng-class="ctrl.notFound == true ? 'is-invalid' : ''"
+                       ng-model="ctrl.searchKey"
+                       ng-keypress="$event.keyCode === 13 ? ctrl.load() : ''">
+                <div class="invalid-feedback">
+                    Object not found
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary btn-block" ng-click="ctrl.load()">Go</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary btn-block" ng-click="ctrl.load()">+ New</button>
+        </div>
+    </div>
+</div>

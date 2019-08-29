@@ -1,0 +1,21 @@
+body {
+    height:100%;
+    color:#191919;
+    margin:0;
+    padding:0;
+    font-family:"Open Sans", Arial, Helvetica, sans-serif;
+    width: 100%;
+    padding-top: 42px;
+	margin-bottom: 30px;
+}
+
+.viewport {
+    background: #FFFFFF;
+    margin: 5px;
+    height: 100%;
+    border-radius: 2px;
+}
+
+.clickable {
+	cursor: pointer;
+}

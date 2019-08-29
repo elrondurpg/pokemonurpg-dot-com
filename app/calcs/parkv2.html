@@ -1,0 +1,275 @@
+<html ng-app="urpg-infohub" class="ng-scope"><!--URPG National Park Capture Rate Calculator
+    Coded by ChainReaction01, adapted from code by DarkUmbreon
+    Used to determine the capture rate of Pokemon in the National Park
+
+	Version 2.1, uploaded by Monbrey (added ApriBalls, Borderline Rank)
+    Version 2.2, uploaded by Monbrey (added Special Rank)
+    Version 2.3, uploaded by K'sariya (updated to reflect major Park rework)
+    
+	Everything from here until the comment below is stuff that I have no
+	idea what it's doing, but it's not hurting anything so I'm leaving
+	it there.--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+		<title>URPG Park Calculator 2.3</title>
+		<link rel="stylesheet" type="text/css" href="css/park.css">
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		
+		<!-- STYLE -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800" rel="stylesheet" type="text/css">
+		<link href="/app/css/style.css" rel="stylesheet">
+		
+		<!--SCRIPTS-->
+		<!--SCRIPTS-->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+		<script src="/app/app.js"></script>
+		
+		<!-- SERVICES -->   
+		<script src="/app/js/services/loginService.js"></script>
+		<script src="/app/js/services/sessionService.js"></script>
+		<script src="/app/js/services/secureService.js"></script>
+		<script src="/app/js/services/registerService.js"></script>
+		<script src="/app/js/services/badgeService.js"></script>
+		<script type="/text/JavaScript" src="/js/sha512.js"></script> 
+		<script type="/text/JavaScript" src="/js/forms.js"></script> 
+		
+		<!--CONTROLLERS-->
+		<script src="/app/site-header/headerCtrl.js"></script>
+		<script src="/app/js/controllers/loginCtrl.js"></script>
+		<script src="/app/js/controllers/homeCtrl.js"></script>
+		<script src="/app/js/controllers/pokemonCtrl.js"></script>
+		<script src="/app/js/controllers/adminCtrl.js"></script>
+		<script src="/app/js/controllers/registerCtrl.js"></script>
+		<script src="/app/js/controllers/statsCtrl.js"></script>
+		<script src="/app/js/controllers/infoCtrl.js"></script>
+	</head>
+	<!--Crap ends here. Below is the calculator.-->
+	<body cz-shortcut-listen="true">
+		<site-header></site-header>
+		<div id="wrapper" name="wrapper">
+			<div name="parkcalc" id="content">
+				<h1 class="heading">Park Capture Calculator</h1>
+				<div class="row single">
+					<p>Rank Type:</p>
+					<select name="Rank" id="Rank">
+						<option value="C" selected="">Common</option>
+						<option value="UC">Uncommon</option>
+						<option value="R">Rare</option>
+					</select>
+				</div>
+				<div class="row single">
+					<p>Current HP:</p>
+					<input name="HP" id="HP" type="text" value="0">
+				</div>
+				<div class="row single">
+					<p>Status 1:</p>
+					<select name="Status1" id="Status1">
+						<option value="NO" selected="">(none)</option>
+						<option value="SLP">SLP</option>
+						<option value="PAR">PAR</option>
+						<option value="FRZ">FRZ</option>
+						<option value="BRN">BRN</option>
+						<option value="PSN">PSN</option>
+						<option value="TOX">TOX</option>
+					</select>
+				</div>
+				<div class="row single">
+					<p>Status 2:</p>
+					<select name="Status2" id="Status2">
+						<option value="NO" selected="">(none)</option>
+						<option value="SLP">SLP</option>
+						<option value="PAR">PAR</option>
+						<option value="FRZ">FRZ</option>
+						<option value="BRN">BRN</option>
+						<option value="PSN">PSN</option>
+						<option value="TOX">TOX</option>
+					</select>
+				</div>
+				<div class="row single">
+					<p>Ball:</p>
+					<select name="Ball" id="Ball">
+						<option value="PB" selected="">Park Ball</option>
+						<option value="SB">Super Ball</option>
+						<option value="HB">Hyper Ball</option>
+						<option value="AB">ApriBall</option>
+					</select>
+				</div>
+				<div class="row single">
+					<p>Quality:</p>
+					<input name="Quality" type="text" id="Quality" value="0">
+				</div>
+				<div class="row single">
+					<p>Min char?:</p>
+					<select name="MCR" id="MCR">
+						<option value="N" selected="">No</option>
+						<option value="Y">Yes</option>
+					</select>
+				</div>
+				<div class="row single">
+					<p>Residual char:</p>
+					<input name="Char" type="text" value="0" id="Char">
+				</div>
+				<div class="row single">
+					<p>Mastery Rank 3?:</p>
+					<select name="MR3" id="MR3">
+						<option value="N" selected="">No</option>
+						<option value="Y">Yes</option>
+					</select>
+				</div>
+				<div class="row single">
+					<button name="Calculate" type="button" id="Calculate" onclick="Calculate_Rate();">Calculate</button>
+				</div>
+				<div class="row single">
+					<h2>Result:</h2>
+				</div>
+				<div class="row single">
+					<p>Capture rate:</p>
+					<input name="Capturerate" type="text" id="Capturerate" value="0%" readonly="readonly">
+				</div>
+			</div> 
+		</div>
+		<site-footer></site-footer>
+		<!--
+		  This is the JavaScript program that makes the example work. Note that
+		  this script defines the Calculate_Rate() function called by the event
+		  handlers in the form.  The function refers to values in the form
+		  fields using the names defined in the HTML code above.
+		--> 
+	
+	<script language="JavaScript" type="text/javascript">
+
+	function Pokemon_Rank ( ) {
+		// Get the user's input fromt he form. Assume it is all valid.
+
+		var Rank = new Array( 2000 ) ;
+		var Pokemon = new Array ( 1000 ) ;
+		var ctr ;
+		//alert ("Hey!")
+
+		var pok ;
+
+			pok = $('#pokemon').val();
+
+			for ( var i = 1; i <= 670 ; i++ )
+				if (Pokemon[i] == pok )
+				{
+					ctr = i ;
+					break ; 
+				}
+		//alert ("after loop") ;
+
+		$('#Rank').val(Rank[ctr]);
+	}
+
+	function Calculate_Rate ( ) {
+		// Get the user's input from the form. Assume it is all valid.
+		
+		var Rank_R = $('#Rank').val();
+		var HP_R = parseFloat($('#HP').val());
+		var Status1_R = $('#Status1').val();
+		var Status2_R = $('#Status2').val();
+		var Ball_R = $('#Ball').val();
+		var Quality_R = parseFloat($('#Quality').val());
+		var MCR_R = $('#MCR').val();
+		var Char_R = parseFloat($('#Char').val());
+		var MR3_R = $('#MR3').val();
+		
+		var Rank;
+		var HP;
+		var Status1;
+		var Status2;
+		var Ball;
+		var Quality;
+		var MCR;
+		var Char;
+		var MR3;
+		var Outcome;
+		
+		switch (Rank_R){
+			case "C": Rank = 0; break;
+			case "UC": Rank = 0.15; break;
+			case "R": Rank = 0.35; break;
+			default: Rank = 0; 
+		}
+
+		
+		if ( HP_R == 0) { HP = 0; }
+		if ( HP_R >= 91) { HP = 0; }
+		if ( HP_R >= 81 && HP_R < 91) { HP = 5; }		
+		if ( HP_R >= 71 && HP_R < 81) { HP = 10; }		
+		if ( HP_R >= 61 && HP_R < 71) { HP = 15; }
+		if ( HP_R >= 51 && HP_R < 61) { HP = 20; }		
+		if ( HP_R >= 41 && HP_R < 51) { HP = 30; }	
+		if ( HP_R >= 31 && HP_R < 41) { HP = 40; }		
+		if ( HP_R >= 21 && HP_R < 31) { HP = 50; }		
+		if ( HP_R >= 11 && HP_R < 21) { HP = 60; }
+		if ( HP_R >= 1 && HP_R < 11) { HP = 65; }		
+
+		switch (Status1_R){
+			case "NO": Status1 = 0; break;
+			case "FRZ": Status1 = 0.25; break;
+			case "PAR": Status1 = 0.10; break;
+			case "SLP": Status1 = 0.15; break;
+			case "BRN": Status1 = 0.10; break;
+			case "TOX": Status1 = 0.15; break;
+			case "PSN": Status1 = 0.10; break;		
+			default: Status1 = 0; 
+		}
+		
+		switch (Status2_R){
+			case "NO": Status2 = 0; break;
+			case "FRZ": Status2 = 0.25; break;
+			case "PAR": Status2 = 0.10; break;
+			case "SLP": Status2 = 0.15; break;
+			case "BRN": Status2 = 0.10; break;
+			case "TOX": Status2 = 0.15; break;
+			case "PSN": Status2 = 0.10; break;		
+			default: Status2 = 0; 
+		}
+		
+		if (Status1_R == Status2_R) {Status2 = 0;}
+		
+		switch (Ball_R ) {
+			case "PB": Ball = 0; break;
+			case "SB": Ball = 0.10; break;
+			case "HB": Ball = 0.15; break;
+			case "AB": Ball = 0.15; break;
+			default: Ball = 0;
+		}
+		
+		if(Quality_R < "-30"){Quality_R = -30;}
+		if(Quality_R > "30"){Quality_R = 30;}
+		Quality = (Quality_R/100);
+		
+			
+		if(MCR_R == "Y"){MCR = 1.30;}
+		if(MCR_R == "N"){MCR = 1;}
+		
+		Char = Math.floor(Char_R/100);
+		if(MCR_R == "Y"){Char = 1 + (Char/100);}
+		if(MCR_R == "N"){Char = 1 - (Char/100);}
+
+		// if(MR3_R == "N"){MR3 = 0;}
+		// if(MR3_R == "Y" && MCR_R == "Y"){MR3 = 0.10;}
+		// else {MR3 = 0}
+
+		console.log(MR3)
+		
+		//alert( "BASE: " + HP + "Mod: " + Math.round((Rank)*100) + "|" +  Math.round((Status1)*100) + "|" +  Math.round((Status2)*100) + "|" +  Math.round((Ball)*100) + "|" +  Math.round((Quality)*100) + "/" +  Math.round((MCR)*100) + "/" + Math.round((Char)*100) +"/");
+		
+		Outcome = Math.floor((HP + Math.floor(-HP*Rank) + Math.floor(HP*Status1) + Math.floor(HP*Status2) + Math.floor(HP*Ball) + Math.floor(HP*Quality))*10)/10;
+		//alert(Outcome);
+		Outcome = Math.floor((Outcome * MCR)*10)/10;
+		//alert(Outcome);
+		Outcome = Math.floor(Outcome * Char);
+		//alert(Outcome)
+		if(MCR_R == "N"){Outcome = Outcome - 10 + 1;}
+		else{Outcome = Outcome - 1;}
+
+		if(Ball_R == "AB"){Outcome = Outcome + 15;}
+
+		if(MR3_R == "Y" && MCR_R == "Y"){Outcome = Outcome + 10}
+			
+		$('#Capturerate').val(Outcome + "%");	
+	}
+	</script>
+</body></html>
