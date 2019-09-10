@@ -5,9 +5,23 @@ app.directive('resourcesSearch', function() {
    };
 });
 
-app.directive('resourcesPokemonEditor', function() {
+app.directive('resourcesPokemonGeneralEditor', function() {
    return {
        restrict: 'E',
-       templateUrl: "/app/resources/partials/resources-pokemon-editor.component.html"
+       templateUrl: "/app/resources/partials/resources-pokemon-general-editor.component.html"
+   };
+});
+
+app.directive('resourcesPokemonAttacksEditor', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/resources-pokemon-attacks-editor.component.html"
+   };
+});
+
+app.directive('resourcesPokemonAbilitiesEditor', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/resources-pokemon-abilities-editor.component.html"
    };
 });

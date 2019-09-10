@@ -1,0 +1,299 @@
+<div class="accordion" id="generalCollapse">
+    <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                General Information
+            </button>
+        </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#generalCollapse">
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Field</th>
+                <th>Current Value</th>
+                <th>New Value</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                <td>Name</td>
+                <td>{{ ctrl.pokemon.name }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>
+                    Pokedex No.
+                </td>
+                <td>#{{ ctrl.pokemon.dexno }}</td>
+                <td><input type="number" class="form-control"
+                           ng-class="ctrl.isDexnoValid() ? '' : 'is-invalid'"
+                           ng-model="ctrl.delta.dexno">
+            </tr>
+
+            <tr>
+                <td>
+                    Display Name
+                    <img src="https://img.icons8.com/small/16/000000/help.png" data-toggle="tooltip" data-placement="right" title="The 'pretty' version of the Pokemon's name that would be displayed in the Ultradex.&#013;Ex: Grimer-Alola's display name is Grimer.&#013;Ex: Basculin-Red-Striped's display name is Basculin.&#013;Ex: Houndoom-Mega's display name is Mega Houndoom.">
+                </td>
+                <td>{{ ctrl.pokemon.displayName }}</td>
+                <td><input type="text" class="form-control"
+                           ng-class="ctrl.isDisplayNameValid() ? '' : 'is-invalid'"
+                           ng-model="ctrl.delta.displayName">
+                    <div class="text-danger">
+                        Display Name must be between 3 and 20 characters long.
+                    </div></td>
+            </tr>
+
+            <tr>
+                <td>
+                    Form Name
+                    <img src="https://img.icons8.com/small/16/000000/help.png" data-toggle="tooltip" data-placement="right" title="If this Pokemon is an alternate form, this extra label will be displayed in the Ultradex.&#013;Ex: Grimer-Alola's form name is 'Alola Form'.">
+                </td>
+                <td>{{ ctrl.pokemon.formName != -1 ? ctrl.pokemon.formName : '-' }}</td>
+                <td><input type="text" class="form-control"
+                           ng-class="ctrl.isFormNameValid() ? '' : 'is-invalid'"
+                           ng-model="ctrl.delta.formName">
+                    <div class="text-danger">
+                        Form Name must be between 3 and 20 characters long.
+                    </div></td>
+            </tr>
+
+            <tr>
+                <td>
+                    Classification
+                </td>
+                <td>The {{ ctrl.pokemon.classification }} Pokemon</td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">The</span>
+                        </div>
+                        <input type="text" class="form-control"
+                               ng-class="ctrl.isClassificationValid() ? '' : 'is-invalid'"
+                               ng-model="ctrl.delta.classification">
+                        <div class="input-group-append">
+                            <span class="input-group-text">Pokemon</span>
+                        </div>
+                    </div>
+                    <div class="text-danger">
+                        Classification must be between 3 and 20 characters long.
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Can be male?
+                </td>
+                <td>{{ ctrl.pokemon.maleAllowed == true ? 'Yes' : 'No' }}</td>
+                <td>
+                    <select class="form-control" ng-model="ctrl.delta.maleAllowed">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Can be female?
+                </td>
+                <td>{{ ctrl.pokemon.femaleAllowed == true ? 'Yes' : 'No' }}</td>
+                <td>
+                    <select class="form-control" ng-model="ctrl.delta.femaleAllowed">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Height (m)
+                </td>
+                <td>{{ ctrl.pokemon.height }}</td>
+                <td><input type="number" class="form-control" step="0.01"
+                           ng-model="ctrl.delta.height">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Weight (g)
+                </td>
+                <td>{{ ctrl.pokemon.weight }}</td>
+                <td><input type="number" class="form-control" step="0.01"
+                           ng-model="ctrl.delta.weight">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Evolves From
+                </td>
+                <td>{{ ctrl.pokemon.evolvesFrom }}</td>
+                <td><input type="text" class="form-control"
+                           ng-model="ctrl.delta.evolvesFrom">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Mega Evolves From
+                </td>
+                <td>{{ ctrl.pokemon.megaEvolvesFrom }}</td>
+                <td><input type="text" class="form-control"
+                           ng-model="ctrl.delta.megaEvolvesFrom">
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    Type 1
+                </td>
+                <td>{{ ctrl.pokemon.type1 }}</td>
+                <td><input type="text" class="form-control"
+                           ng-model="ctrl.delta.type1">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Type 2
+                </td>
+                <td>{{ ctrl.pokemon.type2 }}</td>
+                <td><input type="text" class="form-control"
+                           ng-model="ctrl.delta.type1">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    HP
+                </td>
+                <td>{{ ctrl.pokemon.hp }}</td>
+                <td><input type="number" class="form-control"
+                           ng-model="ctrl.delta.hp">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Attack
+                </td>
+                <td>{{ ctrl.pokemon.attack }}</td>
+                <td><input type="number" class="form-control"
+                           ng-model="ctrl.delta.attack">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Defense
+                </td>
+                <td>{{ ctrl.pokemon.defense }}</td>
+                <td><input type="number" class="form-control"
+                           ng-model="ctrl.delta.defense">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Special Attack
+                </td>
+                <td>{{ ctrl.pokemon.specialAttack }}</td>
+                <td><input type="number" class="form-control"
+                           ng-model="ctrl.delta.specialAttack">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Special Defense
+                </td>
+                <td>{{ ctrl.pokemon.specialDefense }}</td>
+                <td><input type="number" class="form-control"
+                           ng-model="ctrl.delta.specialDefense">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Speed
+                </td>
+                <td>{{ ctrl.pokemon.speed }}</td>
+                <td><input type="number" class="form-control"
+                           ng-model="ctrl.delta.speed">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Pokemart
+                </td>
+                <td>{{ ctrl.pokemon.pokemart != -1 ? ctrl.pokemon.pokemart : 'Not Available' }}</td>
+                <td><input type="number" class="form-control"
+                           ng-model="ctrl.delta.pokemart">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Contest Credits
+                </td>
+                <td>{{ ctrl.pokemon.contestCredits != -1 ? ctrl.pokemon.contestCredits : 'Not Available' }}</td>
+                <td><input type="number" class="form-control"
+                           ng-model="ctrl.delta.contestCredits">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Story Rank
+                </td>
+                <td>{{ ctrl.pokemon.storyRank.name }}</td>
+                <td><input type="text" class="form-control"
+                           ng-model="ctrl.delta.storyRank">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Art Rank
+                </td>
+                <td>{{ ctrl.pokemon.artRank.name }}</td>
+                <td><input type="text" class="form-control"
+                           ng-model="ctrl.delta.artRank">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Park Rank
+                </td>
+                <td>{{ ctrl.pokemon.parkRank.name }}</td>
+                <td><input type="text" class="form-control"
+                           ng-model="ctrl.delta.parkRank">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Park Location
+                </td>
+                <td>{{ ctrl.pokemon.parkLocation.name }}</td>
+                <td><input type="text" class="form-control"
+                           ng-model="ctrl.delta.parkLocation">
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="accordion" id="attacksAccordion">
+    <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#attacksCollapse" aria-expanded="true" aria-controls="attacksCollapse">
+                Attacks
+            </button>
+        </h2>
+    </div>
+
+    <div id="attacksCollapse" class="collapse show" aria-labelledby="headingOne" data-parent="#attacksAccordion">
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Field</th>
+                <th>Current Value</th>
+                <th>New Value</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="attack in ctrl.pokemon.attacks">
+                    <td>
+                        {{ attack.name }}
+                    </td>
+                    <td>
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    Method:
+                                </td>
+                                <td>
+                                    {{ attack.method }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Generation:
+                                </td>
+                                <td>
+                                    {{ attack.generation }}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    Method:
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option disabled selected value> -- select an option -- </option>
+                                        <option value="LEVEL-UP">LEVEL-UP</option>
+                                        <option value="TM">TM</option>
+                                        <option value="HM">HM</option>
+                                        <option value="BREEDING">BREEDING</option>
+                                        <option value="MOVE TUTOR">MOVE TUTOR</option>
+                                        <option value="SPECIAL">SPECIAL</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Generation:
+                                </td>
+                                <td>
+                                    {{ attack.generation }}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
