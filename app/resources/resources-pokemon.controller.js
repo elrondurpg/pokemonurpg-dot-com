@@ -12,6 +12,7 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', function(pokemonServic
 	                ctrl.notFound = false;
                     ctrl.pokemon = response.data;
                     ctrl.delta.name = ctrl.pokemon.name;
+                    ctrl.createAttacksDelta();
 	            }
 	            else {
                     ctrl.notFound = true;
@@ -43,6 +44,23 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', function(pokemonServic
     ctrl.isClassificationValid = function() {
         var classification = ctrl.delta.classification;
         return classification === undefined || classification == '' || (classification.length >= 3 && classification.length <= 20);
+    }
+
+    ctrl.attackFilter = "";
+    ctrl.createAttacksDelta = function() {
+        ctrl.attacksDelta = [];
+        for (var i = 0; i < ctrl.pokemon.attacks.length; i++) {
+            var attack = ctrl.pokemon.attacks[i];
+            ctrl.attacksDelta[attack.name] = {};
+            ctrl.attacksDelta[attack.name].method = attack.method;
+            ctrl.attacksDelta[attack.name].generation = attack.generation;
+            ctrl.attacksDelta[attack.name].deleted = false;
+        }
+        console.log(ctrl.attacksDelta);
+    }
+
+    ctrl.deleteOrRestoreAttack = function(attack) {
+        ctrl.attacksDelta[attack.name].deleted = !ctrl.attacksDelta[attack.name].deleted;
     }
 
 }]);

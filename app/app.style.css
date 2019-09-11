@@ -19,3 +19,7 @@ body {
 .clickable {
 	cursor: pointer;
 }
+
+.strikethrough {
+    text-decoration: line-through;
+}
