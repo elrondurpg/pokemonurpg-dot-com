@@ -1,11 +1,11 @@
-app.controller('resourcesPokemonCtrl', ['pokemonService', function(pokemonService) {
+app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', function(pokemonService, attackService) {
 	var ctrl = this;
 
     ctrl.delta = {};
 
     ctrl.searchKey = "muk-alola";
 
-	ctrl.load = function() {
+	ctrl.loadPokemon = function() {
 	    if (ctrl.searchKey !== undefined && ctrl.searchKey != '') {
 	        pokemonService.findByName(ctrl.searchKey).then(function (response) {
 	            if (response.status == 200) {
@@ -24,7 +24,19 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', function(pokemonServic
 	    }
 	}
 
-    ctrl.load();
+	ctrl.loadAttacks = function() {
+	    attackService.findAll().then(function(response) {
+	        if (response.status == 200) {
+	            ctrl.attacks = response.data;
+	        }
+	        else {
+	            console.log("Encountered an error while trying to load the list of attacks from URPG Server. Please contact a system administrator if this issue persists after refreshing your browser.");
+	        }
+	    });
+	}
+
+    ctrl.loadPokemon();
+    ctrl.loadAttacks();
 
     ctrl.isDexnoValid = function () {
         var dexno = ctrl.delta.dexno;
@@ -56,11 +68,25 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', function(pokemonServic
             ctrl.attacksDelta[attack.name].generation = attack.generation;
             ctrl.attacksDelta[attack.name].deleted = false;
         }
-        console.log(ctrl.attacksDelta);
     }
 
     ctrl.deleteOrRestoreAttack = function(attack) {
         ctrl.attacksDelta[attack.name].deleted = !ctrl.attacksDelta[attack.name].deleted;
+    }
+
+    ctrl.addAttack = function() {
+        if (ctrl.attacksDelta[ctrl.newAttack] === undefined) {
+            ctrl.attacksDelta[ctrl.newAttack] = {};
+            ctrl.attacksDelta[ctrl.newAttack].deleted = false;
+
+            var attack = {
+                name: ctrl.newAttack,
+                unsaved: true
+            };
+            ctrl.pokemon.attacks.unshift(attack);
+        }
+
+        ctrl.newAttack = "";
     }
 
 }]);

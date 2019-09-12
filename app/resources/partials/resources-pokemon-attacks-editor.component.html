@@ -6,8 +6,18 @@
                     Attacks
                 </button>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-4">
                 <input type="text" class="form-control" ng-model="ctrl.attackFilter" placeholder="Filter Attacks">
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#newAttackModal">
+                    + New
+                </button>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#bulkImportAttacksModal">
+                    Bulk Import
+                </button>
             </div>
         </div>
     </div>
@@ -33,7 +43,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <label class="col-form-label" ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''">
-                                <h6>{{ attack.name }}</h6>
+                                <h6>{{ attack.unsaved == true ? '*' : '' }}{{ attack.name }}</h6>
                             </label>
                         </div>
                     </div>
@@ -48,20 +58,28 @@
                 <div class="col-sm-5">
                     <div class="row">
                         <div class="col-sm">
-                            <label for="staticMethod" class="col-form-label" ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''">Method</label>
+                            <label for="staticMethod"
+                                   class="col-form-label"
+                                   ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"
+                                   ng-show="attack.unsaved != true">
+                                Method
+                            </label>
                         </div>
                         <div class="col-sm">
                             <input type="text" readonly class="form-control-plaintext" id="staticMethod" value="{{ attack.method }}"
-                                   ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''">
+                                   ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"
+                                   ng-show="attack.unsaved != true">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm">
-                            <label for="staticGeneration" class="col-form-label" ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''">Generation</label>
+                            <label for="staticGeneration" class="col-form-label" ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"
+                                   ng-show="attack.unsaved != true">Generation</label>
                         </div>
                         <div class="col-sm">
                             <input type="text" readonly class="form-control-plaintext" id="staticGeneration" value="{{ attack.generation != null ? attack.generation : 'N/A' }}"
-                                   ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''">
+                                   ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"
+                                   ng-show="attack.unsaved != true">
                         </div>
                     </div>
                 </div>
@@ -98,3 +116,6 @@
         </div>
     </div>
 </div>
+
+<new-attack-modal></new-attack-modal>
+<bulk-import-attacks-modal></bulk-import-attacks-modal>

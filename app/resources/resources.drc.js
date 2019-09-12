@@ -25,3 +25,17 @@ app.directive('resourcesPokemonAbilitiesEditor', function() {
        templateUrl: "/app/resources/partials/resources-pokemon-abilities-editor.component.html"
    };
 });
+
+app.directive('newAttackModal', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/new-attack-modal.component.html"
+   };
+});
+
+app.directive('bulkImportAttacksModal', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/bulk-import-attacks-modal.component.html"
+   };
+});
