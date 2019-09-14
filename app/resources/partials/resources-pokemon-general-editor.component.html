@@ -7,7 +7,7 @@
         </h2>
     </div>
 
-    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#generalCollapse">
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#generalCollapse">
 
         <table class="table">
             <thead class="thead-dark">
@@ -136,9 +136,11 @@
                 <td>
                     Evolves From
                 </td>
-                <td>{{ ctrl.pokemon.evolvesFrom }}</td>
-                <td><input type="text" class="form-control"
-                           ng-model="ctrl.delta.evolvesFrom">
+                <td>{{ ctrl.pokemon.evolvesFrom.name }}</td>
+                <td>
+                    <select class="form-control" id="evolvesFromSelect" ng-model="ctrl.delta.evolvesFrom">
+                        <option ng-repeat="species in ctrl.species" value="{{ species }}">{{ species }}</option>
+                    </select>
                 </td>
             </tr>
 
@@ -146,9 +148,10 @@
                 <td>
                     Mega Evolves From
                 </td>
-                <td>{{ ctrl.pokemon.megaEvolvesFrom }}</td>
-                <td><input type="text" class="form-control"
-                           ng-model="ctrl.delta.megaEvolvesFrom">
+                <td>{{ ctrl.pokemon.megaEvolvesFrom.name }}</td>
+                <td><select class="form-control" id="megaEvolvesFromSelect" ng-model="ctrl.delta.megaEvolvesFrom">
+                        <option ng-repeat="species in ctrl.species" value="{{ species }}">{{ species }}</option>
+                    </select>
                 </td>
             </tr>
 

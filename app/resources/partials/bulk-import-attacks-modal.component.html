@@ -1,0 +1,40 @@
+<div class="modal fade" id="bulkImportAttacksModal" tabindex="-1" role="dialog" aria-labelledby="bulkImportAttacksModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Bulk import attacks</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="attacks">Attacks (comma-separated)</label>
+                    <textarea class="form-control" id="attacks" rows="3" placeholder="U-turn, X-Scissor, Zing Zap, ..."
+                              ng-model="ctrl.bulkImportAttacks"></textarea>
+                </div>
+                <label for="methods">Method</label>
+                <select class="form-control" id="methods" ng-model="ctrl.bulkImportMethod">
+                    <option value="LEVEL-UP">LEVEL-UP</option>
+                    <option value="TM">TM</option>
+                    <option value="HM">HM</option>
+                    <option value="BREEDING">BREEDING</option>
+                    <option value="MOVE TUTOR">MOVE TUTOR</option>
+                    <option value="SPECIAL">SPECIAL</option>
+                </select>
+                <label for="generations">Generation</label>
+                <select class="form-control" id="generations" ng-model="ctrl.bulkImportGeneration">
+                    <option value="null" selected>N/A</option>
+                    <option ng-repeat="x in [].constructor(8) track by $index">{{ $index + 1 }}</option>
+                </select>
+                <p class="text-danger pt-2" ng-repeat="error in ctrl.bulkImportErrors">
+                    {{ error }}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="ctrl.importAttacks()" ng-disabled="ctrl.bulkImportAttacks === undefined || ctrl.bulkImportAttacks == ''">Import</button>
+                <button type="button" class="btn btn-secondary" ng-click="ctrl.clearAttacks()" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

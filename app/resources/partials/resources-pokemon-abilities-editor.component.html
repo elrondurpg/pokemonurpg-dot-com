@@ -1,25 +1,87 @@
 <div class="accordion" id="abilitiesAccordion">
     <div class="card-header" id="headingOne">
-        <h2 class="mb-0">
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#abilitiesCollapse" aria-expanded="true" aria-controls="abilitiesCollapse">
-                Abilities
-            </button>
-        </h2>
+        <div class="row">
+            <div class="col-sm-10">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#abilitiesCollapse" aria-expanded="true" aria-controls="abilitiesCollapse">
+                    Abilities
+                </button>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#newAbilityModal">
+                    + New
+                </button>
+            </div>
+        </div>
     </div>
 
-    <div id="abilitiesCollapse" class="collapse show" aria-labelledby="headingOne" data-parent="#abilitiesAccordion">
+    <div id="abilitiesCollapse" class="collapse" aria-labelledby="headingOne" data-parent="#abilitiesAccordion">
 
-        <table class="table">
-            <thead class="thead-dark">
-            <tr>
-                <th>Field</th>
-                <th>Current Value</th>
-                <th>New Value</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="container">
+            <div class="row bg-dark text-light p-2">
+                <div class="col-sm-2">
+                    <h5>Ability</h5>
+                </div>
+                <div class="col-sm-5">
+                    <h5>Current Attributes</h5>
+                </div>
+                <div class="col-sm-5">
+                    <h5>New Attributes</h5>
+                </div>
+            </div>
+        </div>
 
-            </tbody>
-        </table>
+        <div class="row p-2"
+             ng-repeat="ability in ctrl.pokemon.abilities">
+            <div class="col-sm-2 p-2">
+                <div class="row">
+                    <div class="col-sm text-center">
+                        <label class="col-form-label" ng-class="ctrl.abilitiesDelta[ability.name].deleted == true ? 'strikethrough' : ''">
+                            <h6>{{ ability.unsaved == true ? '*' : '' }}{{ ability.name }}</h6>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <button type="submit" class="btn btn-primary btn-block" ng-click="ctrl.abilitiesDelta[ability.name].deleted = !ctrl.abilitiesDelta[ability.name].deleted">
+                            {{ ctrl.abilitiesDelta[ability.name].deleted == false ? 'Delete' : 'Restore' }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5 bg-light p-2 pl-4 rounded">
+                <div class="row">
+                    <div class="col-sm">
+                        <label for="staticHidden"
+                               class="col-form-label"
+                               ng-class="ctrl.abilitiesDelta[ability.name].deleted == true ? 'strikethrough' : ''"
+                               ng-show="ability.unsaved != true">
+                            <h6>Hidden</h6>
+                        </label>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" readonly class="form-control-plaintext" id="staticHidden" value="{{ ability.hidden ? 'YES' : 'NO' }}"
+                               ng-class="ctrl.abilitiesDelta[ability.name].deleted == true ? 'strikethrough' : ''"
+                               ng-show="ability.unsaved != true">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5 bg-secondary text-light p-2 pl-4 rounded">
+                <div class="row">
+                    <div class="col-sm">
+                        <label for="deltaHidden"
+                               class="col-form-label"
+                               ng-class="ctrl.abilitiesDelta[ability.name].deleted == true ? 'strikethrough' : ''">
+                            <h6>Hidden</h6>
+                        </label>
+                    </div>
+                    <div class="col-sm">
+                        <input class="form-check-input" type="checkbox" value="" id="deltaHidden"
+                               ng-model="ctrl.abilitiesDelta[ability.name].hidden">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<new-ability-modal></new-ability-modal>

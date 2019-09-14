@@ -10,38 +10,38 @@
                 <input type="text" class="form-control" ng-model="ctrl.attackFilter" placeholder="Filter Attacks">
             </div>
             <div class="col-sm-2">
-                <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#newAttackModal">
-                    + New
+                <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#bulkImportAttacksModal">
+                    Bulk Import
                 </button>
             </div>
             <div class="col-sm-2">
-                <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#bulkImportAttacksModal">
-                    Bulk Import
+                <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#newAttackModal">
+                    + New
                 </button>
             </div>
         </div>
     </div>
 
-    <div id="attacksCollapse" class="collapse show" aria-labelledby="headingOne" data-parent="#attacksAccordion">
+    <div id="attacksCollapse" class="collapse" aria-labelledby="headingOne" data-parent="#attacksAccordion">
 
         <div class="container">
             <div class="row bg-dark text-light p-2">
                 <div class="col-sm-2">
-                    Attack
+                    <h5>Attack</h5>
                 </div>
                 <div class="col-sm-5">
-                    Current Attributes
+                    <h5>Current Attributes</h5>
                 </div>
                 <div class="col-sm-5">
-                    New Attributes
+                    <h5>New Attributes</h5>
                 </div>
             </div>
             <div class="row p-2"
                  ng-repeat="attack in ctrl.pokemon.attacks"
                  ng-show="attack.name.toUpperCase().startsWith(ctrl.attackFilter.toUpperCase())">
-                <div class="col-sm-2">
+                <div class="col-sm-2 p-2">
                     <div class="row">
-                        <div class="col-sm">
+                        <div class="col-sm text-center">
                             <label class="col-form-label" ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''">
                                 <h6>{{ attack.unsaved == true ? '*' : '' }}{{ attack.name }}</h6>
                             </label>
@@ -49,20 +49,20 @@
                     </div>
                     <div class="row">
                         <div class="col-sm">
-                            <button type="submit" class="btn btn-primary btn-block" ng-click="ctrl.deleteOrRestoreAttack(attack)">
+                            <button type="submit" class="btn btn-primary btn-block" ng-click="ctrl.attacksDelta[attack.name].deleted = !ctrl.attacksDelta[attack.name].deleted">
                                 {{ ctrl.attacksDelta[attack.name].deleted == false ? 'Delete' : 'Restore' }}
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-5 bg-light p-2 pl-4 rounded">
                     <div class="row">
                         <div class="col-sm">
                             <label for="staticMethod"
                                    class="col-form-label"
                                    ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"
                                    ng-show="attack.unsaved != true">
-                                Method
+                                <h6>Method</h6>
                             </label>
                         </div>
                         <div class="col-sm">
@@ -74,7 +74,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <label for="staticGeneration" class="col-form-label" ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"
-                                   ng-show="attack.unsaved != true">Generation</label>
+                                   ng-show="attack.unsaved != true"><h6>Generation</h6></label>
                         </div>
                         <div class="col-sm">
                             <input type="text" readonly class="form-control-plaintext" id="staticGeneration" value="{{ attack.generation != null ? attack.generation : 'N/A' }}"
@@ -83,10 +83,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-5 bg-secondary text-light p-2 pl-4 rounded">
                     <div class="row">
                         <div class="col-sm">
-                            <label for="deltaMethod" class="col-form-label" ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''">Method</label>
+                            <label for="deltaMethod" class="col-form-label" ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"><h6>Method</h6></label>
                         </div>
                         <div class="col-sm">
                             <select class="form-control" id="deltaMethod" ng-model="ctrl.attacksDelta[attack.name].method" ng-disabled="ctrl.attacksDelta[attack.name].deleted == true">
@@ -101,7 +101,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm">
-                            <label for="deltaGeneration" class="col-form-label" ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''">Generation</label>
+                            <label for="deltaGeneration" class="col-form-label" ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"><h6>Generation</h6></label>
                         </div>
                         <div class="col-sm">
                             <select class="form-control" id="deltaGeneration" ng-model="ctrl.attacksDelta[attack.name].generation" ng-disabled="ctrl.attacksDelta[attack.name].deleted == true">

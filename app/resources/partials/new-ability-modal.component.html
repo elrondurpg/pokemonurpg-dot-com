@@ -1,0 +1,24 @@
+<div class="modal fade" id="newAbilityModal" tabindex="-1" role="dialog" aria-labelledby="newAbilityModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add a new ability</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <select class="form-control" id="newAbilitySelect" ng-model="ctrl.newAbility">
+                    <option ng-repeat="ability in ctrl.abilities" value="{{ ability }}">{{ ability }}</option>
+                </select>
+                <div class="text-danger pt-2" ng-show="ctrl.abilitiesDelta[ctrl.newAbility] !== undefined">
+                    {{ ctrl.pokemon.name }} already has this ability.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="ctrl.addAbility()" ng-disabled="ctrl.abilitiesDelta[ctrl.newAbility] !== undefined" data-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-secondary" ng-click="ctrl.clearAbility()" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

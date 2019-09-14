@@ -39,3 +39,10 @@ app.directive('bulkImportAttacksModal', function() {
        templateUrl: "/app/resources/partials/bulk-import-attacks-modal.component.html"
    };
 });
+
+app.directive('newAbilityModal', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/new-ability-modal.component.html"
+   };
+});
