@@ -3,7 +3,7 @@ app.factory('loginService', ['$http', '$location', '$rootScope', '$window', 'ses
 	return{
 		login:function(data,scope){
             secureService.formhash(data);
-			var $promise=$http.post('/app/services/login.php',data); //send data to user.php
+			var $promise=$http.post('/app/services/sendRequest.php',data); //send data to user.php
 			$promise.then(function(msg){
 				var success=msg.data.logged;
                 

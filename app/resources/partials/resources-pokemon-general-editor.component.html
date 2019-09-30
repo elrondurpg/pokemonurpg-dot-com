@@ -7,7 +7,7 @@
         </h2>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#generalCollapse">
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#generalCollapse">
 
         <table class="table">
             <thead class="thead-dark">
@@ -136,11 +136,25 @@
                 <td>
                     Evolves From
                 </td>
-                <td>{{ ctrl.pokemon.evolvesFrom.name }}</td>
+                <td>{{ ctrl.pokemon.evolvesFrom != null ? ctrl.pokemon.evolvesFrom.name : '-' }}</td>
                 <td>
-                    <select class="form-control" id="evolvesFromSelect" ng-model="ctrl.delta.evolvesFrom">
+                    <select class="form-control" id="evolvesFromSelect" ng-model="ctrl.delta.evolvesFrom.name">
                         <option ng-repeat="species in ctrl.species" value="{{ species }}">{{ species }}</option>
                     </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Evolution Method
+                    <img src="https://img.icons8.com/small/16/000000/help.png" data-toggle="tooltip" data-placement="right" title="If this string starts with the words 'Level Up', they will be replaced with the words 'Gain X EXP' in the Ultradex. Otherwise, 'Gain X EXP +' will be appended at the beginning of the string.&#013;Ex: Pancham's evolution method is 'Level Up with Dark-type Pokemon in Party' and is displayed in the Ultradex as 'Gain 7 EXP with Dark-type Pokemon in Party'.">
+                </td>
+                <td>{{ ctrl.pokemon.evolvesFrom != null ? ctrl.pokemon.evolvesFrom.method : '-' }}</td>
+                <td><input type="text" class="form-control"
+                           ng-model="ctrl.delta.evolvesFrom.method">
+                    <div class="text-danger">
+                        Evolution method must be between 0 and 50 characters long.
+                    </div>
                 </td>
             </tr>
 
@@ -148,21 +162,36 @@
                 <td>
                     Mega Evolves From
                 </td>
-                <td>{{ ctrl.pokemon.megaEvolvesFrom.name }}</td>
-                <td><select class="form-control" id="megaEvolvesFromSelect" ng-model="ctrl.delta.megaEvolvesFrom">
+                <td>{{ ctrl.pokemon.megaEvolvesFrom != null ? ctrl.pokemon.megaEvolvesFrom.name : '-' }}</td>
+                <td><select class="form-control" id="megaEvolvesFromSelect" ng-model="ctrl.delta.megaEvolvesFrom.name">
                         <option ng-repeat="species in ctrl.species" value="{{ species }}">{{ species }}</option>
                     </select>
                 </td>
             </tr>
 
+            <tr>
+                <td>
+                    Mega Evolution Item/Method
+                    <img src="https://img.icons8.com/small/16/000000/help.png" data-toggle="tooltip" data-placement="right" title="This field can include methods that are not actually mega stones. Ex: 'Blue Orb', 'Dragon Ascent', 'Ultra Necrozium Z'">
+                </td>
+                <td>{{ ctrl.pokemon.megaEvolvesFrom != null ? ctrl.pokemon.megaEvolvesFrom.megaStone : '-' }}</td>
+                <td><input type="text" class="form-control"
+                           ng-model="ctrl.delta.megaEvolvesFrom.megaStone">
+                    <div class="text-danger">
+                        Mega Evolution Item/Method must be between 0 and 50 characters long.
+                    </div>
+                </td>
+            </tr>
 
             <tr>
                 <td>
                     Type 1
                 </td>
                 <td>{{ ctrl.pokemon.type1 }}</td>
-                <td><input type="text" class="form-control"
-                           ng-model="ctrl.delta.type1">
+                <td>
+                    <select class="form-control" id="type1Select" ng-model="ctrl.delta.type1">
+                        <option ng-repeat="type in ctrl.types" value="{{ type }}">{{ type }}</option>
+                    </select>
                 </td>
             </tr>
 
@@ -171,8 +200,9 @@
                     Type 2
                 </td>
                 <td>{{ ctrl.pokemon.type2 }}</td>
-                <td><input type="text" class="form-control"
-                           ng-model="ctrl.delta.type1">
+                <td><select class="form-control" id="type2Select" ng-model="ctrl.delta.type2">
+                        <option ng-repeat="type in ctrl.types" value="{{ type }}">{{ type }}</option>
+                    </select>
                 </td>
             </tr>
 
@@ -261,8 +291,9 @@
                     Story Rank
                 </td>
                 <td>{{ ctrl.pokemon.storyRank.name }}</td>
-                <td><input type="text" class="form-control"
-                           ng-model="ctrl.delta.storyRank">
+                <td><select class="form-control" id="storyRankSelect" ng-model="ctrl.delta.storyRank">
+                        <option ng-repeat="storyRank in ctrl.storyRanks" value="{{ storyRank }}">{{ storyRank }}</option>
+                    </select>
                 </td>
             </tr>
 
@@ -271,8 +302,9 @@
                     Art Rank
                 </td>
                 <td>{{ ctrl.pokemon.artRank.name }}</td>
-                <td><input type="text" class="form-control"
-                           ng-model="ctrl.delta.artRank">
+                <td><select class="form-control" id="artRankSelect" ng-model="ctrl.delta.artRank">
+                        <option ng-repeat="artRank in ctrl.artRanks" value="{{ artRank }}">{{ artRank }}</option>
+                    </select>
                 </td>
             </tr>
 
@@ -281,8 +313,9 @@
                     Park Rank
                 </td>
                 <td>{{ ctrl.pokemon.parkRank.name }}</td>
-                <td><input type="text" class="form-control"
-                           ng-model="ctrl.delta.parkRank">
+                <td><select class="form-control" id="parkRankSelect" ng-model="ctrl.delta.parkRank">
+                        <option ng-repeat="parkRank in ctrl.parkRanks" value="{{ parkRank }}">{{ parkRank }}</option>
+                    </select>
                 </td>
             </tr>
 
@@ -291,8 +324,9 @@
                     Park Location
                 </td>
                 <td>{{ ctrl.pokemon.parkLocation.name }}</td>
-                <td><input type="text" class="form-control"
-                           ng-model="ctrl.delta.parkLocation">
+                <td><select class="form-control" id="parkLocationSelect" ng-model="ctrl.delta.parkLocation">
+                        <option ng-repeat="parkLocation in ctrl.parkLocations" value="{{ parkLocation }}">{{ parkLocation }}</option>
+                    </select>
                 </td>
             </tr>
 

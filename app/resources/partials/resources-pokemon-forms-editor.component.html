@@ -1,0 +1,89 @@
+<div class="accordion" id="formsAccordion">
+    <div class="card-header" id="headingOne">
+        <div class="row">
+            <div class="col-sm-10">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#formsCollapse" aria-expanded="true" aria-controls="formsCollapse">
+                    Forms
+                </button>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#newFormModal">
+                    + New
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="formsCollapse" class="collapse show" aria-labelledby="headingOne" data-parent="#formsAccordion">
+
+        <div class="container">
+            <div class="row p-2">
+                <div class="col-sm-2">
+                    Form Change Method
+                    <img src="https://img.icons8.com/small/16/000000/help.png" data-toggle="tooltip" data-placement="right" title="I recommend wording the Form Change Method in such a way that it applies to all forms.&#013;For some examples, consider the following:&#013;'Point of capture'&#013;'Point of capture / evolution'&#013;'Form changes with Minior's Shields Down Ability. Variations of Core Forms only differ in appearance.'">
+                </div>
+                <div class="col-sm-5">
+                    {{ ctrl.pokemon.alteredForms.length > 1 ? ctrl.pokemon.alteredForms[1].method : '-' }}
+                </div>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control"
+                           ng-model="ctrl.delta.alteredFormMethod">
+                    <div class="text-danger">
+                        Form Change Method must be between 0 and 100 characters long.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row bg-warning p-2">
+                <h5>Warning!</h5><br />
+                The table below is meant to be used for cosmetic forms only. Cosmetic forms do not change a Pokemon's type, stats, abilities, moves, or anything else battle-related.<br />
+                EX: Vivillon's patterns are cosmetic forms, while Darmanitan's Zen Form is not.<br /><br />
+                Finally, do not create an entry in this table for a Pokemon's base form.<br />
+                EX: Vivillon's Meadow Pattern is its base form, so it will not appear in this table. The base form's title, in this case "Meadow Pattern", should be entered in the "Form Name" field of the "General Information" section of this page.
+            </div>
+
+            <div class="row bg-dark text-light p-2">
+                <div class="col-sm-2">
+                    <h5>Cosmetic Form</h5>
+                </div>
+                <div class="col-sm-5">
+                    <h5>Current Title</h5>
+                </div>
+                <div class="col-sm-5">
+                    <h5>New Title</h5>
+                </div>
+            </div>
+            <div class="row p-2"
+                 ng-repeat="form in ctrl.pokemon.alteredForms | filter: { cosmetic: 'true' }">
+                <div class="col-sm-2 p-2">
+                    <div class="row">
+                        <div class="col-sm text-center">
+                            <label class="col-form-label" ng-class="ctrl.formsDelta[form.name].deleted == true ? 'strikethrough' : ''">
+                                <h6>{{ form.unsaved == true ? '*' : '' }}{{ form.name }}</h6>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <button type="submit" class="btn btn-primary btn-block" ng-click="ctrl.formsDelta[form.name].deleted = !ctrl.formsDelta[form.name].deleted">
+                                {{ ctrl.formsDelta[form.name].deleted == false ? 'Delete' : 'Restore' }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <input type="text" readonly class="form-control-plaintext" id="staticTitle" value="{{ form.formName }}"
+                           ng-class="ctrl.formsDelta[form.name].deleted == true ? 'strikethrough' : ''"
+                           ng-show="form.unsaved != true">
+                </div>
+                <div class="col-sm-5">
+                <input type="text" class="form-control"
+                       ng-model="ctrl.formsDelta[form.name].formName"
+                       ng-disabled="ctrl.formsDelta[form.name].deleted == true">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<new-form-modal></new-form-modal>

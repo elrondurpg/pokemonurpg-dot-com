@@ -30,7 +30,8 @@
 				</td-->
 				<td class='user-info'>
 					<!--span class="clickable" ng-click="ctrl.showModal = 'login'">Log In</span-->
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
+					<span ng-if="ctrl.getUser() !== undefined">{{ ctrl.getUser() }}</span>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal" ng-if="ctrl.getUser() === undefined">
 						Login
 					</button>
 				</td>

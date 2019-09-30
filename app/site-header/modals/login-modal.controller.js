@@ -10,11 +10,11 @@ app.controller('loginCtrl', ['userService', '$location', '$rootScope', '$window'
     ctrl.login = function() {
         ctrl.loginDto.browser = $window.navigator.userAgent;
         userService.login(ctrl.loginDto).then(function(response) {
-             if (response.data.status == 200) {
-                $window.location.assign('/app/dashboard/index.html');
+             if (response.status == 200) {
+                //$window.location.assign('/app/dashboard/index.html');
              }
              else {
-                ctrl.loginError = true;
+                //ctrl.loginError = true;
              }
         });
     }

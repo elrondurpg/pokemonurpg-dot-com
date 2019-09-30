@@ -1,0 +1,43 @@
+<div class="modal fade" id="newFormModal" tabindex="-1" role="dialog" aria-labelledby="newFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add a new cosmetic form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 p-2">
+                            Name
+                            <img src="https://img.icons8.com/small/16/000000/help.png" data-toggle="tooltip" data-placement="right" title="This name should begin with the Pokemon's name, followed by a dash and then a unique identifier. Ex: 'Vivillon-Meadow'">
+                        </div>
+                        <div class="col-sm-8 p-2">
+                            <input type="text" class="form-control" ng-model="ctrl.newForm">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 p-2">
+                            Title
+                            <img src="https://img.icons8.com/small/16/000000/help.png" data-toggle="tooltip" data-placement="right" title="This is the form title that will be displayed in the Ultradex. In general, it need not contain the Pokemon's name. Ex: 'Meadow Pattern'">
+                        </div>
+                        <div class="col-sm-8 p-2">
+                            <input type="text" class="form-control" ng-model="ctrl.newFormTitle">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-danger pt-2" ng-show="ctrl.formsDelta[ctrl.newForm] !== undefined">
+                            {{ ctrl.pokemon.name }} already has a cosmetic form with this name.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="ctrl.addForm()" ng-disabled="ctrl.formsDelta[ctrl.newForm] !== undefined" data-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-secondary" ng-click="ctrl.clearForm()" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

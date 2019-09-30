@@ -46,3 +46,17 @@ app.directive('newAbilityModal', function() {
        templateUrl: "/app/resources/partials/new-ability-modal.component.html"
    };
 });
+
+app.directive('resourcesPokemonFormsEditor', function() {
+    return {
+        restrict: 'E',
+        templateUrl: "/app/resources/partials/resources-pokemon-forms-editor.component.html"
+    };
+});
+
+app.directive('newFormModal', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/new-form-modal.component.html"
+   };
+});

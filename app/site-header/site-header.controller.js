@@ -1,4 +1,4 @@
-app.controller('headerCtrl', [ '$window', function($window) {
+app.controller('headerCtrl', [ 'userService', '$window', function(userService, $window) {
 	var ctrl = this;
 
 	ctrl.searchType = 'Pokemon';
@@ -10,6 +10,10 @@ app.controller('headerCtrl', [ '$window', function($window) {
             type = '';
         //$location.path('/' + type + '/' + ctrl.searchText);
         $window.location.assign('/app/' + type + '/' + ctrl.searchText);
+    }
+
+    ctrl.getUser = function() {
+        return userService.getUser();
     }
 
 }]);

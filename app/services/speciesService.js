@@ -1,5 +1,5 @@
 'use strict';
-app.service('pokemonService', ['$http', '$rootScope', function($http, $rootScope){
+app.service('pokemonService', ['userService', '$http', '$rootScope', function(userService, $http, $rootScope){
 
     var service = this;
 
@@ -16,6 +16,16 @@ app.service('pokemonService', ['$http', '$rootScope', function($http, $rootScope
              function (response) {
                 return response.data;
              }
+        );
+    }
+
+    service.updateSpecies = function(payload) {
+        var request = userService.buildAuthenticatedRequest(payload);
+        console.log(request);
+        return $http.put($rootScope.serviceHost + "/pokemon/", request).then(
+            function (response) {
+                return response.data;
+            }
         );
     }
 

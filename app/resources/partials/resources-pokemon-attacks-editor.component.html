@@ -90,6 +90,7 @@
                         </div>
                         <div class="col-sm">
                             <select class="form-control" id="deltaMethod" ng-model="ctrl.attacksDelta[attack.name].method" ng-disabled="ctrl.attacksDelta[attack.name].deleted == true">
+                                <option disabled selected value> -- select -- </option>
                                 <option value="LEVEL-UP">LEVEL-UP</option>
                                 <option value="TM">TM</option>
                                 <option value="HM">HM</option>
