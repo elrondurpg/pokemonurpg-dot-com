@@ -1,7 +1,7 @@
 <link rel='stylesheet' href='/app/dashboard/dashboard.style.css' type='text/css' />
 
 <div class="container">
-    <div class="row">
+    <div class="row pt-2">
         <div class="col-md-3 col-sm-1">
             <a href="/resources">
                 <div class="card">
@@ -12,5 +12,17 @@
                 </div>
             </a>
         </div>
+        <div class="col-md-3 col-sm-1">
+            <a href="#" data-toggle="modal" data-target="#inviteUserModal" >
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h5>Invite Members</h5>
+                    </div>
+                    <img src="https://images.pexels.com/photos/211290/pexels-photo-211290.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="card-img-top">
+                </div>
+            </a>
+        </div>
     </div>
 </div>
+
+<invite-user-modal></invite-user-modal>

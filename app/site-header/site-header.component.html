@@ -21,17 +21,10 @@
 					</select>
 					<input class="clickable" type="button" ng-click="ctrl.search()" value="Go">
 				</td>
-				<!--td ng-if="sessionService.username != ''" class='user-info'>
-					<a href='/stats/{{ sessionService.username }}' target="_self">{{ sessionService.username }}</a>
-					<img class="logout-button clickable"
-						src="https://pokemonurpg.com/img/logout.png"
-						height="20px" width="20px"
-						ng-click="logout()"/>
-				</td-->
 				<td class='user-info'>
-					<!--span class="clickable" ng-click="ctrl.showModal = 'login'">Log In</span-->
-					<span ng-if="ctrl.getUser() !== undefined">{{ ctrl.getUser() }}</span>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal" ng-if="ctrl.getUser() === undefined">
+					<user-toolbar-dropdown ng-if="ctrl.user != ''"></user-toolbar-dropdown>
+
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal" ng-if="ctrl.user == ''">
 						Login
 					</button>
 				</td>

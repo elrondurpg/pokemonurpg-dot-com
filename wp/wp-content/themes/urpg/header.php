@@ -16,28 +16,34 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<!--SCRIPTS-->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
-	<script src="/app/app.js"></script>
-	
-	<!--CONTROLLERS-->
-	<script src="/app/site-header/headerCtrl.js"></script>
-	
-	<!--SERVICES-->
-	<script src="/app/js/services/loginService.js"></script>
-    <script src="/app/js/services/sessionService.js"></script>
-    <script src="/app/js/services/secureService.js"></script>
-    <script src="/app/js/services/registerService.js"></script>
-    <script src="/app/js/services/badgeService.js"></script>
-    <script type="/text/JavaScript" src="/js/sha512.js"></script> 
-    <script type="/text/JavaScript" src="/js/forms.js"></script>
+	<!-- Dependencies - AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+    <script src="/app/app.js"></script>
+
+    <!-- Dependencies - Boostrap CSS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Dependencies - Site Header -->
+    <script src="/app/site-header/site-header.controller.js"></script>
     <script src="/app/services/userService.js"></script>
 
-    <!--MODALS-->
-	<link href="/app/site-header/modals/login-modal.style.css" rel="stylesheet">
-	<script src="/app/site-header/modals/login-modal.controller.js"></script>
+    <!-- Dependencies - Ultradex -->
+    <script src="/app/ultradex/ultradex.controller.js"></script>
+    <script src="/app/services/speciesService.js"></script>
 
+    <!-- Dependencies - Admin -->
+    <script src="/app/resources/resources.drc.js"></script>
+    <script src="/app/resources/resources-pokemon.controller.js"></script>
+    <script src="/app/services/attackService.js"></script>
+    <script src="/app/services/abilityService.js"></script>
+    <script src="/app/services/typeService.js"></script>
+    <script src="/app/services/storyRankService.js"></script>
+    <script src="/app/services/artRankService.js"></script>
+    <script src="/app/services/parkRankService.js"></script>
+    <script src="/app/services/parkLocationService.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

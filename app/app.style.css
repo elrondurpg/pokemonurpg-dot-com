@@ -24,3 +24,7 @@ body {
 .strikethrough {
     text-decoration: line-through;
 }
+
+.smallcaps {
+  font-variant: small-caps;
+}

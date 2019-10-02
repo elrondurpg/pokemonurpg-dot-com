@@ -20,9 +20,7 @@ app.service('pokemonService', ['userService', '$http', '$rootScope', function(us
     }
 
     service.updateSpecies = function(payload) {
-        var request = userService.buildAuthenticatedRequest(payload);
-        console.log(request);
-        return $http.put($rootScope.serviceHost + "/pokemon/", request).then(
+        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/pokemon/", payload).then(
             function (response) {
                 return response.data;
             }

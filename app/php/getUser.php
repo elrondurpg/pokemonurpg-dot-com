@@ -4,7 +4,7 @@
     sec_session_start();
 
     if ($_SESSION && $_SESSION['username'])
-        echo '$_SESSION['username'];
+        echo $_SESSION['username'];
     else
         echo '';
 ?>

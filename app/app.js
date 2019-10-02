@@ -47,10 +47,11 @@ app.directive('siteFooter', function() {
 app.run(function($rootScope, $location) {
 	$rootScope.webHost = "https://pokemonurpg.com";
 	$rootScope.serviceHost = "http://localhost:8080";
-	
-	$rootScope.spriteBase = "https://pokemonurpg.com/img/sprites/";
-	$rootScope.iconBase = "https://pokemonurpg.com/img/icons/";
-	$rootScope.modelBase = "https://pokemonurpg.com/img/models/";
+
+	$rootScope.imageBase = "https://pokemonurpg.com/img";
+	$rootScope.spriteBase = $rootScope.imageBase + "/sprites/";
+	$rootScope.iconBase = $rootScope.imageBase + "/icons/";
+	$rootScope.modelBase = $rootScope.imageBase + "/models/";
 
 	$rootScope.numSpecies = 807;
 	$rootScope.numGenerations = 7;

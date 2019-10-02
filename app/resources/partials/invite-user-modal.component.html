@@ -1,0 +1,35 @@
+<div class="modal fade" id="inviteUserModal" tabindex="-1" role="dialog" aria-labelledby="inviteUserModalLabel" aria-hidden="true" ng-controller="inviteCtrl as ctrl">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Invite users to the Pokemon URPG!</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row pt-2">
+                        <input type="text" class="form-control" ng-model="ctrl.inviteUsername" placeholder="Enter username">
+                    </div>
+                    <div class="row pt-2" ng-if="ctrl.inviteError">
+                        <p class="text-danger">
+                            Error: Couldn't invite that user.
+                        </p>
+                    </div>
+                    <div class="row pt-2 mt-2 alert alert-success" role="alert" ng-if="ctrl.betaKey != '' && ctrl.betaKey !== undefined">
+                        <div class="container">
+                            <div class="row">Success!</div>
+                            <div class="row">Username: {{ ctrl.inviteUsername }}</div>
+                            <div class="row">Beta Key: {{ ctrl.betaKey }}</div>
+                        </div>
+                    </div>
+                    <div class="row pt-2">
+                        <button type="button" class="btn btn-primary" ng-click="ctrl.invite()">Invite</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ ctrl.user }}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="/dashboard">My Dashboard</a>
+        <a class="dropdown-item" href="/wp/wp-login.php" target="_self">Wordpress Login</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" ng-click="ctrl.logout()">Log out</a>
+    </div>
+</div>

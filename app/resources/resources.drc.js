@@ -60,3 +60,10 @@ app.directive('newFormModal', function() {
        templateUrl: "/app/resources/partials/new-form-modal.component.html"
    };
 });
+
+app.directive('inviteUserModal', function() {
+    return {
+           restrict: 'E',
+           templateUrl: "/app/resources/partials/invite-user-modal.component.html"
+       };
+});

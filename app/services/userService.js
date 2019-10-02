@@ -4,59 +4,59 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
 
     var service = this;
 
+    service.sendAuthenticatedRequest = function(method, url, payload) {
+        var input = {};
+        input.method = method;
+        input.url = url;
+        input.payload = payload;
+        return $http.post('/app/php/sendAuthenticatedRequest.php', input).then(function(response) {
+            return response;
+        });
+    }
+
+
     service.login = function(payload) {
+        payload.browser = $window.navigator.userAgent;
         return $http.post('/app/php/login.php',payload).then(function(response){
-            if (response.status == 200){
-                service.username = response.data.username;
-            }
             return response;
         });
     }
 
     service.getUser = function() {
-        return service.username;
+        return $http.post('/app/php/getUser.php').then(function(response){
+            if (response != undefined && response.status == 200) {
+                if (response.data !== undefined && response.data != '')
+                {
+                    return response.data;
+                }
+            }
+            return '';
+        });
     }
 
-
-
-    /*service.isLoggedIn = function(name) {
-        return sessionStorage.getItem("username") == name;
-    }
-
-    service.login = function(payload) {
-        return $http.post($rootScope.serviceHost + "/user/login", payload).success(
+    service.invite = function(username) {
+        return service.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/user/invite", username).then(
             function (response) {
                 if (response.status == 200) {
-                    sessionStorage.setItem("username", payload.username);
-                    sessionStorage.setItem("authToken", response.data);
+                    response.data = response.data.substring(1, response.data.length - 1);
                 }
                 return response;
             }
         );
     }
 
-
-
-    service.buildAuthenticatedRequest = function(payload) {
-        var request = {};
-        request.username = service.getUser();
-        request.authToken = service.getAuthToken();
-        request.browser = service.getBrowser();
-        request.payload = payload;
-        return request;
+    service.registerBeta = function(payload) {
+        return $http.put($rootScope.serviceHost + "/user/registerBeta", payload).then(
+            function (response) {
+                return response;
+            }
+        );
     }
 
-    service.getUser = function() {
-        return sessionStorage.getItem("username");
+    service.logout = function() {
+        return $http.post('/app/php/logout.php').then(function(response){
+            return response;
+        });
     }
-
-    service.getAuthToken = function() {
-        return sessionStorage.getItem("authToken");
-    }
-
-    service.getBrowser = function() {
-        return $window.navigator.userAgent;
-    }*/
-
 
 }]);

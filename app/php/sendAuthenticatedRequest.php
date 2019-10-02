@@ -12,7 +12,7 @@
         'payload' => $input->payload
     ];
 
-    $response = sendRequest($input->$method, $input->$url, $authWrapper);
+    $response = sendRequest($input->method, $input->url, $authWrapper);
 
     echo json_encode($response);
 ?>
