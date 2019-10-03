@@ -306,7 +306,6 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', 'abil
     }
 
     ctrl.stageAttacksDelta = function () {
-        console.log("stage attacks");
         ctrl.delta.attacks = [];
         for (name in ctrl.attacksDelta) {
             ctrl.stageAttack(name);
