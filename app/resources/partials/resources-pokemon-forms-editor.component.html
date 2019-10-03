@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div id="formsCollapse" class="collapse show" aria-labelledby="headingOne" data-parent="#formsAccordion">
+    <div id="formsCollapse" class="collapse" aria-labelledby="headingOne" data-parent="#formsAccordion">
 
         <div class="container">
             <div class="row p-2">
@@ -46,13 +46,18 @@
                 <div class="col-sm-2">
                     <h5>Cosmetic Form</h5>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
                     <h5>Current Title</h5>
                 </div>
                 <div class="col-sm-5">
                     <h5>New Title</h5>
                 </div>
             </div>
+
+            <div class="row p-2" ng-if="(ctrl.pokemon.forms === undefined || ctrl.pokemon.forms.length == 0) && (ctrl.formsDelta === undefined || ctrl.isEmpty(ctrl.formsDelta))">
+                <p>There doesn't seem to be anything here! Add some forms to begin.</p>
+            </div>
+
             <div class="row p-2"
                  ng-repeat="form in ctrl.pokemon.alteredForms | filter: { cosmetic: 'true' }">
                 <div class="col-sm-2 p-2">
@@ -71,8 +76,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-5">
-                    <input type="text" readonly class="form-control-plaintext" id="staticTitle" value="{{ form.formName }}"
+                <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+                    <input type="text" readonly class="form-control-plaintext" value="{{ form.formName }}"
                            ng-class="ctrl.formsDelta[form.name].deleted == true ? 'strikethrough' : ''"
                            ng-show="form.unsaved != true">
                 </div>

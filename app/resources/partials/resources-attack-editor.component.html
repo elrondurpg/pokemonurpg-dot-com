@@ -1,0 +1,216 @@
+<div class="container">
+    <div class="row bg-dark text-light p-2">
+        <div class="col-sm-2">
+            <h5>Field</h5>
+        </div>
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            <h5>Current Value</h5>
+        </div>
+        <div class="col-sm-5">
+            <h5>New Value</h5>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Name
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.name }}
+        </div>
+
+        <div class="col-sm-5">
+            <input type="text" class="form-control" ng-model="ctrl.delta.name">
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Type
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.type }}
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" id="typeSelect" ng-model="ctrl.delta.type">
+                <option ng-repeat="type in ctrl.types" value="{{ type }}">{{ type }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Description
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.description }}
+        </div>
+
+        <div class="col-sm-5">
+            <textarea class="form-control" rows="3" ng-model="ctrl.delta.description"></textarea>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Power
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.power }}
+        </div>
+
+        <div class="col-sm-5">
+            <input type="text" class="form-control" ng-model="ctrl.delta.power">
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Accuracy
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.accuracy }}
+        </div>
+
+        <div class="col-sm-5">
+            <input type="text" class="form-control" ng-model="ctrl.delta.accuracy">
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            PP
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.pp }}
+        </div>
+
+        <div class="col-sm-5">
+            <input type="text" class="form-control" ng-model="ctrl.delta.pp">
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Category
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.category }}
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" id="categorySelect" ng-model="ctrl.delta.category">
+                <option ng-repeat="attackCategory in ctrl.attackCategories" value="{{ attackCategory }}">{{ attackCategory }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Target Type
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.target.name }}
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" id="targetSelect" ng-model="ctrl.delta.target">
+                <option ng-repeat="attackTargetType in ctrl.attackTargetTypes" value="{{ attackTargetType }}">{{ attackTargetType }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Makes contact?
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.contact == true ? 'Yes' : 'No' }}
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" ng-model="ctrl.delta.contact">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Can be snatched?
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.snatch == true ? 'Yes' : 'No' }}
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" ng-model="ctrl.delta.snatch">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Blocked by substitute?
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.substitute == true ? 'Yes' : 'No' }}
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" ng-model="ctrl.delta.substitute">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Boosted by Sheer Force?
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.sheerForce == true ? 'Yes' : 'No' }}
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" ng-model="ctrl.delta.sheerForce">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Bounced by Magic Coat?
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.magicCoat == true ? 'Yes' : 'No' }}
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" ng-model="ctrl.delta.magicCoat">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+    </div>
+</div>

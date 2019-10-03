@@ -14,7 +14,6 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
         });
     }
 
-
     service.login = function(payload) {
         payload.browser = $window.navigator.userAgent;
         return $http.post('/app/php/login.php',payload).then(function(response){

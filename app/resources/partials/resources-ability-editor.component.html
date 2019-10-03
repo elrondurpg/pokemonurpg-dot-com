@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row bg-dark text-light p-2">
+        <div class="col-sm-2">
+            <h5>Field</h5>
+        </div>
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            <h5>Current Value</h5>
+        </div>
+        <div class="col-sm-5">
+            <h5>New Value</h5>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Name
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.ability.name }}
+        </div>
+
+        <div class="col-sm-5">
+            <input type="text" class="form-control" ng-model="ctrl.delta.name">
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Description
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.ability.description }}
+        </div>
+
+        <div class="col-sm-5">
+            <textarea class="form-control" rows="3" ng-model="ctrl.delta.description"></textarea>
+        </div>
+    </div>
+</div>

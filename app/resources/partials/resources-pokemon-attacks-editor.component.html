@@ -29,12 +29,15 @@
                 <div class="col-sm-2">
                     <h5>Attack</h5>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
                     <h5>Current Attributes</h5>
                 </div>
                 <div class="col-sm-5">
                     <h5>New Attributes</h5>
                 </div>
+            </div>
+            <div class="row p-2" ng-if="(ctrl.pokemon.attacks === undefined || ctrl.pokemon.attacks.length == 0) && (ctrl.attacksDelta === undefined || ctrl.isEmpty(ctrl.attacksDelta))">
+                <p>There doesn't seem to be anything here! Add some attacks to begin.</p>
             </div>
             <div class="row p-2"
                  ng-repeat="attack in ctrl.pokemon.attacks"
@@ -55,29 +58,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-5 bg-light p-2 pl-4 rounded">
+                <div class="col-sm-5 bg-light p-2 pl-4 rounded" ng-if="ctrl.editType == 'update'">
                     <div class="row">
                         <div class="col-sm">
-                            <label for="staticMethod"
-                                   class="col-form-label"
+                            <label class="col-form-label"
                                    ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"
                                    ng-show="attack.unsaved != true">
                                 <h6>Method</h6>
                             </label>
                         </div>
                         <div class="col-sm">
-                            <input type="text" readonly class="form-control-plaintext" id="staticMethod" value="{{ attack.method }}"
+                            <input type="text" readonly class="form-control-plaintext" value="{{ attack.method }}"
                                    ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"
                                    ng-show="attack.unsaved != true">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm">
-                            <label for="staticGeneration" class="col-form-label" ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"
+                            <label class="col-form-label" ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"
                                    ng-show="attack.unsaved != true"><h6>Generation</h6></label>
                         </div>
                         <div class="col-sm">
-                            <input type="text" readonly class="form-control-plaintext" id="staticGeneration" value="{{ attack.generation != null ? attack.generation : 'N/A' }}"
+                            <input type="text" readonly class="form-control-plaintext" value="{{ attack.generation != null ? attack.generation : 'N/A' }}"
                                    ng-class="ctrl.attacksDelta[attack.name].deleted == true ? 'strikethrough' : ''"
                                    ng-show="attack.unsaved != true">
                         </div>

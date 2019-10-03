@@ -21,13 +21,17 @@
                 <div class="col-sm-2">
                     <h5>Ability</h5>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
                     <h5>Current Attributes</h5>
                 </div>
                 <div class="col-sm-5">
                     <h5>New Attributes</h5>
                 </div>
             </div>
+        </div>
+
+        <div class="row p-2" ng-if="(ctrl.pokemon.abilities === undefined || ctrl.pokemon.abilities.length == 0) && (ctrl.abilitiesDelta === undefined || ctrl.isEmpty(ctrl.abilitiesDelta))">
+            <p>There doesn't seem to be anything here! Add some abilities to begin.</p>
         </div>
 
         <div class="row p-2"
@@ -48,18 +52,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-5 bg-light p-2 pl-4 rounded">
+            <div class="col-sm-5 bg-light p-2 pl-4 rounded" ng-if="ctrl.editType == 'update'">
                 <div class="row">
                     <div class="col-sm">
-                        <label for="staticHidden"
-                               class="col-form-label"
+                        <label class="col-form-label"
                                ng-class="ctrl.abilitiesDelta[ability.name].deleted == true ? 'strikethrough' : ''"
                                ng-show="ability.unsaved != true">
                             <h6>Hidden</h6>
                         </label>
                     </div>
                     <div class="col-sm">
-                        <input type="text" readonly class="form-control-plaintext" id="staticHidden" value="{{ ability.hidden ? 'YES' : 'NO' }}"
+                        <input type="text" readonly class="form-control-plaintext" value="{{ ability.hidden ? 'YES' : 'NO' }}"
                                ng-class="ctrl.abilitiesDelta[ability.name].deleted == true ? 'strikethrough' : ''"
                                ng-show="ability.unsaved != true">
                     </div>

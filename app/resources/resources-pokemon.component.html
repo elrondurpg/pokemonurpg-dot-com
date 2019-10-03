@@ -8,9 +8,9 @@
     </nav>
 
     <resources-search></resources-search>
-    <resources-pokemon-general-editor ng-if="ctrl.pokemon !== undefined"></resources-pokemon-general-editor>
-    <resources-pokemon-attacks-editor ng-if="ctrl.pokemon !== undefined"></resources-pokemon-attacks-editor>
-    <resources-pokemon-abilities-editor ng-if="ctrl.pokemon !== undefined"></resources-pokemon-abilities-editor>
-    <resources-pokemon-forms-editor ng-if="ctrl.pokemon !== undefined"></resources-pokemon-forms-editor>
+    <resources-pokemon-general-editor ng-if="ctrl.loaded == true"></resources-pokemon-general-editor>
+    <resources-pokemon-attacks-editor ng-if="ctrl.loaded == true"></resources-pokemon-attacks-editor>
+    <resources-pokemon-abilities-editor ng-if="ctrl.loaded == true"></resources-pokemon-abilities-editor>
+    <resources-pokemon-forms-editor ng-if="ctrl.loaded == true"></resources-pokemon-forms-editor>
 
 </div>

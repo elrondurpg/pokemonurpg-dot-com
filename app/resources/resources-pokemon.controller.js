@@ -3,12 +3,12 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', 'abil
 
 	var ctrl = this;
 
-    ctrl.delta = {};
-
-    ctrl.searchKey = "vivillon";
+    ctrl.searchKey = "";
 
 	ctrl.loadMain = function() {
+	    ctrl.loaded = false;
         ctrl.pokemon = {};
+        ctrl.delta = {};
 	    if (ctrl.searchKey !== undefined && ctrl.searchKey != '') {
 	        pokemonService.findByName(ctrl.searchKey).then(function (response) {
 	            if (response.status == 200) {
@@ -20,12 +20,27 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', 'abil
                     ctrl.delta.evolvesFrom = {};
                     ctrl.delta.megaEvolvesFrom = {};
                     ctrl.createFormsDelta();
+	                ctrl.loaded = true;
+	                ctrl.editType = "update";
 	            }
 	            else {
                     ctrl.notFound = true;
                 }
 	        });
 	    }
+	}
+
+	ctrl.loadNew = function() {
+	    ctrl.loaded = false;
+	    ctrl.pokemon = {};
+	    ctrl.delta = {};
+	    ctrl.delta.evolvesFrom = {};
+	    ctrl.delta.megaEvolvesFrom = {};
+	    ctrl.attacksDelta = {};
+	    ctrl.abilitiesDelta = {};
+	    ctrl.formsDelta = {};
+	    ctrl.loaded = true;
+	    ctrl.editType = "create";
 	}
 
 	ctrl.loadAttacks = function() {
@@ -116,7 +131,6 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', 'abil
         });
     }
 
-    ctrl.loadMain();
     ctrl.loadAttacks();
     ctrl.loadAbilities();
     ctrl.loadSpecies();
@@ -168,6 +182,10 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', 'abil
                 cosmetic: true,
                 unsaved: true
             };
+
+            if (ctrl.pokemon.forms === undefined) {
+                ctrl.pokemon.forms = [];
+            }
             ctrl.pokemon.alteredForms.unshift(form);
         }
 
@@ -199,6 +217,10 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', 'abil
                 name: ctrl.newAbility,
                 unsaved: true
             };
+
+            if (ctrl.pokemon.abilities === undefined) {
+                ctrl.pokemon.abilities = [];
+            }
             ctrl.pokemon.abilities.unshift(ability);
         }
 
@@ -228,6 +250,10 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', 'abil
                 name: ctrl.newAttack,
                 unsaved: true
             };
+
+            if (ctrl.pokemon.attacks === undefined) {
+                ctrl.pokemon.attacks = [];
+            }
             ctrl.pokemon.attacks.unshift(attack);
         }
 
@@ -248,6 +274,10 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', 'abil
                     name: attack,
                     unsaved: true
                 };
+
+                if (ctrl.pokemon.attacks === undefined) {
+                    ctrl.pokemon.attacks = [];
+                }
                 ctrl.pokemon.attacks.unshift(newAttack);
             }
             ctrl.clearAttacks();
@@ -297,11 +327,16 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', 'abil
     }
 
     ctrl.save = function() {
-        if (ctrl.pokemon.name !== undefined) {
+        if (ctrl.pokemon.name !== undefined || ctrl.delta.name !== undefined) {
             ctrl.stageAttacksDelta();
             ctrl.stageAbilitiesDelta();
             ctrl.stageFormsDelta();
-            pokemonService.updateSpecies(ctrl.delta);
+            if (ctrl.editType == "update") {
+                pokemonService.updateSpecies(ctrl.delta);
+            }
+            else if (ctrl.editType == "create") {
+                pokemonService.createSpecies(ctrl.delta);
+            }
         }
     }
 
@@ -342,6 +377,10 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', 'abil
         var form = ctrl.formsDelta[name];
         form.name = name;
         ctrl.delta.cosmeticForms.push(form);
+    }
+
+    ctrl.isEmpty = function(object) {
+        return Object.keys(object).length === 0;
     }
 
 }]);

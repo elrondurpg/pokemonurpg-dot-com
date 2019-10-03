@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row bg-dark text-light p-2">
+        <div class="col-sm-10">
+            <h5>Permissions</h5>
+        </div>
+
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#newPermissionModal">
+                + New
+            </button>
+        </div>
+    </div>
+
+    <div class="row p-2" ng-repeat="permission in ctrl.permissions">
+        {{ permission }}
+    </div>
+</div>
+
+<new-permission-modal></new-permission-modal>

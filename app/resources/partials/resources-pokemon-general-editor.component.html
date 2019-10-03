@@ -7,13 +7,13 @@
         </h2>
     </div>
 
-    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#generalCollapse">
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#generalCollapse">
 
         <table class="table">
             <thead class="thead-dark">
             <tr>
                 <th>Field</th>
-                <th>Current Value</th>
+                <th ng-if="ctrl.editType == 'update'">Current Value</th>
                 <th>New Value</th>
             </tr>
             </thead>
@@ -21,15 +21,16 @@
 
             <tr>
                 <td>Name</td>
-                <td>{{ ctrl.pokemon.name }}</td>
-                <td></td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.name }}</td>
+                <td><input type="text" class="form-control"
+                           ng-model="ctrl.delta.name"></td>
             </tr>
 
             <tr>
                 <td>
                     Pokedex No.
                 </td>
-                <td>#{{ ctrl.pokemon.dexno }}</td>
+                <td ng-if="ctrl.editType == 'update'">#{{ ctrl.pokemon.dexno }}</td>
                 <td><input type="number" class="form-control"
                            ng-class="ctrl.isDexnoValid() ? '' : 'is-invalid'"
                            ng-model="ctrl.delta.dexno">
@@ -40,7 +41,7 @@
                     Display Name
                     <img src="https://img.icons8.com/small/16/000000/help.png" data-toggle="tooltip" data-placement="right" title="The 'pretty' version of the Pokemon's name that would be displayed in the Ultradex.&#013;Ex: Grimer-Alola's display name is Grimer.&#013;Ex: Basculin-Red-Striped's display name is Basculin.&#013;Ex: Houndoom-Mega's display name is Mega Houndoom.">
                 </td>
-                <td>{{ ctrl.pokemon.displayName }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.displayName }}</td>
                 <td><input type="text" class="form-control"
                            ng-class="ctrl.isDisplayNameValid() ? '' : 'is-invalid'"
                            ng-model="ctrl.delta.displayName">
@@ -54,7 +55,7 @@
                     Form Name
                     <img src="https://img.icons8.com/small/16/000000/help.png" data-toggle="tooltip" data-placement="right" title="If this Pokemon is an alternate form, this extra label will be displayed in the Ultradex.&#013;Ex: Grimer-Alola's form name is 'Alola Form'.">
                 </td>
-                <td>{{ ctrl.pokemon.formName != -1 ? ctrl.pokemon.formName : '-' }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.formName != -1 ? ctrl.pokemon.formName : '-' }}</td>
                 <td><input type="text" class="form-control"
                            ng-class="ctrl.isFormNameValid() ? '' : 'is-invalid'"
                            ng-model="ctrl.delta.formName">
@@ -67,7 +68,7 @@
                 <td>
                     Classification
                 </td>
-                <td>The {{ ctrl.pokemon.classification }} Pokemon</td>
+                <td ng-if="ctrl.editType == 'update'">The {{ ctrl.pokemon.classification }} Pokemon</td>
                 <td>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -90,7 +91,7 @@
                 <td>
                     Can be male?
                 </td>
-                <td>{{ ctrl.pokemon.maleAllowed == true ? 'Yes' : 'No' }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.maleAllowed == true ? 'Yes' : 'No' }}</td>
                 <td>
                     <select class="form-control" ng-model="ctrl.delta.maleAllowed">
                         <option value="true">Yes</option>
@@ -103,7 +104,7 @@
                 <td>
                     Can be female?
                 </td>
-                <td>{{ ctrl.pokemon.femaleAllowed == true ? 'Yes' : 'No' }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.femaleAllowed == true ? 'Yes' : 'No' }}</td>
                 <td>
                     <select class="form-control" ng-model="ctrl.delta.femaleAllowed">
                         <option value="true">Yes</option>
@@ -116,7 +117,7 @@
                 <td>
                     Height (m)
                 </td>
-                <td>{{ ctrl.pokemon.height }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.height }}</td>
                 <td><input type="number" class="form-control" step="0.01"
                            ng-model="ctrl.delta.height">
                 </td>
@@ -126,7 +127,7 @@
                 <td>
                     Weight (g)
                 </td>
-                <td>{{ ctrl.pokemon.weight }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.weight }}</td>
                 <td><input type="number" class="form-control" step="0.01"
                            ng-model="ctrl.delta.weight">
                 </td>
@@ -136,7 +137,7 @@
                 <td>
                     Evolves From
                 </td>
-                <td>{{ ctrl.pokemon.evolvesFrom != null ? ctrl.pokemon.evolvesFrom.name : '-' }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.evolvesFrom != null ? ctrl.pokemon.evolvesFrom.name : '-' }}</td>
                 <td>
                     <select class="form-control" id="evolvesFromSelect" ng-model="ctrl.delta.evolvesFrom.name">
                         <option ng-repeat="species in ctrl.species" value="{{ species }}">{{ species }}</option>
@@ -149,7 +150,7 @@
                     Evolution Method
                     <img src="https://img.icons8.com/small/16/000000/help.png" data-toggle="tooltip" data-placement="right" title="If this string starts with the words 'Level Up', they will be replaced with the words 'Gain X EXP' in the Ultradex. Otherwise, 'Gain X EXP +' will be appended at the beginning of the string.&#013;Ex: Pancham's evolution method is 'Level Up with Dark-type Pokemon in Party' and is displayed in the Ultradex as 'Gain 7 EXP with Dark-type Pokemon in Party'.">
                 </td>
-                <td>{{ ctrl.pokemon.evolvesFrom != null ? ctrl.pokemon.evolvesFrom.method : '-' }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.evolvesFrom != null ? ctrl.pokemon.evolvesFrom.method : '-' }}</td>
                 <td><input type="text" class="form-control"
                            ng-model="ctrl.delta.evolvesFrom.method">
                     <div class="text-danger">
@@ -162,7 +163,7 @@
                 <td>
                     Mega Evolves From
                 </td>
-                <td>{{ ctrl.pokemon.megaEvolvesFrom != null ? ctrl.pokemon.megaEvolvesFrom.name : '-' }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.megaEvolvesFrom != null ? ctrl.pokemon.megaEvolvesFrom.name : '-' }}</td>
                 <td><select class="form-control" id="megaEvolvesFromSelect" ng-model="ctrl.delta.megaEvolvesFrom.name">
                         <option ng-repeat="species in ctrl.species" value="{{ species }}">{{ species }}</option>
                     </select>
@@ -174,7 +175,7 @@
                     Mega Evolution Item/Method
                     <img src="https://img.icons8.com/small/16/000000/help.png" data-toggle="tooltip" data-placement="right" title="This field can include methods that are not actually mega stones. Ex: 'Blue Orb', 'Dragon Ascent', 'Ultra Necrozium Z'">
                 </td>
-                <td>{{ ctrl.pokemon.megaEvolvesFrom != null ? ctrl.pokemon.megaEvolvesFrom.megaStone : '-' }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.megaEvolvesFrom != null ? ctrl.pokemon.megaEvolvesFrom.megaStone : '-' }}</td>
                 <td><input type="text" class="form-control"
                            ng-model="ctrl.delta.megaEvolvesFrom.megaStone">
                     <div class="text-danger">
@@ -187,7 +188,7 @@
                 <td>
                     Type 1
                 </td>
-                <td>{{ ctrl.pokemon.type1 }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.type1 }}</td>
                 <td>
                     <select class="form-control" id="type1Select" ng-model="ctrl.delta.type1">
                         <option ng-repeat="type in ctrl.types" value="{{ type }}">{{ type }}</option>
@@ -199,7 +200,7 @@
                 <td>
                     Type 2
                 </td>
-                <td>{{ ctrl.pokemon.type2 }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.type2 }}</td>
                 <td><select class="form-control" id="type2Select" ng-model="ctrl.delta.type2">
                         <option ng-repeat="type in ctrl.types" value="{{ type }}">{{ type }}</option>
                     </select>
@@ -210,7 +211,7 @@
                 <td>
                     HP
                 </td>
-                <td>{{ ctrl.pokemon.hp }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.hp }}</td>
                 <td><input type="number" class="form-control"
                            ng-model="ctrl.delta.hp">
                 </td>
@@ -220,7 +221,7 @@
                 <td>
                     Attack
                 </td>
-                <td>{{ ctrl.pokemon.attack }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.attack }}</td>
                 <td><input type="number" class="form-control"
                            ng-model="ctrl.delta.attack">
                 </td>
@@ -230,7 +231,7 @@
                 <td>
                     Defense
                 </td>
-                <td>{{ ctrl.pokemon.defense }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.defense }}</td>
                 <td><input type="number" class="form-control"
                            ng-model="ctrl.delta.defense">
                 </td>
@@ -240,7 +241,7 @@
                 <td>
                     Special Attack
                 </td>
-                <td>{{ ctrl.pokemon.specialAttack }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.specialAttack }}</td>
                 <td><input type="number" class="form-control"
                            ng-model="ctrl.delta.specialAttack">
                 </td>
@@ -250,7 +251,7 @@
                 <td>
                     Special Defense
                 </td>
-                <td>{{ ctrl.pokemon.specialDefense }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.specialDefense }}</td>
                 <td><input type="number" class="form-control"
                            ng-model="ctrl.delta.specialDefense">
                 </td>
@@ -260,7 +261,7 @@
                 <td>
                     Speed
                 </td>
-                <td>{{ ctrl.pokemon.speed }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.speed }}</td>
                 <td><input type="number" class="form-control"
                            ng-model="ctrl.delta.speed">
                 </td>
@@ -270,7 +271,7 @@
                 <td>
                     Pokemart
                 </td>
-                <td>{{ ctrl.pokemon.pokemart != -1 ? ctrl.pokemon.pokemart : 'Not Available' }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.pokemart != -1 ? ctrl.pokemon.pokemart : 'Not Available' }}</td>
                 <td><input type="number" class="form-control"
                            ng-model="ctrl.delta.pokemart">
                 </td>
@@ -280,7 +281,7 @@
                 <td>
                     Contest Credits
                 </td>
-                <td>{{ ctrl.pokemon.contestCredits != -1 ? ctrl.pokemon.contestCredits : 'Not Available' }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.contestCredits != -1 ? ctrl.pokemon.contestCredits : 'Not Available' }}</td>
                 <td><input type="number" class="form-control"
                            ng-model="ctrl.delta.contestCredits">
                 </td>
@@ -290,7 +291,7 @@
                 <td>
                     Story Rank
                 </td>
-                <td>{{ ctrl.pokemon.storyRank.name }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.storyRank.name }}</td>
                 <td><select class="form-control" id="storyRankSelect" ng-model="ctrl.delta.storyRank">
                         <option ng-repeat="storyRank in ctrl.storyRanks" value="{{ storyRank }}">{{ storyRank }}</option>
                     </select>
@@ -301,7 +302,7 @@
                 <td>
                     Art Rank
                 </td>
-                <td>{{ ctrl.pokemon.artRank.name }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.artRank.name }}</td>
                 <td><select class="form-control" id="artRankSelect" ng-model="ctrl.delta.artRank">
                         <option ng-repeat="artRank in ctrl.artRanks" value="{{ artRank }}">{{ artRank }}</option>
                     </select>
@@ -312,7 +313,7 @@
                 <td>
                     Park Rank
                 </td>
-                <td>{{ ctrl.pokemon.parkRank.name }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.parkRank.name }}</td>
                 <td><select class="form-control" id="parkRankSelect" ng-model="ctrl.delta.parkRank">
                         <option ng-repeat="parkRank in ctrl.parkRanks" value="{{ parkRank }}">{{ parkRank }}</option>
                     </select>
@@ -323,7 +324,7 @@
                 <td>
                     Park Location
                 </td>
-                <td>{{ ctrl.pokemon.parkLocation.name }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.parkLocation.name }}</td>
                 <td><select class="form-control" id="parkLocationSelect" ng-model="ctrl.delta.parkLocation">
                         <option ng-repeat="parkLocation in ctrl.parkLocations" value="{{ parkLocation }}">{{ parkLocation }}</option>
                     </select>

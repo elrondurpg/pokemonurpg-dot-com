@@ -67,3 +67,45 @@ app.directive('inviteUserModal', function() {
            templateUrl: "/app/resources/partials/invite-user-modal.component.html"
        };
 });
+
+app.directive('resourcesAttackEditor', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/resources-attack-editor.component.html"
+   };
+});
+
+app.directive('resourcesAbilityEditor', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/resources-ability-editor.component.html"
+   };
+});
+
+app.directive('resourcesMemberEditor', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/resources-member-editor.component.html"
+   };
+});
+
+app.directive('resourcesRoleEditor', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/resources-role-editor.component.html"
+   };
+});
+
+app.directive('resourcesPermissionEditor', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/resources-permission-editor.component.html"
+   };
+});
+
+app.directive('newPermissionModal', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/new-permission-modal.component.html"
+   };
+});
