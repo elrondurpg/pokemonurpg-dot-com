@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row bg-dark text-light p-2">
+        <div class="col-sm-2">
+            <h5>Field</h5>
+        </div>
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            <h5>Current Value</h5>
+        </div>
+        <div class="col-sm-5">
+            <h5>New Value</h5>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Name
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.member.username }}
+        </div>
+
+        <div class="col-sm-5">
+            <input type="text" class="form-control" ng-model="ctrl.delta.name">
+        </div>
+    </div>
+
+    <div class="row bg-dark text-light p-2">
+        <div class="col-sm-10">
+            <h5>Roles</h5>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#newRoleModal">
+                + New
+            </button>
+        </div>
+    </div>
+
+    <div class="row p-2" ng-if="(ctrl.member.roles === undefined || ctrl.member.roles.length == 0) && (ctrl.rolesDelta === undefined || ctrl.isEmpty(ctrl.rolesDelta))">
+        <p>There doesn't seem to be anything here! Add some roles to begin.</p>
+    </div>
+
+    <div class="row p-2" ng-repeat="role in ctrl.member.roles">
+        <div class="col-sm">
+            <label class="col-form-label" ng-class="ctrl.rolesDelta[role].deleted == true ? 'strikethrough' : ''">
+                <h6>{{ role.unsaved == true ? '*' : '' }}{{ role }}</h6>
+            </label>
+        </div>
+        <div class="col-sm text-center">
+            <button type="submit" class="btn btn-primary btn-block" ng-click="ctrl.rolesDelta[role].deleted = !ctrl.rolesDelta[role].deleted">
+                {{ ctrl.rolesDelta[role].deleted == false ? 'Delete' : 'Restore' }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<new-role-modal></new-role-modal>

@@ -332,10 +332,40 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', 'abil
             ctrl.stageAbilitiesDelta();
             ctrl.stageFormsDelta();
             if (ctrl.editType == "update") {
-                pokemonService.updateSpecies(ctrl.delta);
+                pokemonService.updateSpecies(ctrl.delta)
+                .success(
+                    function(response) {
+                        ctrl.success = response.data;
+                        ctrl.searchKey = ctrl.pokemon.name;
+                        ctrl.loadMain();
+                    }
+                )
+                .error(
+                    function(response) {
+                        if (Array.isArray(response.data)) {
+                            ctrl.errorArray = response.data;
+                            console.log(ctrl.errorArray);
+                        }
+                        else {
+                            ctrl.error = response.data;
+                        }
+                    }
+                );
             }
             else if (ctrl.editType == "create") {
-                pokemonService.createSpecies(ctrl.delta);
+                pokemonService.createSpecies(ctrl.delta)
+                .success(
+                    function(response) {
+                        ctrl.success = response.data;
+                        ctrl.searchKey = ctrl.pokemon.name;
+                        ctrl.loadMain();
+                    }
+                )
+                .error(
+                    function(response) {
+                        ctrl.error = response.data;
+                    }
+                );
             }
         }
     }

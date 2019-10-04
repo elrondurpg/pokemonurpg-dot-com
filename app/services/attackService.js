@@ -20,19 +20,29 @@ app.service('attackService', ['userService', '$http', '$rootScope', function(use
     }
 
     service.createAttack = function(payload) {
-        return userService.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/attack/", payload).then(
+        return userService.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/attack/", payload)
+        .success(
             function (response) {
-                console.log(response);
-                return response.data;
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
             }
         );
     }
 
     service.updateAttack = function(payload) {
-        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/attack/", payload).then(
+        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/attack/", payload)
+        .success(
             function (response) {
-                console.log(response);
-                return response.data;
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
             }
         );
     }

@@ -1,0 +1,24 @@
+<div class="modal fade" id="newPermissionModal" tabindex="-1" role="dialog" aria-labelledby="newPermissionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add a new permission</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <select class="form-control" id="newPermissionSelect" ng-model="ctrl.newPermission">
+                    <option ng-repeat="permission in ctrl.permissions" value="{{ permission }}">{{ permission }}</option>
+                </select>
+                <div class="text-danger pt-2" ng-show="ctrl.permissionsDelta[ctrl.newPermission] !== undefined">
+                    {{ ctrl.role.name !== undefined ? ctrl.role.name : ctrl.delta.name}} already has this permission.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="ctrl.addPermission()" ng-disabled="ctrl.permissionsDelta[ctrl.newPermission] !== undefined" data-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-secondary" ng-click="ctrl.clearPermission()" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -74,10 +74,34 @@ app.controller('resourcesAttacksCtrl', ['attackService', 'attackCategoryService'
     ctrl.save = function() {
         if (ctrl.attack.name !== undefined || ctrl.delta.name !== undefined) {
             if (ctrl.editType == "update") {
-                attackService.updateAttack(ctrl.delta);
+                attackService.updateAttack(ctrl.delta)
+                .success(
+                    function(response) {
+                        ctrl.success = response.data;
+                        ctrl.searchKey = ctrl.attack.name;
+                        ctrl.loadMain();
+                    }
+                )
+                .error(
+                    function(response) {
+                        ctrl.error = response.data;
+                    }
+                );
             }
             else if (ctrl.editType == "create") {
-                attackService.createAttack(ctrl.delta);
+                attackService.createAttack(ctrl.delta)
+                .success(
+                    function(response) {
+                        ctrl.success = response.data;
+                        ctrl.searchKey = ctrl.attack.name;
+                        ctrl.loadMain();
+                    }
+                )
+                .error(
+                    function(response) {
+                        ctrl.error = response.data;
+                    }
+                );
             }
         }
     }

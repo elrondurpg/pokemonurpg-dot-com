@@ -35,10 +35,34 @@ app.controller('resourcesAbilitiesCtrl', ['abilityService', function(abilityServ
     ctrl.save = function() {
         if (ctrl.ability.name !== undefined || ctrl.delta.name !== undefined) {
             if (ctrl.editType == "update") {
-                abilityService.updateAbility(ctrl.delta);
+                abilityService.updateAbility(ctrl.delta)
+                .success(
+                    function(response) {
+                        ctrl.success = response.data;
+                        ctrl.searchKey = ctrl.ability.name;
+                        ctrl.loadMain();
+                    }
+                )
+                .error(
+                    function(response) {
+                        ctrl.error = response.data;
+                    }
+                );
             }
             else if (ctrl.editType == "create") {
-                abilityService.createAbility(ctrl.delta);
+                abilityService.createAbility(ctrl.delta)
+                .success(
+                    function(response) {
+                        ctrl.success = response.data;
+                        ctrl.searchKey = ctrl.ability.name;
+                        ctrl.loadMain();
+                    }
+                )
+                .error(
+                    function(response) {
+                        ctrl.error = response.data;
+                    }
+                );
             }
         }
     }

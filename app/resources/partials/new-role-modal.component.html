@@ -1,0 +1,24 @@
+<div class="modal fade" id="newRoleModal" tabindex="-1" role="dialog" aria-labelledby="newRoleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add a new role</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <select class="form-control" id="newRoleSelect" ng-model="ctrl.newRole">
+                    <option ng-repeat="role in ctrl.roles" value="{{ role }}">{{ role }}</option>
+                </select>
+                <div class="text-danger pt-2" ng-show="ctrl.rolesDelta[ctrl.newRole] !== undefined">
+                    {{ ctrl.member.name !== undefined ? ctrl.member.name : ctrl.delta.name}} already has this role.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="ctrl.addRole()" ng-disabled="ctrl.rolesDelta[ctrl.newRole] !== undefined" data-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-secondary" ng-click="ctrl.clearRole()" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

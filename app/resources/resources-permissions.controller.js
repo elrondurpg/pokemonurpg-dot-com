@@ -22,7 +22,18 @@ app.controller('resourcesPermissionsCtrl', ['permissionService', function(permis
 
     ctrl.save = function() {
         if (ctrl.newPermission !== undefined) {
-            permissionService.createPermission(ctrl.newPermission);
+            permissionService.createPermission(ctrl.newPermission)
+            .success(
+                function(response) {
+                    ctrl.success = response.data;
+                    ctrl.loadMain();
+                }
+            )
+            .error(
+                function(response) {
+                    ctrl.error = response.data;
+                }
+            );
         }
     }
 

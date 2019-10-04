@@ -5,13 +5,30 @@
     $input = json_decode(file_get_contents('php://input'));
 
     sec_session_start();
+
+    $username = '';
+    if (array_key_exists('username', $_SESSION)) {
+        $username = $_SESSION['username'];
+    }
+
+    $authToken = '';
+    if (array_key_exists('authToken', $_SESSION)) {
+        $authToken = $_SESSION['authToken'];
+    }
+
     $authWrapper = (object) [
-        'username' => $_SESSION['username'],
+        'username' => $username,
         'browser' => $_SERVER['HTTP_USER_AGENT'],
-        'authToken' => $_SESSION['authToken'],
-        'payload' => $input->payload
+        'authToken' => $authToken
     ];
+
+    if (array_key_exists('payload', $input)) {
+        $authWrapper->payload = $input->payload;
+    }
+
     $response = sendRequest($input->method, $input->url, $authWrapper);
 
-    echo json_encode($response);
+    http_response_code(json_decode($response)->status);
+    error_log("Got here");
+    echo $response;
 ?>

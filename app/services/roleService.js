@@ -20,17 +20,29 @@ app.service('roleService', ['userService', '$http', '$rootScope', function(userS
     }
 
     service.createRole = function(payload) {
-        return userService.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/role/", payload).then(
+        return userService.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/role/", payload)
+        .success(
             function (response) {
-                return response.data;
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
             }
         );
     }
 
     service.updateRole = function(payload) {
-        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/role/", payload).then(
+        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/role/", payload)
+        .success(
             function (response) {
-                return response.data;
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
             }
         );
     }

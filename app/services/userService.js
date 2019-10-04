@@ -9,7 +9,9 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
         input.method = method;
         input.url = url;
         input.payload = payload;
-        return $http.post('/app/php/sendAuthenticatedRequest.php', input).then(function(response) {
+        return $http.post('/app/php/sendAuthenticatedRequest.php', input).success(function(response) {
+            return response;
+        }).error(function(response) {
             return response;
         });
     }
@@ -33,12 +35,23 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
         });
     }
 
+    service.findByName = function(name) {
+        return $http.get($rootScope.serviceHost + "/user/" + name).then(
+             function (response) {
+                return response.data;
+             }
+        );
+    }
+
     service.invite = function(username) {
-        return service.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/user/invite", username).then(
+        return service.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/user/invite", username)
+        .success(
             function (response) {
-                if (response.status == 200) {
-                    response.data = response.data.substring(1, response.data.length - 1);
-                }
+                return response;
+            }
+        )
+        .error(
+            function(response) {
                 return response;
             }
         );
@@ -56,6 +69,20 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
         return $http.post('/app/php/logout.php').then(function(response){
             return response;
         });
+    }
+
+    service.updateMember = function(payload) {
+        return service.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/user/", payload)
+        .success(
+            function (response) {
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
+            }
+        );
     }
 
 }]);

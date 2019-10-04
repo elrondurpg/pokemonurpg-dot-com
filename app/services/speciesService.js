@@ -20,19 +20,29 @@ app.service('pokemonService', ['userService', '$http', '$rootScope', function(us
     }
 
     service.createSpecies = function(payload) {
-        return userService.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/pokemon/", payload).then(
+        return userService.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/pokemon/", payload)
+        .success(
             function (response) {
-                console.log(response);
-                return response.data;
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
             }
         );
     }
 
     service.updateSpecies = function(payload) {
-        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/pokemon/", payload).then(
+        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/pokemon/", payload)
+        .success(
             function (response) {
-                console.log(response);
-                return response.data;
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
             }
         );
     }

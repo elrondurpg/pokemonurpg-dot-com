@@ -13,7 +13,7 @@ app.controller('headerCtrl', [ 'userService', '$window', function(userService, $
         else if (type != 'pokemon')
             type = '';
         //$location.path('/' + type + '/' + ctrl.searchText);
-        $window.location.assign('/app/' + type + '/' + ctrl.searchText);
+        $window.location.assign('/' + type + '/' + ctrl.searchText);
     }
 
     ctrl.load = function() {

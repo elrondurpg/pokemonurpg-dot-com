@@ -20,17 +20,29 @@ app.service('permissionService', ['userService', '$http', '$rootScope', function
     }
 
     service.createPermission = function(payload) {
-        return userService.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/permission/", payload).then(
+        return userService.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/permission/", payload)
+        .success(
             function (response) {
-                return response.data;
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
             }
         );
     }
 
     service.updatePermission = function(payload) {
-        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/permission/", payload).then(
+        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/permission/", payload)
+        .success(
             function (response) {
-                return response.data;
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
             }
         );
     }

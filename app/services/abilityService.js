@@ -20,17 +20,29 @@ app.service('abilityService', ['userService', '$http', '$rootScope', function(us
     }
 
     service.createAbility = function(payload) {
-        return userService.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/ability/", payload).then(
+        return userService.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/ability/", payload)
+        .success(
             function (response) {
-                return response.data;
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
             }
         );
     }
 
     service.updateAbility = function(payload) {
-        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/ability/", payload).then(
+        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/ability/", payload)
+        .success(
             function (response) {
-                return response.data;
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
             }
         );
     }

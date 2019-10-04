@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row bg-dark text-light p-2">
+        <div class="col-sm-2">
+            <h5>Field</h5>
+        </div>
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            <h5>Current Value</h5>
+        </div>
+        <div class="col-sm-5">
+            <h5>New Value</h5>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            Name
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.role.name }}
+        </div>
+
+        <div class="col-sm-5">
+            <input type="text" class="form-control" ng-model="ctrl.delta.name">
+        </div>
+    </div>
+
+    <div class="row bg-dark text-light p-2">
+        <div class="col-sm-10">
+            <h5>Permissions</h5>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#newPermissionModal">
+                + New
+            </button>
+        </div>
+    </div>
+
+    <div class="row p-2" ng-if="(ctrl.role.permissions === undefined || ctrl.role.permissions.length == 0) && (ctrl.permissionsDelta === undefined || ctrl.isEmpty(ctrl.permissionsDelta))">
+        <p>There doesn't seem to be anything here! Add some permissions to begin.</p>
+    </div>
+
+    <div class="row p-2" ng-repeat="permission in ctrl.role.permissions">
+        <div class="col-sm">
+            <label class="col-form-label" ng-class="ctrl.permissionsDelta[permission].deleted == true ? 'strikethrough' : ''">
+                <h6>{{ permission.unsaved == true ? '*' : '' }}{{ permission }}</h6>
+            </label>
+        </div>
+        <div class="col-sm text-center">
+            <button type="submit" class="btn btn-primary btn-block" ng-click="ctrl.permissionsDelta[permission].deleted = !ctrl.permissionsDelta[permission].deleted">
+                {{ ctrl.permissionsDelta[permission].deleted == false ? 'Delete' : 'Restore' }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<new-role-permission-modal></new-role-permission-modal>

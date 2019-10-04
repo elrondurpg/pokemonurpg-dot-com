@@ -1,0 +1,25 @@
+<div class="row mt-3 alert alert-success" role="alert" ng-if="ctrl.success !== undefined">
+    <div class="col">
+        <span class="clickable" ng-click="ctrl.success = undefined">&times;</span>
+        <span class="pl-3">{{ ctrl.success }}</span>
+    </div>
+</div>
+<div class="row mt-2 alert alert-danger" role="alert" ng-if="ctrl.error !== undefined">
+    <div class="col">
+        <span class="clickable" ng-click="ctrl.error = undefined">&times;</span>
+        <span class="pl-3">{{ ctrl.error }}</span>
+    </div>
+</div>
+<div class="row mt-2 alert alert-danger" role="alert" ng-if="ctrl.errorArray !== undefined">
+    <div class="col">
+        <div class="container">
+            <div class="row pt-2">
+                <span class="clickable" ng-click="ctrl.errorArray = undefined">&times;</span>
+                <span class="pl-3">The following errors were encountered while performing the requested action:</span>
+            </div>
+            <div class="row pt-2" ng-repeat="error in ctrl.errorArray">
+                    {{ error.code }}
+            </div>
+        </div>
+    </div>
+</div>

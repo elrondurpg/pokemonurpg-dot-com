@@ -5,6 +5,13 @@ app.directive('resourcesSearch', function() {
    };
 });
 
+app.directive('resourcesMemberSearch', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/resources-member-search.component.html"
+   };
+});
+
 app.directive('resourcesPokemonGeneralEditor', function() {
    return {
        restrict: 'E',
@@ -107,5 +114,26 @@ app.directive('newPermissionModal', function() {
    return {
        restrict: 'E',
        templateUrl: "/app/resources/partials/new-permission-modal.component.html"
+   };
+});
+
+app.directive('newRolePermissionModal', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/new-role-permission-modal.component.html"
+   };
+});
+
+app.directive('newRoleModal', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/new-role-modal.component.html"
+   };
+});
+
+app.directive('resourcesMessage', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/resources/partials/resources-message.component.html"
    };
 });
