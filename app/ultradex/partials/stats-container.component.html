@@ -1,0 +1,110 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <section class="section">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-2">
+                            <h6 class="my-0">HP</h6>
+                        </div>
+                        <div class="col-10">
+                            <div class="progress my-1">
+                                <div class="progress-bar text-left bg-{{ ctrl.getStatBarClass(ctrl.pokemon.hp, ctrl.hpBenchmark) }}" role="progressbar" style="width: {{ ctrl.getStatBarSize(ctrl.pokemon.hp, ctrl.hpBenchmark) }}%">&nbsp;{{ ctrl.pokemon.hp }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <section class="section">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-2">
+                            <h6 class="my-0">Atk</h6>
+                        </div>
+                        <div class="col-10">
+                            <div class="progress my-1">
+                                <div class="progress-bar text-left bg-{{ ctrl.getStatBarClass(ctrl.pokemon.attack, ctrl.statBenchmark) }}" role="progressbar" style="width: {{ ctrl.getStatBarSize(ctrl.pokemon.attack, ctrl.statBenchmark) }}%">&nbsp;{{ ctrl.pokemon.attack }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <section class="section">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-2">
+                            <h6 class="my-0">Def</h6>
+                        </div>
+                        <div class="col-10">
+                            <div class="progress my-1">
+                                <div class="progress-bar text-left bg-{{ ctrl.getStatBarClass(ctrl.pokemon.defense, ctrl.statBenchmark) }}" role="progressbar" style="width: {{ ctrl.getStatBarSize(ctrl.pokemon.defense, ctrl.statBenchmark) }}%">&nbsp;{{ ctrl.pokemon.defense }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <section class="section">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-2">
+                            <h6 class="my-0">SpA</h6>
+                        </div>
+                        <div class="col-10">
+                            <div class="progress my-1">
+                                <div class="progress-bar text-left bg-{{ ctrl.getStatBarClass(ctrl.pokemon.specialAttack, ctrl.statBenchmark) }}" role="progressbar" style="width: {{ ctrl.getStatBarSize(ctrl.pokemon.specialAttack, ctrl.statBenchmark) }}%">&nbsp;{{ ctrl.pokemon.specialAttack }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <section class="section">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-2">
+                            <h6 class="my-0">SpD</h6>
+                        </div>
+                        <div class="col-10">
+                            <div class="progress my-1">
+                                <div class="progress-bar text-left bg-{{ ctrl.getStatBarClass(ctrl.pokemon.specialDefense, ctrl.statBenchmark) }}" role="progressbar" style="width: {{ ctrl.getStatBarSize(ctrl.pokemon.specialDefense, ctrl.statBenchmark) }}%">&nbsp;{{ ctrl.pokemon.specialDefense }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <section class="section">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-2">
+                            <h6 class="my-0">Spe</h6>
+                        </div>
+                        <div class="col-10">
+                            <div class="progress my-1">
+                                <div class="progress-bar text-left bg-{{ ctrl.getStatBarClass(ctrl.pokemon.speed, ctrl.statBenchmark) }}" role="progressbar" style="width: {{ ctrl.getStatBarSize(ctrl.pokemon.speed, ctrl.statBenchmark) }}%">&nbsp;{{ ctrl.pokemon.speed }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

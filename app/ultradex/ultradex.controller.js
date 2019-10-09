@@ -92,6 +92,16 @@ app.controller('dexCtrl', ['pokemonService', '$routeParams', '$rootScope', '$win
         return method;
     }
 
+    ctrl.getCurrentImageTag = function() {
+        if (ctrl.pokemon.alteredForms.length == 0) {
+            return ctrl.suffix(ctrl.pokemon.displayName, ctrl.pokemon.name);
+        }
+        else if (ctrl.pokemon.alteredForms.length > 0) {
+            var form = ctrl.pokemon.alteredForms[ctrl.pokemon.currentForm];
+            return ctrl.suffix(form.displayName, form.name);
+        }
+    }
+
     this.suffix = function(base, input) {
         if (input !== undefined) {
             if (input.toLowerCase().indexOf("ultra") != -1)
@@ -130,41 +140,27 @@ app.controller('dexCtrl', ['pokemonService', '$routeParams', '$rootScope', '$win
         else return input;
     };
 
-    this.getHpBarSize = function(stat) {
-        var maxWidth = 217;
+    this.hpBenchmark = 540;
+    this.statBenchmark = 450;
 
-        if (stat >= 714)
-            return 217;
-        else
-            return (stat/714)*217;
+    this.getStatBarClass = function(stat, benchmark) {
+        if (stat >= (benchmark * .66)) {
+            return 'success';
+        }
+        else if (stat >= (benchmark * .5)) {
+            return 'warning';
+        }
+        else return 'danger';
     }
 
-    this.getHpBarClass = function(stat) {
-        if (stat < 325)
-            return "low";
-        else if (stat < 400)
-            return "medium";
-        else
-            return "high";
+    this.getStatBarSize = function(stat, benchmark) {
+        if (stat >= benchmark) {
+            return 100;
+        }
+        else {
+            return Math.floor((stat / benchmark) * 100);
+        }
     }
-
-    this.getStatBarSize = function(stat) {
-        var maxWidth = 217;
-
-        if (stat >= 559)
-            return 217;
-        else
-            return (stat/559)*217;
-    }
-
-    this.getStatBarClass = function(stat) {
-        if (stat < 239)
-            return "low";
-        else if (stat < 299)
-            return "medium";
-        else
-            return "high";
-    };
 
     this.getGrassKnotDamage = function(weight) {
         if (weight < 10)
@@ -263,156 +259,65 @@ app.controller('dexCtrl', ['pokemonService', '$routeParams', '$rootScope', '$win
 
 }]);
 
-app.directive('pokemon', function() {
-    return {
-        restrict: 'E',
-        templateUrl: "/app/ultradex/partials/pokemon.html"
-    };
-});
-
 app.directive('dexHeader', function() {
     return {
         restrict: 'E',
-        templateUrl: "/app/ultradex/partials/dex-header.html"
+        templateUrl: "/app/ultradex/partials/dex-header.component.html"
     };
 });
 
-app.directive('buttonPrev', function() {
-    return {
-        restrict: 'E',
-        template: "<img src='https://pokemonurpg.com/img/icons/control-prev.gif'>"
-    };
-});
-
- app.directive('buttonNext', function() {
-    return {
-        restrict: 'E',
-        template: "<img src='https://pokemonurpg.com/img/icons/control-next.gif'>"
-    };
-});
-
-app.directive('dexBody', function() {
+app.directive('dexContainer', function() {
    return {
        restrict: 'E',
-       templateUrl: '/app/ultradex/partials/dex-body.html'
+       templateUrl: '/app/ultradex/partials/dex-container.component.html'
    };
 });
 
-app.directive('dexInfo', function() {
-    return {
-        restrict: 'E', 
-        templateUrl: '/app/ultradex/partials/dex-info.html'
-    };
-});
-
-app.directive('horizontalLine', function() {
+app.directive('nametagContainer', function() {
     return {
         restrict: 'E',
-        template: '<div class="horizontal-line"></div>'
-    };
-});
-
-app.directive('verticalLine', function() {
-    return {
-        restrict: 'E', 
-        template: '<div class="vertical-line"></div>'
-    };
-});
-
-app.directive('pokemonSprite', function() {
-   return {
-       restrict: 'E',
-       templateUrl: '/app/ultradex/partials/pokemon-sprite.html'
-   };
-});
-
-app.directive('pokemonDexInfo', function() {
-    return {
-        restrict: 'E',
-        templateUrl: '/app/ultradex/partials/pokemon-dex-info.html'
-    }; 
-});
-
-app.directive('abilityInfo', function() {
-    return {
-        restrict: 'E',
-        templateUrl: '/app/ultradex/partials/ability-info.html'
-    };
-});
-
-app.directive('statsInfo', function() {
-    return {
-        restrict: 'E',
-        templateUrl: '/app/ultradex/partials/stats-info.html'
-    }; 
-});
-
-app.directive('formTabs', function() {
-    return {
-        restrict: 'E',
-        templateUrl: '/app/ultradex/partials/form-tabs.html'
-    }; 
-});
-
-app.directive('typeMatchups', function() {
-    return {
-        restrict: 'E',
-        templateUrl: '/app/ultradex/partials/type-matchups.html'
-    };
-});
-
-app.directive('miscInfo', function() {
-    return {
-        restrict: 'E',
-        templateUrl: '/app/ultradex/partials/misc-info.html'
-    };
-});
-
-app.directive('evolutionFamily', function() {
-    return {
-        restrict: 'E',
-        templateUrl: '/app/ultradex/partials/evolution-family.html'
-    };
-});
-
-app.directive('captureInfo', function() {
-    return {
-        restrict: 'E',
-        templateUrl: '/app/ultradex/partials/capture-info.html'
-    }; 
-});
-
-app.directive('learnset', function() {
-    return {
-        restrict: 'E',
-        templateUrl: '/app/ultradex/partials/learnset.html'
-    };
-});
-
-app.directive('megaEvolutions', function() {
-    return {
-        restrict: 'E',
-        templateUrl: '/app/ultradex/partials/mega-evolutions.html'
-    };
-});
-
-app.directive('megaTabs', function() {
-    return {
-        restrict: 'E', 
-        templateUrl: '/app/ultradex/partials/mega-tabs.html'
-    };
-});
-
-app.directive('formInfo', function() {
-    return {
-        restrict: 'E', 
-        templateUrl: '/app/ultradex/partials/form-info.html'
-    };
-});
-
-app.directive('moveHints', function() {
-    return {
-        restrict: 'E',
-        templateUrl: '/app/ultradex/modals/move-hints.html'
+        templateUrl: '/app/ultradex/partials/nametag-container.component.html'
     }
-})
+});
+
+app.directive('nametagSprite', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/nametag-sprite.component.html'
+    }
+});
+
+app.directive('nametagInfo', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/nametag-info.component.html'
+    }
+});
+
+app.directive('abilityContainer', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/ability-container.component.html'
+    }
+});
+
+app.directive('statsContainer', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/stats-container.component.html'
+    }
+});
+
+app.directive('typeMatchupContainer', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/type-matchup-container.component.html'
+    }
+});
+
+app.directive('miscInfoContainer', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/misc-info-container.component.html'
+    }
+});

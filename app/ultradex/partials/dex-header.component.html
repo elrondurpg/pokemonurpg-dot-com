@@ -1,0 +1,28 @@
+<section class="section pt-2">
+    <div class="container">
+        <div class="row pb-2 border-bottom">
+            <div class="col-sm-4">
+                <a href='/pokemon/{{ ctrl.pokemon.prevSpecies.name }}' target="_self" ng-if="ctrl.loaded == true">
+                    <div class="row">
+                        <div class="col-md-auto d-flex align-items-center">
+                            <img src='https://pokemonurpg.com/img/icons/control-prev.gif'>
+                            <img ng-src="{{ iconBase }}/{{ ctrl.pokemon.prevSpecies.dexno }}.png"/>
+                            #{{ ctrl.threeDigit(ctrl.pokemon.prevSpecies.dexno) }} {{ ctrl.pokemon.prevSpecies.name }}
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 offset-sm-4">
+                <a href='/pokemon/{{ ctrl.pokemon.nextSpecies.name }}' target="_self" ng-if="ctrl.loaded == true">
+                    <div class="row">
+                        <div class="col-md-auto d-flex align-items-center text-right ml-auto">
+                            <span>#{{ ctrl.threeDigit(ctrl.pokemon.nextSpecies.dexno) }} {{ ctrl.pokemon.nextSpecies.name }}</span>
+                            <img ng-src="{{ iconBase }}/{{ ctrl.pokemon.nextSpecies.dexno }}.png"/>
+                            <img src='https://pokemonurpg.com/img/icons/control-next.gif'>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

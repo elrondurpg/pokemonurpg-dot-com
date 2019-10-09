@@ -1,0 +1,8 @@
+<div class="container border-right border-left">
+    <div class="row" ng-repeat="ability in ctrl.pokemon.abilities">
+        <div class="col">
+            <h6 class="my-0"><small><strong>{{ ability.hidden == 1 ? '(HA)' : '' }} {{ ability.name }}</strong></small></h6>
+            <h6><small>{{ ability.description }}</small></h6>
+        </div>
+    </div>
+</div>

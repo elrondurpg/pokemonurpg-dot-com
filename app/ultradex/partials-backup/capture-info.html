@@ -1,0 +1,20 @@
+<table class="obtainability">
+    <thead>
+        <tr>
+            <th class="pokemart">POKEMART</th>
+            <th class="story">STORY RANK</th>
+            <th class="park">NATIONAL PARK</th>
+            <th class="contest">CONTEST CREDITS</th>
+            <th class="art">ART GALLERY</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="method">
+            <td> {{ ctrl.pokemon.pokemart != "" && ctrl.pokemon.pokemart != "-1" ? ctrl.pokemon.pokemart : '-' }} </td>
+            <td> {{ ctrl.pokemon.storyRank.name }} {{ ctrl.pokemon.storyRank.requirement != '-' ? '(' + ctrl.pokemon.storyRank.requirement + ')' : '' }} </td>
+            <td> {{ ctrl.pokemon.parkRank.name != '-' ? ctrl.pokemon.parkRank.requirement + '/' : 'Unknown' }}{{ ctrl.pokemon.parkLocation.name != '-' ? ctrl.pokemon.parkLocation.name : '' }} {{ ctrl.pokemon.parkRank.requirement != '-' ? '(' + ctrl.pokemon.parkRank.requirement + ')' : '' }} </td>
+            <td> {{ ctrl.pokemon.contestCredits != "" && ctrl.pokemon.contestCredits != "-1" ? ctrl.pokemon.contestCredits : '-' }} </td>
+            <td> {{ ctrl.pokemon.artRank.name }} {{ ctrl.pokemon.artRank.requirement != '-' ? '(' + ctrl.pokemon.artRank.requirement + ' points)' : '' }} </td>
+        </tr>
+    </tbody>
+</table>
