@@ -5,7 +5,7 @@ body {
     padding:0;
     font-family:"Open Sans", Arial, Helvetica, sans-serif;
     width: 100%;
-    padding-top: 42px;
+    padding-top: 50px;
 	margin-bottom: 30px;
 }
 
@@ -28,3 +28,4 @@ body {
 .smallcaps {
   font-variant: small-caps;
 }
+

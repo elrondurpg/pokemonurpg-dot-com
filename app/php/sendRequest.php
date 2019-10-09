@@ -2,7 +2,6 @@
     function sendRequest($method, $url, $data = false)
     {
         $curl = curl_init();
-
         switch ($method)
         {
             case "POST":
@@ -29,7 +28,6 @@
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($curl);
-
         curl_close($curl);
 
         return $result;

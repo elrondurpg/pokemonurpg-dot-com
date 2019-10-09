@@ -13,11 +13,7 @@
                     <div class="row pt-2">
                         <input type="text" class="form-control" ng-model="ctrl.inviteUsername" placeholder="Enter username">
                     </div>
-                    <div class="row pt-2" ng-if="ctrl.inviteError">
-                        <p class="text-danger">
-                            Error: Couldn't invite that user.
-                        </p>
-                    </div>
+                    <resources-message></resources-message>
                     <div class="row pt-2 mt-2 alert alert-success" role="alert" ng-if="ctrl.betaKey != '' && ctrl.betaKey !== undefined">
                         <div class="container">
                             <div class="row">Success!</div>

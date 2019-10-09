@@ -4,6 +4,18 @@ app.controller('resourcesAttacksCtrl', ['attackService', 'attackCategoryService'
 
     ctrl.searchKey = "";
 
+    attackService.findAll()
+    .then(
+        function(response) {
+            if (response.status == 200) {
+                ctrl.items = response.data;
+            }
+            else {
+                ctrl.error("An error occurred while trying to load attacks from URPG Server. Please contact a system administrator if this problem persists.");
+            }
+        }
+    );
+
 	ctrl.loadMain = function() {
 	    ctrl.loaded = false;
         ctrl.attack = {};

@@ -1,18 +1,10 @@
 <div class="container pb-3">
     <div class="row">
         <div class="col-md-6">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Search</span>
-                </div>
-                <input type="text" class="form-control" placeholder="Enter search term"
-                       ng-class="ctrl.notFound == true ? 'is-invalid' : ''"
-                       ng-model="ctrl.searchKey"
-                       ng-keypress="$event.keyCode === 13 ? ctrl.load() : ''">
-                <div class="invalid-feedback">
-                    Object not found
-                </div>
-            </div>
+            <select class="form-control" id="resourceSelect" ng-model="ctrl.searchKey">
+                <option value="" selected disabled hidden>Select an item to view or edit</option>
+                <option ng-repeat="item in ctrl.items" value="{{ item }}">{{ item }}</option>
+            </select>
         </div>
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary btn-block" ng-click="ctrl.loadMain()">Load</button>

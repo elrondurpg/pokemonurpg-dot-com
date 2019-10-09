@@ -29,6 +29,5 @@
     $response = sendRequest($input->method, $input->url, $authWrapper);
 
     http_response_code(json_decode($response)->status);
-    error_log("Got here");
     echo $response;
 ?>

@@ -19,16 +19,12 @@
                     <div class="row pt-2">
                         <input type="password" class="form-control" ng-model="ctrl.loginDto.password" placeholder="Enter password">
                     </div>
-                    <div class="row pt-2" ng-if="ctrl.loginError">
-                        <p class="text-danger">
-                            Error: Couldn't log in.
-                        </p>
-                    </div>
                     <div class="row pt-2">
                         <button type="button" class="btn btn-primary" ng-click="ctrl.login()">Login</button>
                     </div>
+                    <resources-message></resources-message>
                     <div class="row pt-2">
-                        Have a beta key?&nbsp;<a class="smallcaps" href="#" ng-click="ctrl.action = 'registerBeta'">Register your account</a>
+                        Have a beta key?&nbsp;<a class="smallcaps" href="#" ng-click="ctrl.switchPage('registerBeta')">Register your account</a>
                     </div>
                     <div class="row pt-2">
                         Working on the website?&nbsp;<a class="smallcaps" href="/wp/wp-login.php" target="_self">Sign into WordPress</a>
@@ -50,16 +46,23 @@
                     <div class="row pt-2">
                         <input type="password" class="form-control" ng-model="ctrl.registerBetaDto.password" placeholder="Create a password">
                     </div>
-                    <div class="row pt-2" ng-if="ctrl.registerBetaError">
-                        <p class="text-danger">
-                            Error: Couldn't register the account.
-                        </p>
+                    <resources-message></resources-message>
+                    <div class="row pt-2 mt-2 alert alert-info" role="alert">
+                        <div class="col-sm">
+                            <span>Passwords must:</span>
+                            <ul>
+                                <li> contain at least one lowercase character (a-z)</li>
+                                <li> contain at least one uppercase character (A-Z)</li>
+                                <li> contain at least one number</li>
+                                <li> have a length of 8 - 40 characters</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="row pt-2">
                         <button type="button" class="btn btn-primary" ng-click="ctrl.registerBeta()">Register</button>
                     </div>
                     <div class="row pt-2">
-                        Have an account already?&nbsp;<a class="smallcaps" href="#" ng-click="ctrl.action = 'login'">Sign in</a>
+                        Have an account already?&nbsp;<a class="smallcaps" href="#" ng-click="ctrl.switchPage('login')">Sign in</a>
                     </div>
                     <div class="row pt-2">
                         Working on the website?&nbsp;<a class="smallcaps" href="/wp/wp-login.php" target="_self">Sign into WordPress</a>

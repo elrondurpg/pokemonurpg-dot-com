@@ -5,6 +5,18 @@ app.controller('resourcesPokemonCtrl', ['pokemonService', 'attackService', 'abil
 
     ctrl.searchKey = "";
 
+    pokemonService.findAll()
+    .then(
+        function(response) {
+            if (response.status == 200) {
+                ctrl.items = response.data;
+            }
+            else {
+                ctrl.error("An error occurred while trying to load pokemon from URPG Server. Please contact a system administrator if this problem persists.");
+            }
+        }
+    );
+
 	ctrl.loadMain = function() {
 	    ctrl.loaded = false;
         ctrl.pokemon = {};

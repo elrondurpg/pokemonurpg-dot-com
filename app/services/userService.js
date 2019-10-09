@@ -4,6 +4,14 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
 
     var service = this;
 
+    service.findAll = function() {
+        return $http.get($rootScope.serviceHost + "/user").then(
+            function (response) {
+                return response.data;
+            }
+        );
+    }
+
     service.sendAuthenticatedRequest = function(method, url, payload) {
         var input = {};
         input.method = method;
@@ -18,9 +26,17 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
 
     service.login = function(payload) {
         payload.browser = $window.navigator.userAgent;
-        return $http.post('/app/php/login.php',payload).then(function(response){
-            return response;
-        });
+        return $http.post('/app/php/login.php',payload)
+        .success(
+            function (response) {
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
+            }
+        );
     }
 
     service.getUser = function() {
@@ -58,11 +74,12 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
     }
 
     service.registerBeta = function(payload) {
-        return $http.put($rootScope.serviceHost + "/user/registerBeta", payload).then(
+        return $http.put($rootScope.serviceHost + "/user/registerBeta", payload)
+        .then(
             function (response) {
-                return response;
+                return response.data;
             }
-        );
+        )
     }
 
     service.logout = function() {

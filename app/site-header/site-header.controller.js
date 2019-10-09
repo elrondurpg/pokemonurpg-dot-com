@@ -24,39 +24,58 @@ app.controller('headerCtrl', [ 'userService', '$window', function(userService, $
 
     ctrl.load();
 
+    ctrl.switchPage = function(action) {
+        ctrl.action = action;
+        ctrl.error = undefined;
+        ctrl.success = undefined;
+        ctrl.errorArray = undefined;
+    }
+
     ctrl.login = function() {
-        userService.login(ctrl.loginDto).then(function(response) {
-             if (response.status == 200) {
-                ctrl.load();
-                // TODO
-                // Bring the user to their login page?
-             }
-             else {
-                // TODO
-                // Show a better login error?
-             }
-        });
+        userService.login(ctrl.loginDto)
+        .success(
+            function(response) {
+                ctrl.success = "Success!";
+                $window.location.reload();
+            }
+        )
+        .error(
+            function(response) {
+                ctrl.error = response.data;
+            }
+        );
     }
 
     ctrl.registerBeta = function () {
-        userService.registerBeta(ctrl.registerBetaDto).then(function(response) {
-            if (response.status == 200) {
-                // TODO
-                // Let the user know they were successfully registered?
-            }
-            else {
-                // TODO
-                // Let the user know they were not successfully registered?
-            }
-        });
+        if (ctrl.validateRegisterBeta()) {
+            ctrl.error = undefined;
+            userService.registerBeta(ctrl.registerBetaDto)
+            .then(
+                function(response) {
+                    if (response.status == 200) {
+                        ctrl.success = "Success! Click 'Sign In' below to access your account.";
+                    }
+                    else {
+                        ctrl.error = response.data;
+                    }
+                }
+            )
+        }
+        else {
+            ctrl.error = "Password does not meet requirements."
+        }
+    }
+
+    ctrl.passwordRegex = /((?=.*[a-z])(?=.*\d)(?=.*[A-Z]).{8,40})/;
+    ctrl.validateRegisterBeta = function() {
+        console.log(ctrl.registerBetaDto.password);
+        return ctrl.passwordRegex.exec(ctrl.registerBetaDto.password);
     }
 
     ctrl.logout = function() {
         userService.logout().then(function(response) {
              if (response.status == 200) {
-                ctrl.load();
-                // TODO
-                // Let the user know they were successfully logged out?
+                $window.location.reload();
              }
              else {
                 // TODO

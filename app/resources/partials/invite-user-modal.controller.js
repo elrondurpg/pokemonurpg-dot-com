@@ -5,13 +5,14 @@ app.controller('inviteCtrl', [ 'userService', function(userService) {
         userService.invite(ctrl.inviteUsername)
         .success(
             function(response) {
-                console.log(response);
+                ctrl.error = undefined;
                 ctrl.betaKey = response.data;
             }
         )
         .error(
             function(response) {
-                ctrl.inviteError = true;
+                ctrl.success = undefined;
+                ctrl.error = response.data;
             }
         );
     }

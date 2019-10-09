@@ -281,7 +281,7 @@
                 <td>
                     Contest Credits
                 </td>
-                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.contestCredits != -1 ? ctrl.pokemon.contestCredits : 'Not Available' }}</td>
+                <td ng-if="ctrl.editType == 'update'">{{ ctrl.pokemon.contestCredits != -1 ? ctrl.pokemon.contestCredits + " CC" : 'Not Available' }}</td>
                 <td><input type="number" class="form-control"
                            ng-model="ctrl.delta.contestCredits">
                 </td>

@@ -8,11 +8,13 @@
     $response = sendRequest("POST", SERVICE_HOST . "/user/login", $input);
 
     $response = json_decode($response);
+
     if ($response->status == 200) {
         $response->username = $input->username;
         $_SESSION['username'] = $input->username;
         $_SESSION['authToken'] = $response->data;
     }
 
+    http_response_code($response->status);
     echo json_encode($response);
 ?>

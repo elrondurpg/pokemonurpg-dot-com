@@ -45,6 +45,7 @@ app.directive('siteFooter', function() {
 });
 
 app.run(function($rootScope, $location) {
+    $rootScope.title = "Pokemon URPG Infohub";
 	$rootScope.webHost = "https://pokemonurpg.com";
 	$rootScope.serviceHost = "http://localhost:8080";
 

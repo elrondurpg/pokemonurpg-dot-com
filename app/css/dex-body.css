@@ -107,11 +107,6 @@ ability-info dt, ability-info.bold, .mega-ability dt, .mega-ability bold {
     font-weight:700;
 }
 
-ability-info dl p, .mega-ability dl p {
-    margin:0 0 10px -40px;
-    padding:0;
-}
-
 stats-info, .mega-stats {
     float: right;
 }
