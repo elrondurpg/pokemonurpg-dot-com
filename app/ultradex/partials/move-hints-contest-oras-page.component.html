@@ -1,0 +1,30 @@
+<div class="container border text-center" ng-show="ctrl.displayMove.name != null && ctrl.moveHintsType == 'oras-contest'">
+    <div class="row pt-2 move-hints-title">
+        <div class="col">
+            <h2>{{ ctrl.displayMove.name }}</h2>
+        </div>
+    </div>
+    <div class="row pt-2" ng-if="ctrl.displayMove.orasContestMoveType != null">
+        <div class="col">
+            <h3 class="my-0" ng-if="ctrl.getOrasScore() <= 0">{{ ctrl.displayMove.orasContestMoveType.score == -1 ? 'Varies' : '-'  }}</h3>
+            <img src="https://pokemonurpg.com/img/heart.png"  ng-if="ctrl.getOrasScore() > 0" ng-repeat="n in [].constructor(ctrl.getOrasScore()) track by $index" />
+            <h6><small>SCORE</small></h6>
+        </div>
+        <div class="col">
+            <h3 class="my-0" ng-if="ctrl.getOrasJam() <= 0">{{ ctrl.displayMove.orasContestMoveType.jam == -1 ? 'Varies' : '-'  }}</h3>
+            <img src="https://pokemonurpg.com/img/nheart.png"  ng-if="ctrl.getOrasJam() > 0" ng-repeat="n in [].constructor(ctrl.getOrasJam()) track by $index" />
+            <h6><small>JAM</small></h6>
+        </div>
+    </div>
+    <div class="row" ng-if="ctrl.displayMove.orasContestMoveType != null">
+        <div class="col">
+            <span class="type" ng-class="ctrl.displayMove.orasContestAttribute | lowercase">{{ ctrl.displayMove.orasContestAttribute }}</span>
+            <h6><small>ATTRIBUTE</small></h6>
+        </div>
+    </div>
+    <div class="row d-flex align-items-center move-description">
+        <div class="col">
+            {{ ctrl.displayMove.orasContestMoveType != null ? ctrl.displayMove.orasContestMoveType.description : "Cannot be used in contests." }}
+        </div>
+    </div>
+</div>

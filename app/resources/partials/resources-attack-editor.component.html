@@ -213,4 +213,103 @@
             </select>
         </div>
     </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            RSE Contest Attribute
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.rseContestAttribute }}
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" id="rseContestAttributeSelect" ng-model="ctrl.delta.rseContestAttribute">
+                <option ng-repeat="attribute in ctrl.contestAttributes" value="{{ attribute }}">{{ attribute }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            RSE Contest Move Type
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.rseContestMoveType.name }} ({{ ctrl.attack.rseContestMoveType.description }})
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" id="rseContestMoveTypeSelect" ng-model="ctrl.delta.rseContestMoveType">
+                <option ng-repeat="moveType in ctrl.rseContestMoveTypes" value="{{ moveType.name }}">{{ moveType.name }}</option>
+            </select>
+            <p class="pt-2" ng-if="ctrl.delta.rseContestMoveType !== undefined">{{ ctrl.getContestMoveTypeDescription('RSE', ctrl.delta.rseContestMoveType) }}</p>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            DPP Contest Attribute
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.dppContestAttribute }}
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" id="dppContestAttributeSelect" ng-model="ctrl.delta.dppContestAttribute">
+                <option ng-repeat="attribute in ctrl.contestAttributes" value="{{ attribute }}">{{ attribute }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            DPP Contest Move Type
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.dppContestMoveType.name }} ({{ ctrl.attack.dppContestMoveType.description }})
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" id="dppContestMoveTypeSelect" ng-model="ctrl.delta.dppContestMoveType">
+                <option ng-repeat="moveType in ctrl.dppContestMoveTypes" value="{{ moveType.name }}">{{ moveType.name }}</option>
+            </select>
+            <p class="pt-2" ng-if="ctrl.delta.dppContestMoveType !== undefined">{{ ctrl.getContestMoveTypeDescription('DPP', ctrl.delta.dppContestMoveType) }}</p>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            ORAS Contest Attribute
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.orasContestAttribute }}
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" id="orasContestAttributeSelect" ng-model="ctrl.delta.orasContestAttribute">
+                <option ng-repeat="attribute in ctrl.contestAttributes" value="{{ attribute }}">{{ attribute }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-sm-2">
+            ORAS Contest Move Type
+        </div>
+
+        <div class="col-sm-5" ng-if="ctrl.editType == 'update'">
+            {{ ctrl.attack.orasContestMoveType.name }} ({{ ctrl.attack.orasContestMoveType.description }})
+        </div>
+
+        <div class="col-sm-5">
+            <select class="form-control" id="orasContestMoveTypeSelect" ng-model="ctrl.delta.orasContestMoveType">
+                <option ng-repeat="moveType in ctrl.orasContestMoveTypes" value="{{ moveType.name }}">{{ moveType.name }}</option>
+            </select>
+            <p class="pt-2" ng-if="ctrl.delta.orasContestMoveType !== undefined">{{ ctrl.getContestMoveTypeDescription('ORAS', ctrl.delta.orasContestMoveType) }}</p>
+        </div>
+    </div>
 </div>

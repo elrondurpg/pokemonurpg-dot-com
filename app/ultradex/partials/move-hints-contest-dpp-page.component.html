@@ -1,0 +1,30 @@
+<div class="container border text-center" ng-show="ctrl.displayMove.name != null && ctrl.moveHintsType == 'dpp-contest'">
+    <div class="row pt-2 move-hints-title">
+        <div class="col">
+            <h2>{{ ctrl.displayMove.name }}</h2>
+        </div>
+    </div>
+    <div class="row pt-2" ng-if="ctrl.displayMove.dppContestMoveType != null">
+        <div class="col">
+            <h3 class="my-0" ng-if="ctrl.getDppScore() <= 0">{{ ctrl.displayMove.dppContestMoveType.score == -1 ? 'Varies' : '-'  }}</h3>
+            <img src="https://pokemonurpg.com/img/heart.png"  ng-if="ctrl.getDppScore() > 0" ng-repeat="n in [].constructor(ctrl.getDppScore()) track by $index" />
+            <h6><small>SCORE</small></h6>
+        </div>
+        <div class="col">
+            <h3 class="my-0" ng-if="ctrl.getDppJam() <= 0">{{ ctrl.displayMove.dppContestMoveType.jam == -1 ? 'Varies' : '-'  }}</h3>
+            <img src="https://pokemonurpg.com/img/nheart.png"  ng-if="ctrl.getDppJam() > 0" ng-repeat="n in [].constructor(ctrl.getDppJam()) track by $index" />
+            <h6><small>JAM</small></h6>
+        </div>
+    </div>
+    <div class="row" ng-if="ctrl.displayMove.dppContestMoveType != null">
+        <div class="col">
+            <span class="type" ng-class="ctrl.displayMove.dppContestAttribute | lowercase">{{ ctrl.displayMove.dppContestAttribute }}</span>
+            <h6><small>ATTRIBUTE</small></h6>
+        </div>
+    </div>
+    <div class="row d-flex align-items-center move-description">
+        <div class="col">
+            {{ ctrl.displayMove.dppContestMoveType != null ? ctrl.displayMove.dppContestMoveType.description : "Cannot be used in contests." }}
+        </div>
+    </div>
+</div>

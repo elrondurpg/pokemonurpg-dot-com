@@ -1,5 +1,5 @@
 <div class="container text-center">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-5 border p-1 m-1">
             <h6 class="my-0"><small><strong>Available Gender</strong></small></h6>
             <span ng-show="ctrl.pokemon.maleAllowed == '1'" class="gender male">M</span>
@@ -11,7 +11,7 @@
             <h6><small>{{ ctrl.getGrassKnotDamage(ctrl.pokemon.weight) }} BP</small></h6>
         </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-5 border p-1 m-1">
             <h6 class="my-0"><small><strong>Height</strong></small></h6>
             <h6><small>{{ ctrl.pokemon.height }} m / {{ ctrl.toImperialHeight(ctrl.pokemon.height) }}</small></h6>

@@ -1,31 +1,62 @@
 'use strict';
 
-app.controller('dexCtrl', ['pokemonService', '$routeParams', '$rootScope', '$window', function(pokemonService, $routeParams, $rootScope, $window) {
+app.controller('dexCtrl', ['pokemonService', '$routeParams', '$rootScope', '$location', '$window', '$anchorScroll', function(pokemonService, $routeParams, $rootScope, $location, $window, $anchorScroll) {
     var ctrl = this;
 
     ctrl.displayMove = {};
     ctrl.moveHintsType = "battle";
 
     pokemonService.findByName($routeParams.name)
-        .then(function(response) {
-            if (response.status == 200) {
-                ctrl.pokemon = response.data;
-                $rootScope.title = '#' + ctrl.pokemon.dexno + ": " + ctrl.pokemon.displayName;
-                if (ctrl.pokemon.alteredForms !== undefined) {
-                    for (var i = 0; i < ctrl.pokemon.alteredForms.length; i++)
+    .then(function(response) {
+        if (response.status == 200 && !ctrl.isMega(response.data.name)) {
+            ctrl.pokemon = response.data;
+            $rootScope.title = '#' + ctrl.pokemon.dexno + ": " + ctrl.pokemon.displayName;
+            if (ctrl.pokemon.alteredForms !== undefined) {
+                for (var i = 0; i < ctrl.pokemon.alteredForms.length; i++)
+                {
+                    var form = ctrl.pokemon.alteredForms[i];
+                    if (form.name == ctrl.pokemon.name)
                     {
-                        var form = ctrl.pokemon.alteredForms[i];
-                        if (form.name == ctrl.pokemon.name)
-                        {
-                            ctrl.pokemon.currentForm = i;
+                        ctrl.pokemon.currentForm = i;
+                        if (i == 0) {
+                            ctrl.formWindowStart = 0;
+                        }
+                        else {
+                            ctrl.formWindowStart = i - 1;
                         }
                     }
                 }
-                if (ctrl.pokemon.currentForm === undefined)
-                    ctrl.pokemon.currentForm = 0;
-                ctrl.loaded = true;
             }
-         });
+            if (ctrl.pokemon.currentForm === undefined)
+                ctrl.pokemon.currentForm = 0;
+            if (ctrl.pokemon.parkLocation.name == "Abandoned Power Plant") {
+                ctrl.pokemon.parkLocation.name = "Power Plant";
+            }
+            ctrl.loaded = true;
+        }
+        else if (response.status == 404) {
+            $window.location.assign('/app/notfound.html');
+        }
+        else if (ctrl.isMega(response.data.name)) {
+		    $window.location.assign('/pokemon/' + ctrl.removeMegaSuffix(response.data.name));
+        }
+    });
+
+    ctrl.isMega = function(name) {
+        return name.toLowerCase().indexOf("-mega") != -1 || name.indexOf("-primal") != -1 || name.indexOf("-ultra") != -1;
+    }
+
+    ctrl.removeMegaSuffix = function(name) {
+        if (name.toLowerCase().indexOf("-mega") != -1) {
+            return name.toLowerCase().replace("-mega", "");
+        }
+        if (name.toLowerCase().indexOf("-primal") != -1) {
+            return name.toLowerCase().replace("-primal", "");
+        }
+        if (name.toLowerCase().indexOf("-ultra") != -1) {
+            return name.toLowerCase().replace("-ultra", "");
+        }
+    }
 
     ctrl.largestEvolutionStage = function()
     {
@@ -257,6 +288,81 @@ app.controller('dexCtrl', ['pokemonService', '$routeParams', '$rootScope', '$win
         }
     }
 
+    ctrl.decrementFormWindow = function() {
+        if (ctrl.formWindowStart > 0) {
+            ctrl.formWindowStart--;
+        }
+    }
+
+    ctrl.incrementFormWindow = function() {
+        if (ctrl.formWindowStart < ctrl.pokemon.alteredForms.length - 4) {
+            ctrl.formWindowStart++;
+        }
+    }
+
+    ctrl.anchorScroll = function(anchor) {
+        var old = $location.hash();
+        $location.hash(anchor);
+        $anchorScroll();
+
+        //reset to old to keep any additional routing logic from kicking in
+        $location.hash(old);
+    }
+
+    ctrl.getRseScore = function() {
+        if (ctrl.displayMove.rseContestMoveType != null) {
+            if (ctrl.displayMove.rseContestMoveType.score > 0)
+                return ctrl.displayMove.rseContestMoveType.score;
+            else return 0;
+        }
+        else return 0;
+    }
+
+    ctrl.getRseJam = function() {
+        if (ctrl.displayMove.rseContestMoveType != null) {
+            if (ctrl.displayMove.rseContestMoveType.jam > 0)
+                return ctrl.displayMove.rseContestMoveType.jam;
+            else return 0;
+        }
+        else return 0;
+    }
+
+    ctrl.getDppScore = function() {
+        if (ctrl.displayMove.dppContestMoveType != null) {
+            if (ctrl.displayMove.dppContestMoveType.score > 0)
+                return ctrl.displayMove.dppContestMoveType.score;
+            else return 0;
+        }
+        else return 0;
+    }
+
+    ctrl.getDppJam = function() {
+        if (ctrl.displayMove.dppContestMoveType != null) {
+            if (ctrl.displayMove.dppContestMoveType.jam > 0)
+                return ctrl.displayMove.dppContestMoveType.jam;
+            else return 0;
+        }
+        else return 0;
+    }
+
+    ctrl.getOrasScore = function() {
+        if (ctrl.displayMove.orasContestMoveType != null) {
+            if (ctrl.displayMove.orasContestMoveType.score > 0)
+                return ctrl.displayMove.orasContestMoveType.score;
+            else return 0;
+        }
+        else return 0;
+    }
+
+    ctrl.getOrasJam = function() {
+        if (ctrl.displayMove.orasContestMoveType != null) {
+            if (ctrl.displayMove.orasContestMoveType.jam > 0)
+                return ctrl.displayMove.orasContestMoveType.jam;
+            else return 0;
+        }
+        else return 0;
+    }
+
 }]);
 
 app.directive('dexHeader', function() {
@@ -277,6 +383,13 @@ app.directive('nametagContainer', function() {
     return {
         restrict: 'E',
         templateUrl: '/app/ultradex/partials/nametag-container.component.html'
+    }
+});
+
+app.directive('nametagForms', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/nametag-forms.component.html'
     }
 });
 
@@ -319,5 +432,75 @@ app.directive('miscInfoContainer', function() {
     return {
         restrict: 'E',
         templateUrl: '/app/ultradex/partials/misc-info-container.component.html'
+    }
+});
+
+app.directive('evolutionStage', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/evolution-stage.component.html'
+    }
+});
+
+app.directive('captureInfoContainer', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/capture-info-container.component.html'
+    }
+});
+
+app.directive('learnsetContainer', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/learnset-container.component.html'
+    }
+});
+
+app.directive('moveHintsContainer', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/move-hints-container.component.html'
+    }
+});
+
+app.directive('megaEvolutionContainer', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/mega-evolution-container.component.html'
+    }
+});
+
+app.directive('formInfoContainer', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/form-info-container.component.html'
+    }
+});
+
+app.directive('moveHintsBattlePage', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/move-hints-battle-page.component.html'
+    }
+});
+
+app.directive('moveHintsContestDppPage', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/move-hints-contest-dpp-page.component.html'
+    }
+});
+
+app.directive('moveHintsContestRsePage', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/move-hints-contest-rse-page.component.html'
+    }
+});
+
+app.directive('moveHintsContestOrasPage', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/app/ultradex/partials/move-hints-contest-oras-page.component.html'
     }
 });

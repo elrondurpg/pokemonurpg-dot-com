@@ -1,3 +1,25 @@
+.nametag-dexno {
+    text-shadow: 0px 0px 3px #ffffff
+}
+
+.nametag-name {
+    text-shadow: 0px 0px 3px #ffffff
+}
+
+.nametag-mega, .nametag-mega:hover {
+    font-size: 10px;
+    text-decoration: none;
+    color:#191919;
+}
+
+.progress {
+    height: 20px;
+}
+
+.progress-bar.bg-warning {
+    background-color: #EB9532!important;
+}
+
 .gender {
     font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
     display:inline-block;
@@ -26,6 +48,39 @@
     background-color:#34495e;
 }
 
-.progress {
-    height: 20px;
+.dex-evolution-chain-pokemon {
+    display: block;
+    font-size:11px;
+    border:1px solid #CBCBCB;
+    vertical-align:middle;
+    background-color:#F4F4F4;
+    text-align:left;
+    text-decoration: none;
+}
+
+.dex-evolution-chain-pokemon:hover {
+    text-decoration: none;
+}
+
+.dex-evolution-chain-method {
+    font-size:10px;
+    color: #191919;
+    text-decoration: none;
+}
+
+.capture-info, .learnset h6, .learnset, .move-hints-inactive {
+    font-size: 12px;
+}
+
+.form-link:hover {
+    text-decoration: none;
+}
+
+.hover {
+    background-color: #538cc6;
+    color: white;
+    border: solid 1px;
+    border-color: #204060;
+    border-radius: 3px;
+    padding-left: 1px;
 }

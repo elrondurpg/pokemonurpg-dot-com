@@ -1,0 +1,34 @@
+<div class="row d-flex align-items-center">
+    <div class="col-sm-2" ng-if="ctrl.pokemon.pokemart != '' && ctrl.pokemon.pokemart != '-1'">
+        <strong>POKEMART</strong><br>
+        {{ ctrl.pokemon.pokemart | currency : '$' : 0 }}
+    </div>
+    <div class="col-sm-2" ng-if="ctrl.pokemon.pokemart == '' || ctrl.pokemon.pokemart == '-1'">
+        <strong>POKEMART</strong><br>
+        -
+    </div>
+    <div class="col-sm-2" ng-if="ctrl.pokemon.contestCredits != '' && ctrl.pokemon.contestCredits != '-1'">
+        <strong>CONTEST CREDITS</strong><br>
+        {{ ctrl.pokemon.contestCredits | number : 0 }} CC
+    </div>
+    <div class="col-sm-2" ng-if="ctrl.pokemon.contestCredits == '' || ctrl.pokemon.contestCredits == '-1'">
+        <strong>CONTEST CREDITS</strong><br>
+        -
+    </div>
+    <div class="col-sm-2">
+        <strong>STORIES</strong><br>
+        {{ ctrl.pokemon.storyRank.name }} {{ ctrl.pokemon.storyRank.requirement != '-' ? '(' + ctrl.pokemon.storyRank.requirement + ')' : '' }}
+    </div>
+    <div class="col-sm-2">
+        <strong>ART GALLERY</strong><br>
+        {{ ctrl.pokemon.artRank.name }} {{ ctrl.pokemon.artRank.requirement != '-' ? '(' + ctrl.pokemon.artRank.requirement + ' points)' : '' }}
+    </div>
+    <div class="col-sm-2">
+        <strong>NATIONAL PARK</strong><br>
+        {{ ctrl.pokemon.parkRank.name != '-' ? ctrl.pokemon.parkRank.name + '/' : 'Unknown' }}{{ ctrl.pokemon.parkLocation.name != '-' ? ctrl.pokemon.parkLocation.name : '' }} {{ ctrl.pokemon.parkRank.requirement != '-' ? '(' + ctrl.pokemon.parkRank.requirement + ')' : '' }}
+    </div>
+    <div class="col-sm-2">
+        <strong>MORPHIC</strong><br>
+        Morphic data coming soon!
+    </div>
+</div>

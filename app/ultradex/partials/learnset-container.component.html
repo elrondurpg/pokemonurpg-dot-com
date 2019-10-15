@@ -1,0 +1,82 @@
+<div class="learnset container">
+    <div class="row pt-2">
+        <div class="col">
+            <h6 class="my-1"><strong>LEVEL-UP MOVES</strong></h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <span ng-repeat="attack in ctrl.pokemon.attacks | filter: { method: 'LEVEL-UP' } | orderBy: 'name'" ng-mouseover="ctrl.hoverMove(attack)" ng-class="ctrl.displayMove == attack ? 'hover' : ''">
+                {{ attack.name }}{{ $last  ? '' : ',' }}
+            </span>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col">
+            <h6 class="my-1"><strong>TECHNICAL MACHINES</strong></h6>
+        </div>
+    </div>
+    <div class="row" ng-repeat="n in [].constructor(7) track by $index">
+        <div class="col-2 col-sm-3 col-lg-2 col-xl-1 pr-xl-0">
+            <h6 class="my-1 pl-2"><strong>Gen {{ $index + 1 }}</strong></h6>
+        </div>
+        <div class="col-10 col-sm-9 col-lg-10 col-xl-11">
+            {{ filteredTMs.length <= 0 ? '-' : '' }}
+            <span ng-repeat="attack in ctrl.pokemon.attacks | filter: { method: 'TM', generation: $index + 1 } | orderBy: 'name' as filteredTMs" ng-mouseover="ctrl.hoverMove(attack)" ng-class="ctrl.displayMove == attack ? 'hover' : ''">
+                {{ attack.name }}{{ $last ? '' : ',' }}
+            </span>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col">
+            <h6 class="my-1"><strong>HIDDEN MACHINES</strong></h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ filteredHMs.length <= 0 ? 'None' : '' }}
+            <span ng-repeat="attack in ctrl.pokemon.attacks | filter: { method: 'HM' } | orderBy: 'name' as filteredHMs" ng-mouseover="ctrl.hoverMove(attack)" ng-class="ctrl.displayMove == attack ? 'hover' : ''">
+                {{ attack.name }}{{ $last ? '' : ',' }}
+            </span>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col">
+            <h6 class="my-1"><strong>BREEDING MOVES</strong></h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ filteredBMs.length <= 0 ? 'None' : '' }}
+            <span ng-repeat="attack in ctrl.pokemon.attacks | filter: { method: 'BREEDING' } | orderBy: 'name' as filteredBMs" ng-mouseover="ctrl.hoverMove(attack)" ng-class="ctrl.displayMove == attack ? 'hover' : ''">
+                {{ attack.name }}{{ $last ? '' : ',' }}
+            </span>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col">
+            <h6 class="my-1"><strong>MOVE TUTORS</strong></h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ filteredMTs.length <= 0 ? 'None' : '' }}
+            <span ng-repeat="attack in ctrl.pokemon.attacks | filter: { method: 'MOVE TUTOR' } | orderBy: 'name' as filteredMTs" ng-mouseover="ctrl.hoverMove(attack)" ng-class="ctrl.displayMove == attack ? 'hover' : ''">
+                {{ attack.name }}{{ $last ? '' : ',' }}
+            </span>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col">
+            <h6 class="my-1"><strong>SPECIAL MOVES</strong></h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ filteredSMs.length <= 0 ? 'None' : '' }}
+            <span ng-repeat="attack in ctrl.pokemon.attacks | filter: { method: 'SPECIAL' } | orderBy: 'name' as filteredSMs" ng-mouseover="ctrl.hoverMove(attack)" ng-class="ctrl.displayMove == attack ? 'hover' : ''">
+                {{ attack.name }}{{ $last ? '' : ',' }}
+            </span>
+        </div>
+    </div>
+</div>

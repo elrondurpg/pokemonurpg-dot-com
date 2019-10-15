@@ -1,0 +1,17 @@
+.site-directory {
+    position: fixed;
+    top: 56px;
+    z-index:2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow-y: auto;
+    max-height: 100%;
+}
+
+.site-directory ul {
+  list-style: none;
+  padding: 0;
+}
+
+.site-directory ul li::before {
+  content: "\200B";
+}

@@ -1,8 +1,9 @@
-app.controller('resourcesAttacksCtrl', ['attackService', 'attackCategoryService', 'attackTargetTypeService', 'typeService', function(attackService, attackCategoryService, attackTargetTypeService, typeService) {
+app.controller('resourcesAttacksCtrl', ['attackService', 'attackCategoryService', 'attackTargetTypeService', 'typeService', 'contestMoveTypeService',
+    function(attackService, attackCategoryService, attackTargetTypeService, typeService, contestMoveTypeService) {
 
 	var ctrl = this;
 
-    ctrl.searchKey = "";
+    ctrl.contestAttributes = ["Beauty", "Cool", "Cute", "Smart", "Tough"];
 
     attackService.findAll()
     .then(
@@ -25,6 +26,7 @@ app.controller('resourcesAttacksCtrl', ['attackService', 'attackCategoryService'
 	            if (response.status == 200) {
 	                ctrl.notFound = false;
                     ctrl.attack = response.data;
+                    console.log(ctrl.attack);
                     ctrl.delta.name = ctrl.attack.name;
 	                ctrl.loaded = true;
 	                ctrl.editType = "update";
@@ -82,6 +84,67 @@ app.controller('resourcesAttacksCtrl', ['attackService', 'attackCategoryService'
     }
 
     ctrl.loadAttackTargetTypes();
+
+	ctrl.loadContestMoveTypes = function() {
+	    contestMoveTypeService.findAllRSE().then(function(response) {
+            if (response.status == 200) {
+                ctrl.rseContestMoveTypes = response.data;
+            }
+            else {
+                console.log("Encountered an error while trying to load the list of RSE contest move types from URPG Server. Please contact a system administrator if this issue persists after refreshing your browser.");
+            }
+        });
+	    contestMoveTypeService.findAllDPP().then(function(response) {
+            if (response.status == 200) {
+                ctrl.dppContestMoveTypes = response.data;
+            }
+            else {
+                console.log("Encountered an error while trying to load the list of DPP contest move types from URPG Server. Please contact a system administrator if this issue persists after refreshing your browser.");
+            }
+        });
+	    contestMoveTypeService.findAllORAS().then(function(response) {
+            if (response.status == 200) {
+                ctrl.orasContestMoveTypes = response.data;
+            }
+            else {
+                console.log("Encountered an error while trying to load the list of ORAS contest move types from URPG Server. Please contact a system administrator if this issue persists after refreshing your browser.");
+            }
+        });
+	}
+
+	ctrl.loadContestMoveTypes();
+
+	ctrl.getContestMoveTypeDescription = function(contestType, moveType) {
+	    if (contestType == 'RSE') {
+            var item = ctrl.findInList(ctrl.rseContestMoveTypes, moveType);
+            if (item !== undefined) {
+                return item.description;
+            }
+	    }
+	    else if (contestType == 'DPP') {
+            var item = ctrl.findInList(ctrl.dppContestMoveTypes, moveType);
+            if (item !== undefined) {
+                return item.description;
+            }
+	    }
+	    else if (contestType == 'ORAS') {
+            var item = ctrl.findInList(ctrl.orasContestMoveTypes, moveType);
+            if (item !== undefined) {
+                return item.description;
+            }
+	    }
+
+	}
+
+	ctrl.findInList = function(list, itemName) {
+	    var result;
+	    list.forEach(function(element) {
+            if (element.name == itemName) {
+                result = element;
+            }
+        });
+        return result;
+	}
 
     ctrl.save = function() {
         if (ctrl.attack.name !== undefined || ctrl.delta.name !== undefined) {

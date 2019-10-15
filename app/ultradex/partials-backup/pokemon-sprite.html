@@ -1,8 +1,0 @@
-<div ng-class="sprite-container">
-    <img ng-src="{{ modelBase }}{{ ctrl.pokemon.dexno }}{{ ctrl.suffix(ctrl.pokemon.displayName, ctrl.pokemon.name) }}.gif"
-         ng-show="ctrl.pokemon.alteredForms.length == 0"/>
-    <img ng-repeat="form in ctrl.pokemon.alteredForms"
-         ng-src="{{ modelBase }}{{ ctrl.pokemon.dexno }}{{ ctrl.suffix(form.displayName, form.name) }}.gif"
-         ng-show="ctrl.pokemon.alteredForms.length > 0 && ctrl.pokemon.currentForm == $index"/>
-</div>
-<h8 ng-show="ctrl.pokemon.alteredForms.length > 0"/>{{ ctrl.pokemon.alteredForms[ctrl.pokemon.currentForm].formName != '-1' ? ctrl.pokemon.alteredForms[ctrl.pokemon.currentForm].formName : 'Base Form' }}</h8>

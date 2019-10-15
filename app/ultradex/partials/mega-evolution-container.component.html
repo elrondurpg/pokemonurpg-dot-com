@@ -1,0 +1,215 @@
+<section class="section">
+    <div class="container border-top" id="{{ mega.name }}">
+        <div class="row py-2 d-flex align-items-center border-bottom">
+            <div class="col-md-4">
+                <section class="section">
+                    <div class="container">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-5 text-center">
+                                <img ng-src="{{ modelBase }}{{ mega.dexno }}{{ ctrl.suffix(ctrl.pokemon.displayName, mega.name) }}.gif" />
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="my-0"><small>#{{ ctrl.threeDigit(ctrl.pokemon.dexno) }}</small></h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h4 class="my-0"> {{ mega.displayName }} </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="my-0"><small>The {{ ctrl.pokemon.classification }} Pokemon</small></h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="type" ng-class="mega.type1.name | lowercase"> {{ mega.type1.name }} </span>
+                                            <span class="type" ng-class="mega.type2.name | lowercase" ng-show="mega.type2.name !== 'NONE'"> {{ mega.type2.name }} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-4">
+                <div class="container border-right border-left">
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="my-0"><small><strong>{{ mega.ability.name }}</strong></small></h6>
+                            <h6><small>{{ mega.ability.description }}</small></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <section class="section">
+                                <div class="container">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2">
+                                            <h6 class="my-0">HP</h6>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="progress my-1">
+                                                <div class="progress-bar text-left bg-{{ ctrl.getStatBarClass(mega.hp, ctrl.hpBenchmark) }}" role="progressbar" style="width: {{ ctrl.getStatBarSize(mega.hp, ctrl.hpBenchmark) }}%">&nbsp;{{ mega.hp }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <section class="section">
+                                <div class="container">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2">
+                                            <h6 class="my-0">Atk</h6>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="progress my-1">
+                                                <div class="progress-bar text-left bg-{{ ctrl.getStatBarClass(mega.attack, ctrl.statBenchmark) }}" role="progressbar" style="width: {{ ctrl.getStatBarSize(mega.attack, ctrl.statBenchmark) }}%">&nbsp;{{ mega.attack }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <section class="section">
+                                <div class="container">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2">
+                                            <h6 class="my-0">Def</h6>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="progress my-1">
+                                                <div class="progress-bar text-left bg-{{ ctrl.getStatBarClass(mega.defense, ctrl.statBenchmark) }}" role="progressbar" style="width: {{ ctrl.getStatBarSize(mega.defense, ctrl.statBenchmark) }}%">&nbsp;{{ mega.defense }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <section class="section">
+                                <div class="container">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2">
+                                            <h6 class="my-0">SpA</h6>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="progress my-1">
+                                                <div class="progress-bar text-left bg-{{ ctrl.getStatBarClass(mega.specialAttack, ctrl.statBenchmark) }}" role="progressbar" style="width: {{ ctrl.getStatBarSize(mega.specialAttack, ctrl.statBenchmark) }}%">&nbsp;{{ mega.specialAttack }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <section class="section">
+                                <div class="container">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2">
+                                            <h6 class="my-0">SpD</h6>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="progress my-1">
+                                                <div class="progress-bar text-left bg-{{ ctrl.getStatBarClass(mega.specialDefense, ctrl.statBenchmark) }}" role="progressbar" style="width: {{ ctrl.getStatBarSize(mega.specialDefense, ctrl.statBenchmark) }}%">&nbsp;{{ mega.specialDefense }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <section class="section">
+                                <div class="container">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2">
+                                            <h6 class="my-0">Spe</h6>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="progress my-1">
+                                                <div class="progress-bar text-left bg-{{ ctrl.getStatBarClass(mega.speed, ctrl.statBenchmark) }}" role="progressbar" style="width: {{ ctrl.getStatBarSize(mega.speed, ctrl.statBenchmark) }}%">&nbsp;{{ mega.speed }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row py-2 d-flex align-items-center">
+            <div class="col-md-8">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h6>Damage Taken</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span class="type-block type" ng-class="type.name | lowercase" ng-repeat="type in mega.typeMatchups">
+                                {{ type.name.substring(0, 3).toUpperCase() }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span class="type-block type border" ng-repeat="type in mega.typeMatchups" ng-class="ctrl.matchupClass(type.multiplier)">
+                                {{ ctrl.fraction(type.multiplier) }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-5 border p-1 m-1">
+                            <h6 class="my-0"><small><strong>Available Gender</strong></small></h6>
+                            <span ng-show="ctrl.pokemon.maleAllowed == '1'" class="gender male">M</span>
+                            <span ng-show="ctrl.pokemon.femaleAllowed == '1'" class="gender female">F</span>
+                            <span ng-show="ctrl.pokemon.maleAllowed == '0' && ctrl.pokemon.femaleAllowed == '0'" class="gender genderless">G</span>
+                        </div>
+                        <div class="col-5 border p-1 m-1">
+                            <h6 class="my-0"><small><strong>Grass Knot / Low Kick</strong></small></h6>
+                            <h6><small>{{ ctrl.getGrassKnotDamage(mega.weight) }} BP</small></h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5 border p-1 m-1">
+                            <h6 class="my-0"><small><strong>Height</strong></small></h6>
+                            <h6><small>{{ mega.height }} m / {{ ctrl.toImperialHeight(mega.height) }}</small></h6>
+                        </div>
+                        <div class="col-5 border p-1 m-1">
+                            <h6 class="my-0"><small><strong>Weight</strong></small></h6>
+                            <h6><small>{{ mega.weight}} kg / {{ ctrl.toImperialWeight(mega.weight) }} lbs</small></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

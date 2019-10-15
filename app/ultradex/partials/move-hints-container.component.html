@@ -1,0 +1,16 @@
+<link rel='stylesheet' href='/app/ultradex/partials/move-hints-container.style.css' type='text/css' />
+<div class="container mt-2 pt-3 border rounded move-hints-inactive text-center" ng-show="ctrl.displayMove.name == null">
+    <p>Hover over a move to see more info</p>
+</div>
+<div class="container mt-2 py-2 border-top border-left border-right text-center move-hints-title" ng-show="ctrl.displayMove.name != null">
+    <select class="form-control" ng-model="ctrl.moveHintsType">
+        <option value="battle">Battle</option>
+        <option value="rse-contest">RSE Contest</option>
+        <option value="dpp-contest">DPP Contest</option>
+        <option value="oras-contest">ORAS Contest</option>
+    </select>
+</div>
+<move-hints-battle-page></move-hints-battle-page>
+<move-hints-contest-rse-page></move-hints-contest-rse-page>
+<move-hints-contest-dpp-page></move-hints-contest-dpp-page>
+<move-hints-contest-oras-page></move-hints-contest-oras-page>

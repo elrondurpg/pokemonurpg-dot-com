@@ -1,9 +1,9 @@
 <div class="pos-f-t" ng-controller="headerCtrl as ctrl">
 	<nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-dark">
-		<!--button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler d-block" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
-		</button-->
-		<a class="navbar-brand" href="/info" target="_self">Pokemon URPG</a>
+		</button>
+		<a class="navbar-brand pl-3" href="/info" target="_self">Pokemon URPG</a>
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item d-none d-sm-block">
 				<a class="nav-link" href="https://forum.pokemonurpg.com">Forum</a>
@@ -11,7 +11,10 @@
 			<li class="nav-item d-none d-sm-block">
 				<a class="nav-link" href="https://discord.gg/9HWgp95">Discord</a>
 			</li>
-			<li class="nav-item dropdown" ng-if="ctrl.user != ''">
+			<li class="nav-item d-block d-sm-none text-secondary" ng-if="ctrl.user != ''">
+				{{ ctrl.user }}
+			</li>
+			<li class="nav-item dropdown d-none d-sm-block" ng-if="ctrl.user != ''">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					{{ ctrl.user }}
 				</a>
@@ -39,4 +42,5 @@
 	</nav>
 
 	<login-modal></login-modal>
+	<site-directory></site-directory>
 </div>

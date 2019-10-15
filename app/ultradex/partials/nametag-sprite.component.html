@@ -1,1 +1,11 @@
-<img ng-src="{{ modelBase }}{{ ctrl.pokemon.dexno }}{{ ctrl.getCurrentImageTag() }}.gif" />
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <img ng-src="{{ modelBase }}{{ ctrl.pokemon.dexno }}{{ ctrl.getCurrentImageTag() }}.gif"
+                 ng-show="ctrl.pokemon.alteredForms.length == 0"/>
+            <img ng-repeat="form in ctrl.pokemon.alteredForms"
+                 ng-src="{{ modelBase }}{{ ctrl.pokemon.dexno }}{{ ctrl.suffix(form.displayName, form.name) }}.gif"
+                 ng-show="ctrl.pokemon.alteredForms.length > 0 && ctrl.pokemon.currentForm == $index"/>
+        </div>
+    </div>
+</div>

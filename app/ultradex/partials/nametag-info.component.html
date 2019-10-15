@@ -1,17 +1,22 @@
-<div class="container">
+<div class="container nametag-container">
     <div class="row">
         <div class="col">
-            <h5 class="my-0"><small>#{{ ctrl.threeDigit(ctrl.pokemon.dexno) }}</small></h5>
+            <h6 class="my-0 nametag-dexno"><strong>#{{ ctrl.threeDigit(ctrl.pokemon.dexno) }}</strong></h6>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <h4 class="my-0"> {{ ctrl.pokemon.displayName }} </h4>
+            <h4 class="my-0 nametag-name"> {{ ctrl.pokemon.displayName }} </h4>
+        </div>
+    </div>
+    <div class="row" ng-if="ctrl.pokemon.alteredForms.length > 0">
+        <div class="col">
+            <h6 class="my-0"><small>{{ ctrl.pokemon.alteredForms[ctrl.pokemon.currentForm].formName != '-1' ? ctrl.pokemon.alteredForms[ctrl.pokemon.currentForm].formName : 'Base Form' }}</small></h6>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <h6 class="my-0"><small>The {{ ctrl.pokemon.classification }} Pokemon</small></h6>
+            <h6 class="my-0 font-italic"><small>The {{ ctrl.pokemon.classification }} Pokemon</small></h6>
         </div>
     </div>
     <div class="row">
@@ -20,13 +25,22 @@
             <span class="type" ng-class="ctrl.pokemon.type2 | lowercase" ng-show="ctrl.pokemon.type2 !== 'NONE'"> {{ ctrl.pokemon.type2 }} </span>
         </div>
     </div>
+    <div class="row mt-1 ml-1 d-flex align-items-center border rounded clickable nametag-mega" ng-repeat="mega in ctrl.pokemon.megaEvolutions"
+         ng-click="ctrl.anchorScroll(mega.name)">
+        <div class="col-2 mr-2 px-0 py-1">
+            <img ng-src="{{ iconBase }}{{ mega.dexno }}{{ ctrl.suffix(ctrl.pokemon.displayName, mega.name) }}.png" />
+        </div>
+        <div class="col-9 px-0 py-1">
+            <div class="row">
+                <div class="col">
+                    <u>{{ ctrl.getMegaText() | uppercase }}</u>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ ctrl.getMegaRingText() }}{{ mega.megaStone }}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<!--a href="#" class="mega-tab" ng-repeat="mega in ctrl.pokemon.megaEvolutions">
-    <table class="mega-table">
-        <td><img ng-src="{{ iconBase }}{{ mega.dexno }}{{ ctrl.suffix(ctrl.pokemon.displayName, mega.name) }}.png" /></td>
-        <td>{{ ctrl.getMegaText() }}
-            <br>
-            <span class="mega-stone">{{ ctrl.getMegaRingText() }}{{ mega.megaStone }}</span></td>
-    </table>
-</a-->

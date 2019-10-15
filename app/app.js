@@ -44,7 +44,7 @@ app.directive('siteFooter', function() {
    };
 });
 
-app.run(function($rootScope, $location) {
+app.run(function($rootScope, $location, $anchorScroll) {
     $rootScope.title = "Pokemon URPG Infohub";
 	$rootScope.webHost = "https://pokemonurpg.com";
 	$rootScope.serviceHost = "http://localhost:8080";
@@ -58,4 +58,8 @@ app.run(function($rootScope, $location) {
 	$rootScope.numGenerations = 7;
 
 	$rootScope.dashExceptions = ["nidoran-f", "nidoran-m", "ho-oh", "meowstic-m", "basculin-red-striped", "unown-a", "porygon-z" ];
+
+	$rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+        if($location.hash()) $anchorScroll();
+    });
 });

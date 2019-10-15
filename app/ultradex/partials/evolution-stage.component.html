@@ -1,0 +1,25 @@
+<a href="/pokemon/{{ species.name }}" target="_self" ng-repeat="species in stage" class="dex-evolution-chain-pokemon p-1 m-1">
+    <div class="row">
+        <div class="col-2">
+            <img ng-src="{{ iconBase }}{{ species.dexno }}{{ ctrl.suffix(species.displayName, species.name) }}.png" class="align-left frame" />
+        </div>
+        <div class="col-10">
+            {{ species.displayName }}
+            <br>
+            <span class="dex-evolution-chain-method">
+                {{ species.method == null ? '-' : ctrl.evolveString(species.method) }}
+            </span>
+        </div>
+    </div>
+</a>
+
+<!--span>
+    <a href="/pokemon/{{ stage[$parent.$index].name }}" target="_self">
+        <img ng-src="{{ iconBase }}{{ stage[$parent.$index].dexno }}{{ ctrl.suffix(stage[$parent.$index].displayName, stage[$parent.$index].name) }}.png" class="align-left frame"/>
+        {{ stage[$parent.$index].displayName }}
+    </a>
+    <br>
+    <span class="dex-evolution-chain-method">
+        {{ stage[$parent.$index].method == null ? '-' : ctrl.evolveString(stage[$parent.$index].method) }}
+    </span>
+</span-->

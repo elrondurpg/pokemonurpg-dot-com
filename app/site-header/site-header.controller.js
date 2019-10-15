@@ -98,3 +98,10 @@ app.directive('userToolbarDropdown', function() {
         templateUrl: "/app/site-header/modals/user-toolbar-dropdown.component.html"
     };
 });
+
+app.directive('siteDirectory', function() {
+   return {
+       restrict: 'E',
+       templateUrl: "/app/site-header/modals/site-directory.component.html"
+   };
+});

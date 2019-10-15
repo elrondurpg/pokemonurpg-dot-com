@@ -2,42 +2,60 @@
 <html lang="en" ng-app="urpg-infohub">
 <head>
     <meta charset="utf-8">
-    <title>Page Not Found - Pokemon URPG InfoHub</title>
-    <!--link rel="stylesheet" href="/css/app.style.css" /-->
-    <link rel="stylesheet" href="/css/style-main.css" />
+    <title ng-bind="$root.title">Pokemon URPG Infohub</title>
+    <link rel="stylesheet" href="/app/app.style.css" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
-	<link rel="icon" type="image/png" href="https://pokemonurpg.com/img/wooper.png" />
+    <link rel="icon" type="image/png" href="https://pokemonurpg.com/img/wooper.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
-    <site-header></site-header>
-    <div id="page-content-wrapper">
-		<p>The page you have requested could not be found.</p>
-	</div>
-    <site-footer></site-footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
 
-    <script src="/app/app.js"></script>
-
-    <script src="/app/js/directives/loginDrc.js"></script>
-    <script src="/app/js/directives/registerDrc.js"></script>
-
-    <script src="/app/js/controllers/loginCtrl.js"></script>
-    <script src="/app/js/controllers/homeCtrl.js"></script>
-    <script src="/app/js/controllers/pokemonCtrl.js"></script>
-    <script src="/app/js/controllers/adminCtrl.js"></script>
-    <script src="/app/js/controllers/registerCtrl.js"></script>
-    <script src="/app/js/controllers/statsCtrl.js"></script>
-    <script src="/app/js/controllers/infoCtrl.js"></script>
-    <script src="/app/site-header/headerCtrl.js"></script>
-      
-    <script src="/app/js/services/loginService.js"></script>
-    <script src="/app/js/services/sessionService.js"></script>
-    <script src="/app/js/services/secureService.js"></script>
-    <script src="/app/js/services/registerService.js"></script>
-    <script src="/app/js/services/badgeService.js"></script>
-    <script type="/text/JavaScript" src="/js/sha512.js"></script> 
-    <script type="/text/JavaScript" src="/js/forms.js"></script> 
+<body background="https://www.solidbackgrounds.com/images/website/950x534/950x534-blue-abstract-noise-free-website-background-image.jpg">
+<site-header></site-header>
+<div class="viewport">
+    <p>The page you requested could not be found.</p>
+</div>
+<site-footer></site-footer>
 </body>
-</html>
+<!-- Dependencies - Bootstrap CSS -->
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+<!-- Dependencies - AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+<script src="/app/app.js"></script>
+
+<!-- Dependencies - Site Header -->
+<script src="/app/site-header/site-header.controller.js"></script>
+<script src="/app/services/userService.js"></script>
+
+<!-- Dependencies - Ultradex -->
+<script src="/app/ultradex/ultradex.controller.js"></script>
+<script src="/app/services/speciesService.js"></script>
+
+
+<!-- Dependencies - Admin -->
+<script src="/app/resources/resources.drc.js"></script>
+<script src="/app/resources/resources-pokemon.controller.js"></script>
+<script src="/app/resources/resources-attacks.controller.js"></script>
+<script src="/app/resources/resources-abilities.controller.js"></script>
+<script src="/app/resources/resources-members.controller.js"></script>
+<script src="/app/resources/resources-permissions.controller.js"></script>
+<script src="/app/resources/resources-roles.controller.js"></script>
+<script src="/app/resources/partials/invite-user-modal.controller.js"></script>
+<script src="/app/services/attackService.js"></script>
+<script src="/app/services/attackCategoryService.js"></script>
+<script src="/app/services/attackTargetTypeService.js"></script>
+<script src="/app/services/abilityService.js"></script>
+<script src="/app/services/typeService.js"></script>
+<script src="/app/services/storyRankService.js"></script>
+<script src="/app/services/artRankService.js"></script>
+<script src="/app/services/parkRankService.js"></script>
+<script src="/app/services/parkLocationService.js"></script>
+<script src="/app/services/roleService.js"></script>
+<script src="/app/services/permissionService.js"></script>
+</html>

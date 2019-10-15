@@ -1,0 +1,65 @@
+<div class="container border text-center" ng-show="ctrl.displayMove.name != null && ctrl.moveHintsType == 'battle'">
+    <div class="row pt-2 move-hints-title">
+        <div class="col">
+            <h2>{{ ctrl.displayMove.name }}</h2>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col">
+            <h3 class="my-0">{{ ctrl.displayMove.power != null && ctrl.displayMove.power != 0 ? ctrl.displayMove.power : '-' }}</h3>
+            <h6><small>BP</small></h6>
+        </div>
+        <div class="col">
+            <h3 class="my-0">{{ ctrl.displayMove.accuracy != null && ctrl.displayMove.accuracy != 0 ? ctrl.displayMove.accuracy : '-' }}{{ ctrl.displayMove.accuracy != null && ctrl.displayMove.accuracy != 0 ? '%' : '' }}</h3>
+            <h6><small>ACC</small></h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <span class="type" ng-class="ctrl.displayMove.type | lowercase">{{ ctrl.displayMove.type }}</span>
+            <h6><small>TYPE</small></h6>
+        </div>
+        <div class="col">
+            <h3 class="my-0">{{ ctrl.displayMove.pp }}</h3>
+            <h6><small>PP</small></h6>
+        </div>
+    </div>
+    <div class="row d-flex align-items-center move-description">
+        <div class="col-9">
+            {{ ctrl.displayMove.description }}
+        </div>
+        <div class="col-3">
+            <img ng-src="{{ iconBase }}{{ ctrl.displayMove.category | lowercase }}.png" />
+        </div>
+    </div>
+    <div class="row move-attribute">
+        <div class="col">
+            {{ ctrl.displayMove.target.description }}
+        </div>
+    </div>
+    <div class="row move-attribute" ng-show="ctrl.displayMove.contact == '1'">
+        <div class="col">
+            Makes contact.
+        </div>
+    </div>
+    <div class="row move-attribute" ng-show="ctrl.displayMove.sheerForce == '1'">
+        <div class="col">
+            Affected by Sheer Force.
+        </div>
+    </div>
+    <div class="row move-attribute" ng-show="ctrl.displayMove.substitute == '1'">
+        <div class="col">
+            Negated by Substitute.
+        </div>
+    </div>
+    <div class="row move-attribute" ng-show="ctrl.displayMove.snatch == '1'">
+        <div class="col">
+            Can be stolen by Snatch.
+        </div>
+    </div>
+    <div class="row move-attribute" ng-show="ctrl.displayMove.magicCoat == '1'">
+        <div class="col">
+            Can be reflected by Magic Coat.
+        </div>
+    </div>
+</div>
