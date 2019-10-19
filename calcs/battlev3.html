@@ -1,0 +1,297 @@
+
+<!DOCTYPE HMTL>
+<!--
+URPG Battle Calculator v3.0
+Written by Monbrey
+-->
+<html ng-app="urpg-infohub">
+	<head>
+		<title>URPG Reffing Calculator</title>
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="/pokemonurpg-dot-com/calcs/js/jquery-ui.min.js"></script>
+		<script src="/pokemonurpg-dot-com/calcs/js/selectize.js"></script>
+		<script src="/pokemonurpg-dot-com/calcs/js/jquery-csv.js"></script>
+		<script src="/pokemonurpg-dot-com/calcs/js/battle.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/pokemonurpg-dot-com/calcs/css/battle.css"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+		<!-- STYLE -->
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+		<link href="/pokemonurpg-dot-com/css/style.css" rel="stylesheet">
+		
+		<!--SCRIPTS-->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+		<script src="/pokemonurpg-dot-com/app.js"></script>
+
+		<!-- Dependencies - Site Header -->
+		<script src="/pokemonurpg-dot-com/site-header/site-header.controller.js"></script>
+		<script src="/pokemonurpg-dot-com/services/userService.js"></script>
+		
+	</head>
+	<body onload="PopulateLists()">
+		<site-header></site-header>
+		<div id="wrapper">
+			<div id="content">
+				<h1 class="heading">URPG Battle Calculator</h1>
+				<div class="columns2 left"> <!--Pokemon A-->
+					<h2 class="subheading">Pokemon A:</h2>
+					<div class="row single"> <!--Pokemon-->
+						<p>Pokemon:</p>
+						<select id="pokemon1" onchange="pokemon_stats(this)">
+							<option value="-1" selected>(none)</option>
+						</select>
+					</div>
+					<div class="row double"> <!--Types-->
+						<p>Types:</p>
+						<select id="type1B" onchange="setAPval(this);"></select>
+						<select id="type1A" onchange="setAPval(this);"></select>
+					</div>
+					<div class="row halfsingle"> <!--Gender-->
+						<p>Gender:</p>
+						<select id="gender1" onchange="setAPval(this);">
+							<option value="-1" selected>(none)</option>
+						</select>
+					</div>
+					<div class="row single"> <!--Ability-->
+						<p>Ability:</p>
+						<select id="ability1" onchange="setAPval(this); speed_stats();"></select>
+					</div>
+					<div class="row double"> <!--Statuses-->
+						<p>Statuses:</p>
+						<select id="effect1" onchange="setAPval(this);"></select>
+						<select id="stat1" onchange="setAPval(this); speed_stats();"></select>
+					</div>
+					<div class="row single"> <!--Item-->
+						<p>Held Item:</p>
+						<select id="hitem1" onchange="setAPval(this); speed_stats();"></select>
+					</div>
+					<div class="row halfdouble"> <!--HP-->
+						<p>Max HP:</p>
+						<button id="Reset1" onclick="setAPval(this); Reset(this);">Reset</button>
+						<input id="HP1" type="text" onchange="setAPval(this);"/>
+					</div>
+					<div class="row halfdouble"> <!--Attack-->
+						<p>Attack:</p>
+						<select id="AS1" onchange="setAPval(this); statMod(this);"></select>
+						<input id="attack1" type="text" onchange="setAPval(this);"/>
+					</div>
+					<div class="row halfdouble"> <!--Defence-->
+						<p>Defence:</p>
+						<select id="DS1" onchange="setAPval(this); statMod(this);"></select>
+						<input id="defence1" type="text" onchange="setAPval(this);"/>
+					</div>
+					<div class="row halfdouble"> <!--Special Att-->
+						<p>Special Att:</p>
+						<select id="SAS1" onchange="setAPval(this); statMod(this);"></select>
+						<input id="SA1" type="text" onchange="setAPval(this);"/>
+					</div>
+					<div class="row halfdouble"> <!--Special Defence-->
+						<p>Special Def:</p>
+						<select id="SDS1" onchange="setAPval(this); statMod(this);"></select>
+						<input id="SD1" type="text" onchange="setAPval(this);"/>
+					</div>
+					<div class="row halfdouble"> <!--Speed-->
+						<p>Speed:</p>
+						<select id="SS1" onchange="setAPval(this); speed_stats();"></select>
+						<input id="speed1" type="text" onchange="setAPval(this);"/>
+					</div>
+				</div>
+				<div class="columns2 right"> <!--Pokemon B-->
+					<h2 class="subheading">Pokemon B:</h2>
+					<div class="row single">  <!--Pokemon-->
+						<p>Pokemon:</p>
+						<select id="pokemon2" onchange="pokemon_stats(this)">
+							<option value="-1" selected>(none)</option>
+						</select>
+					</div>
+					<div class="row double">  <!--Types-->
+						<p>Types:</p>
+						<select id="type2B" onchange="setAPval(this);"></select>
+						<select id="type2A" onchange="setAPval(this);"></select>
+					</div>
+					<div class="row halfsingle">  <!--Gender-->
+						<p>Gender:</p>
+						<select id="gender2" onchange="setAPval(this);">
+							<option value="-1" selected>(none)</option>
+						</select>
+					</div>
+					<div class="row single"> <!--Ability-->
+						<p>Ability:</p>
+						<select id="ability2" onchange="setAPval(this); speed_stats();"></select>
+					</div>
+					<div class="row double"> <!--Statuses-->
+						<p>Statuses:</p>
+						<select id="effect2" onchange="setAPval(this);"></select>
+						<select id="stat2" onchange="setAPval(this); speed_stats();"></select>
+					</div>
+					<div class="row single"> <!--Item-->
+						<p>Held Item:</p>
+						<select id="hitem2" onchange="setAPval(this); speed_stats();"></select>
+					</div>
+					<div class="row halfdouble"> <!--HP-->
+						<p>Max HP:</p>
+						<button id="Reset2" onclick="setAPval(this); Reset(this);">Reset</button>
+						<input id="HP2" type="text" onchange="setAPval(this);"/>
+					</div>
+					<div class="row halfdouble"> <!--Attack-->
+						<p>Attack:</p>
+						<select id="AS2" onchange="setAPval(this); statMod(this);"></select>
+						<input id="attack2" type="text" onchange="setAPval(this);"/>
+					</div>
+					<div class="row halfdouble"> <!--Defence-->
+						<p>Defence:</p>
+						<select id="DS2" onchange="setAPval(this); statMod(this);"></select>
+						<input id="defence2" type="text" onchange="setAPval(this);"/>
+					</div>
+					<div class="row halfdouble"> <!--Special Att-->
+						<p>Special Att:</p>
+						<select id="SAS2" onchange="setAPval(this); statMod(this);"></select>
+						<input id="SA2" type="text" onchange="setAPval(this);"/>
+					</div>
+					<div class="row halfdouble"> <!--Special Defence-->
+						<p>Special Def:</p>
+						<select id="SDS2" onchange="setAPval(this); statMod(this);"></select>
+						<input id="SD2" type="text" onchange="setAPval(this);"/>
+					</div>
+					<div class="row halfdouble"> <!--Speed-->
+						<p>Speed:</p>
+						<select id="SS2" onchange="setAPval(this); speed_stats();"></select>
+						<input id="speed2" type="text" onchange="setAPval(this);"/>
+					</div>
+				</div>
+				<h2 class="subheading">Damage Calculation</h1>
+				<div class="columns2 left">
+					<div class="row halfsingle">
+						<p>Attack Type:</p>
+						<select id="AT1"></select>
+					</div>
+					<div class="row halfsingle">
+						<p>Base Power:</p>
+						<input type="text" id="BP1"/>
+					</div>
+					<div class="row halfsingle">
+						<p>Attack Class:</p>
+						<select id="AC1">
+							<option value="N">Physical</option>
+							<option value="Y">Special</option>
+							<option value="X">Psyshock</option>
+							<option value="Z">Wonder Room</option>
+						</select>
+					</div>
+					<div class="row halfsingle">
+						<p>Critical Hit:</p>
+						<select id="CH1">
+							<option value="N">No</option>
+							<option value="Y">Yes</option>
+						</select>
+					</div>
+					<div class="row double">
+						<p>&nbsp;</p>
+						<button id="attack1" class="atkbtnleft" onclick="Calculate_Attack(this);">Attack</button>
+						<button id="confusion1" onclick="Conf_me(this);">Confusion</button>
+					</div>
+					<div class="row halfsingle">
+						<p>Raw Damage:</p>
+						<input type="text" id="damage1"/>
+					</div>
+					<div class="row halfsingle">
+						<p>Weather:</p>
+						<select id="weather" onchange="speed_stats();">
+								<option value="NONE">(none)</option>
+								<option value="SUN">Sun</option>
+								<option value="RAIN">Rain</option>
+								<option value="HAIL">Hail</option>
+								<option value="SAND">Sandstorm</option>
+								<option value="HSUN">Harsh Sun</option>
+								<option value="HRAIN">Heavy Rain</option>
+								<option value="AIR">Mysterious Air Current</option>
+						</select>
+					</div>
+				</div>
+				<div class="columns2 right">
+					<div class="row halfsingle">
+						<p>Attack Type:</p>
+						<select id="AT2"></select>
+					</div>
+					<div class="row halfsingle">
+						<p>Base Power:</p>
+						<input type="text" id="BP2"/>
+					</div>
+					<div class="row halfsingle">
+						<p>Attack Class:</p>
+						<select id="AC2">
+							<option value="N">Physical</option>
+							<option value="Y">Special</option>
+							<option value="X">Psyshock</option>
+							<option value="Z">Wonder Room</option>
+						</select>
+					</div>
+					<div class="row halfsingle">
+						<p>Critical Hit:</p>
+						<select id="CH2">
+							<option value="N">No</option>
+							<option value="Y">Yes</option>
+						</select>
+					</div>
+					<div class="row double leftbuttons">
+						<p>&nbsp;</p>
+						<button id="confusion2" onclick="Conf_me(this);">Confusion</button>
+						<button id="attack2" class="atkbtnright" onclick="Calculate_Attack(this);">Attack</button>
+					</div>
+					<div class="row halfsingle">
+						<p>Raw Damage:</p>
+						<input type="text" id="damage2"/>
+					</div>
+					<div class="row halfsingle">
+						<p>&nbsp;</p>
+					</div>
+				</div>
+				<h2 class="subheading topspace">Statistics</h1>
+				<div class="columns2 left">
+					<div class="row fivebtn">
+						<button id="nsix1" onclick="six_it(this)">-6.25%</button>
+						<button id="ntwelve1" onclick="six_it(this)">-12.5%</button>
+						<button id="psix1" onclick="six_it(this)">+6.25%</button>
+						<button id="ptwelve1" onclick="six_it(this)">+12.5%</button>
+						<button id="sub1" onclick="six_it(this)">-25%</button>
+					</div>
+					<div class="row double">
+						<p>Current HP:</p>
+						<input type="text" id="percent1" onChange="Percent_on_change(this)" />
+						<input type="text" id="DP1" onChange="DP_on_change(this)" />
+					</div>
+					<div class="row double twobtn">
+						<p>HP Modifier:</p>
+						<button id="PR1" onclick="Percents(this)">&plusmn;%</button>
+						<button id="DR1" onclick="Damage_Recovery(this)">&plusmn;HP</button>
+						<input type="text" id="ED1"/>
+					</div>
+				</div>
+				<div class="columns2 right">
+					<div class="row fivebtn">
+						<button id="nsix2" onclick="six_it(this)">-6.25%</button>
+						<button id="ntwelve2" onclick="six_it(this)">-12.5%</button>
+						<button id="psix2" onclick="six_it(this)">+6.25%</button>
+						<button id="ptwelve2" onclick="six_it(this)">+12.5%</button>
+						<button id="sub2" onclick="six_it(this)">-25%</button>
+					</div>
+					<div class="row double">
+						<p>Current HP:</p>
+						<input type="text" id="percent2" onChange="Percent_on_change(this)" />
+						<input type="text" id="DP2" onChange="DP_on_change(this)" />
+					</div>
+					<div class="row double twobtn">
+						<p>HP Modifier:</p>
+						<button id="PR2" onclick="Percents(this)">&plusmn;%</button>
+						<button id="DR2" onclick="Damage_Recovery(this)">&plusmn;HP</button>
+						<input type="text" id="ED2"/>
+					</div>
+				</div>
+			</div>
+			<div id="clear"/>
+		</div>
+		<site-footer></site-footer>
+	</body>
+</html>

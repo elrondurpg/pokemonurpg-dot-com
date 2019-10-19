@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" ng-app="urpg-infohub">
+    <head>
+        <meta charset="utf-8">
+        <title ng-bind="$root.title">Pokemon URPG Infohub</title>
+        <link rel="stylesheet" href="/pokemonurpg-dot-com/app.style.css" />
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+        <link rel="icon" type="image/png" href="https://pokemonurpg.com/img/wooper.png" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body background="https://www.solidbackgrounds.com/images/website/950x534/950x534-blue-abstract-noise-free-website-background-image.jpg">
+        <site-header></site-header>
+        <div class="viewport">
+            <div ng-view></div>
+        </div>
+        <site-footer></site-footer>
+    </body>
+    <!-- Dependencies - Bootstrap CSS -->
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Dependencies - AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+    <script src="/pokemonurpg-dot-com/app.js"></script>
+
+    <!-- Dependencies - Site Header -->
+    <script src="/pokemonurpg-dot-com/site-header/site-header.controller.js"></script>
+    <script src="/pokemonurpg-dot-com/services/userService.js"></script>
+
+    <!-- Dependencies - Ultradex -->
+    <script src="/pokemonurpg-dot-com/ultradex/ultradex.controller.js"></script>
+    <script src="/pokemonurpg-dot-com/services/speciesService.js"></script>
+
+    <!-- Dependencies - Admin -->
+    <script src="/pokemonurpg-dot-com/resources/resources.drc.js"></script>
+    <script src="/pokemonurpg-dot-com/resources/resources-pokemon.controller.js"></script>
+    <script src="/pokemonurpg-dot-com/resources/resources-attacks.controller.js"></script>
+    <script src="/pokemonurpg-dot-com/resources/resources-abilities.controller.js"></script>
+    <script src="/pokemonurpg-dot-com/resources/resources-members.controller.js"></script>
+    <script src="/pokemonurpg-dot-com/resources/resources-permissions.controller.js"></script>
+    <script src="/pokemonurpg-dot-com/resources/resources-roles.controller.js"></script>
+    <script src="/pokemonurpg-dot-com/resources/partials/invite-user-modal.controller.js"></script>
+    <script src="/pokemonurpg-dot-com/services/attackService.js"></script>
+    <script src="/pokemonurpg-dot-com/services/attackCategoryService.js"></script>
+    <script src="/pokemonurpg-dot-com/services/attackTargetTypeService.js"></script>
+    <script src="/pokemonurpg-dot-com/services/abilityService.js"></script>
+    <script src="/pokemonurpg-dot-com/services/typeService.js"></script>
+    <script src="/pokemonurpg-dot-com/services/storyRankService.js"></script>
+    <script src="/pokemonurpg-dot-com/services/artRankService.js"></script>
+    <script src="/pokemonurpg-dot-com/services/parkRankService.js"></script>
+    <script src="/pokemonurpg-dot-com/services/parkLocationService.js"></script>
+    <script src="/pokemonurpg-dot-com/services/roleService.js"></script>
+    <script src="/pokemonurpg-dot-com/services/permissionService.js"></script>
+    <script src="/pokemonurpg-dot-com/services/contestMoveTypeService.js"></script>
+</html>
