@@ -4,6 +4,7 @@ app.controller('headerCtrl', [ 'userService', '$window', function(userService, $
     ctrl.loginDto = { };
     ctrl.registerBetaDto = { };
     ctrl.action = 'login';
+    ctrl.user = '';
 
 	ctrl.searchType = 'Pokemon';
     ctrl.search = function () {
@@ -18,7 +19,10 @@ app.controller('headerCtrl', [ 'userService', '$window', function(userService, $
 
     ctrl.load = function() {
         userService.getUser().then(function(response) {
-            ctrl.user = response;
+            if (response !== undefined && response != null && response != '') {
+                ctrl.user = response;
+            }
+            else ctrl.user = '';
         });
     }
 
@@ -32,44 +36,7 @@ app.controller('headerCtrl', [ 'userService', '$window', function(userService, $
     }
 
     ctrl.login = function() {
-        userService.login(ctrl.loginDto)
-        .success(
-            function(response) {
-                ctrl.success = "Success!";
-                $window.location.reload();
-            }
-        )
-        .error(
-            function(response) {
-                ctrl.error = response.data;
-            }
-        );
-    }
-
-    ctrl.registerBeta = function () {
-        if (ctrl.validateRegisterBeta()) {
-            ctrl.error = undefined;
-            userService.registerBeta(ctrl.registerBetaDto)
-            .then(
-                function(response) {
-                    if (response.status == 200) {
-                        ctrl.success = "Success! Click 'Sign In' below to access your account.";
-                    }
-                    else {
-                        ctrl.error = response.data;
-                    }
-                }
-            )
-        }
-        else {
-            ctrl.error = "Password does not meet requirements."
-        }
-    }
-
-    ctrl.passwordRegex = /((?=.*[a-z])(?=.*\d)(?=.*[A-Z]).{8,40})/;
-    ctrl.validateRegisterBeta = function() {
-        console.log(ctrl.registerBetaDto.password);
-        return ctrl.passwordRegex.exec(ctrl.registerBetaDto.password);
+        userService.login(ctrl.loginDto);
     }
 
     ctrl.logout = function() {

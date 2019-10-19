@@ -1,5 +1,5 @@
 <?php
-    include_once $_SERVER['PHP_ROOT'] . '/functions.php';
+    include_once 'startSecureSession.php';
 
     // TODO Call a logout function on the backend?
     // $response = sendRequest("POST", SERVICE_HOST . "/user/logout", $input);

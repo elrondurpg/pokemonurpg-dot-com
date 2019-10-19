@@ -11,61 +11,15 @@
             <div class="modal-body" ng-if="ctrl.action == 'login'">
                 <div class="container-fluid">
                     <div class="row pt-2">
-                        <h4>Log in</h4>
-                    </div>
-                    <div class="row pt-2">
-                        <input type="text" class="form-control" ng-model="ctrl.loginDto.username" placeholder="Enter username">
-                    </div>
-                    <div class="row pt-2">
-                        <input type="password" class="form-control" ng-model="ctrl.loginDto.password" placeholder="Enter password">
-                    </div>
-                    <div class="row pt-2">
-                        <button type="button" class="btn btn-primary" ng-click="ctrl.login()">Login</button>
-                    </div>
-                    <resources-message></resources-message>
-                    <div class="row pt-2">
-                        Have a beta key?&nbsp;<a class="smallcaps" href="#" ng-click="ctrl.switchPage('registerBeta')">Register your account</a>
-                    </div>
-                    <div class="row pt-2">
-                        Working on the website?&nbsp;<a class="smallcaps" href="/wp/wp-login.php" target="_self">Sign into WordPress</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-body" ng-if="ctrl.action == 'registerBeta'">
-                <div class="container-fluid">
-                    <div class="row pt-2">
-                        <h4>Sign up (Beta)</h4>
-                    </div>
-                    <div class="row pt-2">
-                        <input type="text" class="form-control" ng-model="ctrl.registerBetaDto.username" placeholder="Enter username">
-                    </div>
-                    <div class="row pt-2">
-                        <input type="password" class="form-control" ng-model="ctrl.registerBetaDto.betaKey" placeholder="Enter beta key">
-                    </div>
-                    <div class="row pt-2">
-                        <input type="password" class="form-control" ng-model="ctrl.registerBetaDto.password" placeholder="Create a password">
-                    </div>
-                    <resources-message></resources-message>
-                    <div class="row pt-2 mt-2 alert alert-info" role="alert">
-                        <div class="col-sm">
-                            <span>Passwords must:</span>
-                            <ul>
-                                <li> contain at least one lowercase character (a-z)</li>
-                                <li> contain at least one uppercase character (A-Z)</li>
-                                <li> contain at least one number</li>
-                                <li> have a length of 8 - 40 characters</li>
-                            </ul>
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-primary" ng-click="ctrl.login()">Login with Discord</button>
                         </div>
                     </div>
-                    <div class="row pt-2">
-                        <button type="button" class="btn btn-primary" ng-click="ctrl.registerBeta()">Register</button>
-                    </div>
-                    <div class="row pt-2">
-                        Have an account already?&nbsp;<a class="smallcaps" href="#" ng-click="ctrl.switchPage('login')">Sign in</a>
-                    </div>
-                    <div class="row pt-2">
-                        Working on the website?&nbsp;<a class="smallcaps" href="/wp/wp-login.php" target="_self">Sign into WordPress</a>
+                    <resources-message></resources-message>
+                    <div class="row pt-3">
+                        <div class="col text-center">
+                            Working on the website?&nbsp;<a class="smallcaps" href="/wp/wp-login.php" target="_self">Sign into WordPress</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,9 @@
 app.controller('inviteCtrl', [ 'userService', function(userService) {
 	var ctrl = this;
+	ctrl.inviteDto = {};
 
     ctrl.invite = function() {
-        userService.invite(ctrl.inviteUsername)
+        userService.invite(ctrl.inviteDto)
         .success(
             function(response) {
                 ctrl.error = undefined;
@@ -12,7 +13,13 @@ app.controller('inviteCtrl', [ 'userService', function(userService) {
         .error(
             function(response) {
                 ctrl.success = undefined;
-                ctrl.error = response.data;
+                if (Array.isArray(response.data)) {
+                    ctrl.errorArray = response.data;
+                    console.log(ctrl.errorArray);
+                }
+                else {
+                    ctrl.error = response.data;
+                }
             }
         );
     }

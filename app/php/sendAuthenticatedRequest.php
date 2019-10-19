@@ -1,30 +1,22 @@
 <?php
-    include_once $_SERVER['PHP_ROOT'] . '/functions.php';
+    include_once 'startSecureSession.php';
     include_once 'sendRequest.php';
 
     $input = json_decode(file_get_contents('php://input'));
 
-    sec_session_start();
+    sec_session_start(true);
 
-    $username = '';
-    if (array_key_exists('username', $_SESSION)) {
-        $username = $_SESSION['username'];
-    }
+    $session = createSessionDto();
 
-    $authToken = '';
-    if (array_key_exists('authToken', $_SESSION)) {
-        $authToken = $_SESSION['authToken'];
+    $payload = '';
+    if (array_key_exists('payload', $input)) {
+        $payload = $input->payload;
     }
 
     $authWrapper = (object) [
-        'username' => $username,
-        'browser' => $_SERVER['HTTP_USER_AGENT'],
-        'authToken' => $authToken
+        'session' => $session,
+        'payload' => $payload
     ];
-
-    if (array_key_exists('payload', $input)) {
-        $authWrapper->payload = $input->payload;
-    }
 
     $response = sendRequest($input->method, $input->url, $authWrapper);
 

@@ -11,16 +11,12 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row pt-2">
-                        <input type="text" class="form-control" ng-model="ctrl.inviteUsername" placeholder="Enter username">
+                        <input type="text" class="form-control" ng-model="ctrl.inviteDto.id" placeholder="Enter Discord ID">
+                    </div>
+                    <div class="row pt-2">
+                        <input type="text" class="form-control" ng-model="ctrl.inviteDto.username" placeholder="Enter desired username">
                     </div>
                     <resources-message></resources-message>
-                    <div class="row pt-2 mt-2 alert alert-success" role="alert" ng-if="ctrl.betaKey != '' && ctrl.betaKey !== undefined">
-                        <div class="container">
-                            <div class="row">Success!</div>
-                            <div class="row">Username: {{ ctrl.inviteUsername }}</div>
-                            <div class="row">Beta Key: {{ ctrl.betaKey }}</div>
-                        </div>
-                    </div>
                     <div class="row pt-2">
                         <button type="button" class="btn btn-primary" ng-click="ctrl.invite()">Invite</button>
                     </div>

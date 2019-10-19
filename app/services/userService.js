@@ -4,6 +4,12 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
 
     var service = this;
 
+    service.oauth2Url = "https://discordapp.com/api/oauth2/authorize"
+    service.oauth2ResponseType = "code";
+    service.oauth2ClientID = "610294152034385922";
+    service.oauth2Scope = "identify";
+    service.oauth2RedirectUrl = "http://localhost/app/php/loginRedirect.php";
+
     service.findAll = function() {
         return $http.get($rootScope.serviceHost + "/user").then(
             function (response) {
@@ -25,22 +31,23 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
     }
 
     service.login = function(payload) {
-        payload.browser = $window.navigator.userAgent;
-        return $http.post('/app/php/login.php',payload)
+        var state = Math.floor(Math.random() * 1000000000);
+
+        $http.post('/app/php/setAuthenticationState.php', state)
         .success(
-            function (response) {
-                return response;
+            function(response) {
+                $window.location.assign(service.oauth2Url + "?response_type=" + service.oauth2ResponseType + "&client_id=" + service.oauth2ClientID + "&scope=" + service.oauth2Scope + "&state=" + state + "&redirect_uri=" + service.oauth2RedirectUrl);
             }
         )
         .error(
             function(response) {
-                return response;
+                return "Something went wrong while trying to log you in with Discord. Please contact your system administrator.";
             }
         );
     }
 
     service.getUser = function() {
-        return $http.post('/app/php/getUser.php').then(function(response){
+        return $http.post('/app/php/getSessionParameter.php', 'username').then(function(response){
             if (response != undefined && response.status == 200) {
                 if (response.data !== undefined && response.data != '')
                 {
@@ -59,8 +66,8 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
         );
     }
 
-    service.invite = function(username) {
-        return service.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/user/invite", username)
+    service.invite = function(inviteDto) {
+        return service.sendAuthenticatedRequest("POST", $rootScope.serviceHost + "/user/invite", inviteDto)
         .success(
             function (response) {
                 return response;
@@ -71,15 +78,6 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
                 return response;
             }
         );
-    }
-
-    service.registerBeta = function(payload) {
-        return $http.put($rootScope.serviceHost + "/user/registerBeta", payload)
-        .then(
-            function (response) {
-                return response.data;
-            }
-        )
     }
 
     service.logout = function() {
