@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col">
             <span class="type" ng-class="ctrl.pokemon.type1 | lowercase"> {{ ctrl.pokemon.type1 }} </span>
-            <span class="type" ng-class="ctrl.pokemon.type2 | lowercase" ng-show="ctrl.pokemon.type2 !== 'NONE'"> {{ ctrl.pokemon.type2 }} </span>
+            <span class="type" ng-class="ctrl.pokemon.type2 | lowercase" ng-show="ctrl.pokemon.type2 !== 'NONE'"> {{ ctrl.pokemon.type2 }}</span>
         </div>
     </div>
     <div class="row mt-1 ml-1 d-flex align-items-center border rounded clickable nametag-mega" ng-repeat="mega in ctrl.pokemon.megaEvolutions"
