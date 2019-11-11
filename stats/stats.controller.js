@@ -4,12 +4,18 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
     var ctrl = this;
 
     ctrl.pokemonFilterByName = "";
+    ctrl.zoomPokemon = undefined;
+
+    ctrl.contestRanks = [ "Normal", "Super", "Hyper", "Master" ];
+    ctrl.contestAttributes = [ "Beauty", "Cool", "Cute", "Smart", "Tough" ];
 
     statsService.findByName($routeParams.name)
     .then(function(response) {
         if (response.status == 200) {
             ctrl.trainer = response.data;
             $rootScope.title = ctrl.trainer.name + "'s Stats";
+
+            ctrl.zoomPokemon = ctrl.trainer.pokemon[1];
 
             ctrl.loaded = true;
         }
@@ -32,7 +38,31 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
 
     ctrl.loadTypes();
 
-    this.suffix = function(base, input) {
+    ctrl.getRibbonQuantity = function(attribute, rank) {
+        var ribbons = ctrl.zoomPokemon.ribbons;
+        for (var i = 0; i < ribbons.length; i++) {
+            if (ribbons[i].attribute == attribute) {
+                if (ribbons[i].rank == rank) {
+                    return ribbons[i].quantity;
+                }
+            }
+        }
+        return 0;
+    }
+
+    ctrl.hasRibbons = function(attribute) {
+        var ribbons = ctrl.zoomPokemon.ribbons;
+        for (var i = 0; i < ribbons.length; i++) {
+            if (ribbons[i].attribute == attribute) {
+                if (ribbons[i].quantity > 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    ctrl.suffix = function(base, input) {
         if (input !== undefined) {
             if (input.toLowerCase().indexOf("ultra") != -1)
             {
@@ -53,10 +83,29 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
         return "";
     };
 
+    ctrl.threeDigit = function(input) {
+        if (input < 10)
+        {
+            return "00" + input;
+        }
+        else if (input < 100)
+        {
+            return "0" + input;
+        }
+        else return input;
+    };
+
 }]);
 app.directive('statsPokemon', function() {
     return {
         restrict: 'E',
         templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-pokemon.component.html'
+    }
+});
+
+app.directive('statsPokemonZoom', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-pokemon-zoom.component.html'
     }
 });

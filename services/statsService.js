@@ -32,10 +32,12 @@ app.service('statsService', ['userService', '$http', '$rootScope', function(user
         "name": "Elrond",
         "pokemon" : [
             {
+                "dbid": 1,
                 "dexno": 678,
                 "name": "Meowstic-F",
                 "nickname": "M'lady",
                 "displayName": "Meowstic",
+                "formName": "Female Meowstic",
                 "gender": "F",
                 "type1": "Psychic",
                 "type2": "NONE",
@@ -62,15 +64,7 @@ app.service('statsService', ['userService', '$http', '$rootScope', function(user
                         "method": "BREEDING"
                     }
                 ],
-                "ribbons": [
-                    {
-                        "name": "Normal Cool",
-                        "quantity": 1,
-                        "links": [
-                            "http://localhost/pokemon/meowstic-f"
-                        ]
-                    }
-                ],
+                "ribbons": [],
                 "wishlist": {
                     "attacks": [
                         {
@@ -90,17 +84,19 @@ app.service('statsService', ['userService', '$http', '$rootScope', function(user
             },
 
             {
+                "dbid": 11,
                 "dexno": 25,
-                "name": "Pikachu",
+                "name": "Pikachu-Belle",
                 "nickname": "Pooka",
                 "displayName": "Pikachu",
+                "formName": "Belle Cosplay",
                 "gender": "M",
                 "type1": "Electric",
-                "type2": "NONE",
+                "type2": "Ice",
                 "exp": 5,
                 "obtained": "Capture",
                 "obtainedLink": "http://localhost/pokemon/pikachu",
-                "hiddenPowerType": "Ice",
+                "hiddenPowerType": "Fire",
                 "hiddenPowerLink": "http://localhost/pokemon/pikachu",
                 "nature": "Mild",
                 "abilities": [
@@ -110,6 +106,10 @@ app.service('statsService', ['userService', '$http', '$rootScope', function(user
                     {
                         "name": "Charge Beam",
                         "method": "Level-Up"
+                    },
+                    {
+                        "name": "Thunder Shock",
+                        "method": "LEVEL-UP"
                     },
                     {
                         "name": "Work Up",
@@ -122,7 +122,24 @@ app.service('statsService', ['userService', '$http', '$rootScope', function(user
                 ],
                 "ribbons": [
                     {
-                        "name": "Normal Cool",
+                        "rank": "Normal",
+                        "attribute": "Cool",
+                        "quantity": 2,
+                        "links": [
+                            "http://localhost/pokemon/pikachu"
+                        ]
+                    },
+                    {
+                        "rank": "Super",
+                        "attribute": "Cool",
+                        "quantity": 1,
+                        "links": [
+                            "http://localhost/pokemon/pikachu"
+                        ]
+                    },
+                    {
+                        "rank": "Normal",
+                        "attribute": "Beauty",
                         "quantity": 1,
                         "links": [
                             "http://localhost/pokemon/pikachu"
@@ -148,6 +165,7 @@ app.service('statsService', ['userService', '$http', '$rootScope', function(user
             },
 
             {
+                "dbid": 12,
                 "dexno": 219,
                 "name": "Magcargo",
                 "nickname": "Shelly",
@@ -178,15 +196,7 @@ app.service('statsService', ['userService', '$http', '$rootScope', function(user
                         "method": "BREEDING"
                     }
                 ],
-                "ribbons": [
-                    {
-                        "name": "Normal Cool",
-                        "quantity": 1,
-                        "links": [
-                            "http://localhost/pokemon/magcargo"
-                        ]
-                    }
-                ],
+                "ribbons": [],
                 "wishlist": {
                     "attacks": [
                         {
@@ -206,9 +216,10 @@ app.service('statsService', ['userService', '$http', '$rootScope', function(user
             },
 
             {
+                "dbid": 13,
                 "dexno": 32,
                 "name": "Nidoran-M",
-                "nickname": "Stick",
+                "nickname": "",
                 "displayName": "Nidoran",
                 "gender": "M",
                 "type1": "Poison",
@@ -225,7 +236,11 @@ app.service('statsService', ['userService', '$http', '$rootScope', function(user
                 "attacks": [
                     {
                         "name": "Charge Beam",
-                        "method": "Level-Up"
+                        "method": "LEVEL-UP"
+                    },
+                    {
+                        "name": "Thunder Shock",
+                        "method": "LEVEL-UP"
                     },
                     {
                         "name": "Work Up",

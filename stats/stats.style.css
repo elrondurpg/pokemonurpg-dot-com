@@ -48,12 +48,12 @@
     background-color:#34495e;
 }
 
-.nametag {
+.accentTag {
     border: 1px solid #ced4da;
     border-left: 15px solid #0475ae;
 }
 
-.nametag:hover {
+.accentTag.hoverable:hover {
     border-left: 15px solid #ab8f35;
 }
 

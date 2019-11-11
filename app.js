@@ -50,7 +50,7 @@ app.run(function($rootScope, $location, $anchorScroll) {
 	$rootScope.webHost = "https://pokemonurpg.com";
 	$rootScope.serviceHost = "http://localhost:8080";
 
-	$rootScope.imageBase = "https://pokemonurpg.com/img";
+	$rootScope.imageBase = "https://staging.pokemonurpg.com/img";
 	$rootScope.spriteBase = $rootScope.imageBase + "/sprites/";
 	$rootScope.iconBase = $rootScope.imageBase + "/icons/";
 	$rootScope.modelBase = $rootScope.imageBase + "/models/";

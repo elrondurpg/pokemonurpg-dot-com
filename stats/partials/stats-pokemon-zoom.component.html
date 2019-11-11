@@ -1,0 +1,129 @@
+<div class="container-fluid">
+    <div class="row py-2 d-flex align-items-center justify-content-center">
+        <div class="col-3 py-2">
+            <button type="button" class="btn btn-secondary btn-block" ng-click="ctrl.zoomPokemon = undefined">Back to List</button>
+        </div>
+        <div class="col-3 offset-1 py-2">
+            <button type="button" class="btn btn-secondary btn-block">Add to Team Viewer</button>
+        </div>
+        <div class="col-3 offset-1 py-2">
+            <button type="button" class="btn btn-secondary btn-block">Save</button>
+        </div>
+    </div>
+    <div class="row pt-3 d-flex align-items-center text-center">
+        <div class="col-md-4">
+            <img ng-src="{{ modelBase }}{{ ctrl.zoomPokemon.dexno }}{{ ctrl.suffix(ctrl.zoomPokemon.displayName, ctrl.zoomPokemon.name) }}.gif" />
+        </div>
+        <div class="col-md-4 pt-2 pt-md-0">
+            <div class="row">
+                <div class="col">
+                    <h6 class="my-0"><strong>#{{ ctrl.threeDigit(ctrl.zoomPokemon.dexno) }}</strong></h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ ctrl.zoomPokemon.nickname != "" ? ctrl.zoomPokemon.nickname + " the " : "" }}<a href="/pokemon/{{ctrl.zoomPokemon.name.toLowerCase()}}">{{ ctrl.zoomPokemon.displayName }}</a>&nbsp;
+                    <span ng-show="ctrl.zoomPokemon.gender == 'M'" class="gender male text-center">M</span>
+                    <span ng-show="ctrl.zoomPokemon.gender == 'F'" class="gender female text-center">F</span>
+                    <span ng-show="ctrl.zoomPokemon.gender == 'G'" class="gender genderless text-center">G</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h6 class="my-0"><small>{{ ctrl.zoomPokemon.formName }}</small></h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="type" ng-class="ctrl.zoomPokemon.type1 | lowercase"> {{ ctrl.zoomPokemon.type1 }} </span>
+                    <span class="type" ng-class="ctrl.zoomPokemon.type2 | lowercase" ng-show="ctrl.zoomPokemon.type2 !== 'NONE'"> {{ ctrl.zoomPokemon.type2 }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 pt-2 pt-md-0">
+            <div class="row" ng-repeat="ability in ctrl.zoomPokemon.abilities">
+                <div class="col">
+                    <h6 class="my-0"><small><strong>{{ ability }}</strong></small></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-4 justify-content-center">
+        <div class="col-xl-5 py-3 accentTag">
+            <h6><strong>Level Up Moves</strong></h6>
+            <p><span ng-repeat="attack in ctrl.zoomPokemon.attacks | filter: { method: 'LEVEL-UP' } | orderBy: 'name'">
+                {{ attack.name }}{{ $last  ? '' : ',' }}
+            </span></p>
+            <h6 ng-if="filteredTMs.length > 0"><strong>Technical Machines</strong></h6>
+            <p><span ng-repeat="attack in ctrl.zoomPokemon.attacks | filter: { method: 'TM' } | orderBy: 'name' as filteredTMs">
+                {{ attack.name }}{{ $last  ? '' : ',' }}
+            </span></p>
+            <h6 ng-if="filteredHMs.length > 0"><strong>Hidden Machines</strong></h6>
+            <p><span ng-repeat="attack in ctrl.zoomPokemon.attacks | filter: { method: 'HM' } | orderBy: 'name' as filteredHMs">
+                {{ attack.name }}{{ $last  ? '' : ',' }}
+            </span></p>
+            <h6 ng-if="filteredBMs.length > 0"><strong>Egg Moves</strong></h6>
+            <p><span ng-repeat="attack in ctrl.zoomPokemon.attacks | filter: { method: 'BREEDING' } | orderBy: 'name' as filteredBMs">
+                {{ attack.name }}{{ $last  ? '' : ',' }}
+            </span></p>
+            <h6 ng-if="filteredMTs.length > 0"><strong>Tutored Moves</strong></h6>
+            <p><span ng-repeat="attack in ctrl.zoomPokemon.attacks | filter: { method: 'MOVE TUTOR' } | orderBy: 'name' as filteredMTs">
+                {{ attack.name }}{{ $last  ? '' : ',' }}
+            </span></p>
+            <h6 ng-if="filteredSMs.length > 0"><strong>Special Moves</strong></h6>
+            <p><span ng-repeat="attack in ctrl.zoomPokemon.attacks | filter: { method: 'SPECIAL' } | orderBy: 'name' as filteredSMs">
+                {{ attack.name }}{{ $last  ? '' : ',' }}
+            </span></p>
+        </div>
+        <div class="col-xl-5 offset-xl-1 py-3 accentTag">
+            <h6><strong>Other Information</strong></h6>
+            <div class="row">
+                <div class="col-6">
+                    <h6>EXP</h6>
+                </div>
+                <div class="col-6">
+                    {{ ctrl.zoomPokemon.exp }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h6>Obtained</h6>
+                </div>
+                <div class="col-6">
+                    <a href="{{ ctrl.zoomPokemon.obtainedLink }}">{{ ctrl.zoomPokemon.obtained }}</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6" ng-if="ctrl.zoomPokemon.hiddenPowerType !== undefined && ctrl.zoomPokemon.hiddenPowerType != ''">
+                    <h6>Hidden Power</h6>
+                </div>
+                <div class="col-6" ng-if="ctrl.zoomPokemon.hiddenPowerType !== undefined && ctrl.zoomPokemon.hiddenPowerType != ''">
+                    <a href="{{ ctrl.zoomPokemon.hiddenPowerLink }}">{{ ctrl.zoomPokemon.hiddenPowerType }}</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h6>Nature</h6>
+                </div>
+                <div class="col-6">
+                    {{ ctrl.zoomPokemon.nature }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h6>Ribbons</h6>
+                </div>
+                <div class="col-6" ng-if="ctrl.zoomPokemon.ribbons.length == 0">
+                    None
+                </div>
+            </div>
+            <div class="row" ng-if="ctrl.hasRibbons(attribute) > 0" ng-repeat="attribute in ctrl.contestAttributes">
+                <div class="col-3" ng-repeat="rank in ctrl.contestRanks">
+                    <img ng-src="{{ imageBase }}/ribbons/rse-{{ rank.toLowerCase() }}-{{ attribute.toLowerCase() }}.png"
+                        alt="{{ rank }} {{ attribute }}" title="{{ rank }} {{ attribute }}"/>
+                    (x{{ ctrl.getRibbonQuantity(attribute, rank) }})
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
