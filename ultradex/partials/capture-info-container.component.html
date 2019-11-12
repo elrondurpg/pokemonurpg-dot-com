@@ -7,6 +7,14 @@
         <strong>POKEMART</strong><br>
         -
     </div>
+    <div class="col-sm-2" ng-if="ctrl.pokemon.pokemon != null && ctrl.pokemon.pokemart != '' && ctrl.pokemon.pokemart != '-1'">
+        <strong>BERRY STORE</strong><br>
+        {{ ctrl.pokemon.contestCredits | currency : '$' : 0 }}
+    </div>
+    <div class="col-sm-2" ng-if="ctrl.pokemon.contestCredits == null || ctrl.pokemon.contestCredits == '' || ctrl.pokemon.contestCredits == '-1'">
+        <strong>BERRY STORE</strong><br>
+        -
+    </div>
     <div class="col-sm-2">
         <strong>STORIES</strong><br>
         {{ ctrl.pokemon.storyRank != null ? ctrl.pokemon.storyRank.name : 'Unavailable' }} {{ ctrl.pokemon.storyRank.requirement != '-' ? '(' + ctrl.pokemon.storyRank.requirement + ')' : '' }}
@@ -17,7 +25,7 @@
     </div>
     <div class="col-sm-2">
         <strong>NATIONAL PARK</strong><br>
-        {{ ctrl.pokemon.parkRank != null && ctrl.pokemon.parkRank.name != '-' ? ctrl.pokemon.parkRank.name + '/' : 'Unknown' }}{{ ctrl.pokemon.parkLocation != null && ctrl.pokemon.parkLocation.name != '-' ? ctrl.pokemon.parkLocation.name : '' }} {{ ctrl.pokemon.parkRank != null && ctrl.pokemon.parkRank.requirement != '-' ? '(' + ctrl.pokemon.parkRank.requirement + ')' : 'Unknown' }}
+        {{ ctrl.pokemon.parkRank != null && ctrl.pokemon.parkRank.name != '-' ? ctrl.pokemon.parkRank.name + '/' : 'Unknown' }}{{ ctrl.pokemon.parkLocation != null && ctrl.pokemon.parkLocation.name != '-' ? ctrl.pokemon.parkLocation.name : '' }} {{ ctrl.pokemon.parkRank != null && ctrl.pokemon.parkRank.requirement != '-' ? '(' + ctrl.pokemon.parkRank.requirement + ')' : '(Unknown)' }}
     </div>
     <div class="col-sm-2">
         <strong>MORPHIC</strong><br>
