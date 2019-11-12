@@ -7,7 +7,7 @@
         <strong>POKEMART</strong><br>
         -
     </div>
-    <div class="col-sm-2" ng-if="ctrl.pokemon.contestCredits != null && ctrl.pokemon.pokemart != '' && ctrl.pokemon.pokemart != '-1'">
+    <div class="col-sm-2" ng-if="ctrl.pokemon.contestCredits != null && ctrl.pokemon.contestCredits != '' && ctrl.pokemon.contestCredits != '-1'">
         <strong>BERRY STORE</strong><br>
         {{ ctrl.pokemon.contestCredits | currency : '$' : 0 }}
     </div>
