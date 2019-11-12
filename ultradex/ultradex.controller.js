@@ -29,7 +29,7 @@ app.controller('dexCtrl', ['pokemonService', '$routeParams', '$rootScope', '$loc
             }
             if (ctrl.pokemon.currentForm === undefined)
                 ctrl.pokemon.currentForm = 0;
-            if (ctrl.pokemon.parkLocation.name == "Abandoned Power Plant") {
+            if (ctrl.pokemon.parkLocation != null && ctrl.pokemon.parkLocation.name == "Abandoned Power Plant") {
                 ctrl.pokemon.parkLocation.name = "Power Plant";
             }
             ctrl.loaded = true;
