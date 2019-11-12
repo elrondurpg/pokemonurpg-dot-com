@@ -1,9 +1,9 @@
 <div class="row d-flex align-items-center justify-content-center">
-    <div class="col-sm-2" ng-if="ctrl.pokemon.pokemart != '' && ctrl.pokemon.pokemart != '-1'">
+    <div class="col-sm-2" ng-if="ctrl.pokemon.pokemon != null && ctrl.pokemon.pokemart != '' && ctrl.pokemon.pokemart != '-1'">
         <strong>POKEMART</strong><br>
         {{ ctrl.pokemon.pokemart | currency : '$' : 0 }}
     </div>
-    <div class="col-sm-2" ng-if="ctrl.pokemon.pokemart == '' || ctrl.pokemon.pokemart == '-1'">
+    <div class="col-sm-2" ng-if="ctrl.pokemon.pokemon == null || ctrl.pokemon.pokemart == '' || ctrl.pokemon.pokemart == '-1'">
         <strong>POKEMART</strong><br>
         -
     </div>
@@ -17,7 +17,7 @@
     </div>
     <div class="col-sm-2">
         <strong>NATIONAL PARK</strong><br>
-        {{ ctrl.pokemon.parkRank != null && ctrl.pokemon.parkRank.name != '-' ? ctrl.pokemon.parkRank.name + '/' : 'Unknown' }}{{ ctrl.pokemon.parkLocation != null && ctrl.pokemon.parkLocation.name != '-' ? ctrl.pokemon.parkLocation.name : '' }} {{ ctrl.pokemon.parkRank.requirement != '-' ? '(' + ctrl.pokemon.parkRank.requirement + ')' : '' }}
+        {{ ctrl.pokemon.parkRank != null && ctrl.pokemon.parkRank.name != '-' ? ctrl.pokemon.parkRank.name + '/' : 'Unknown' }}{{ ctrl.pokemon.parkLocation != null && ctrl.pokemon.parkLocation.name != '-' ? ctrl.pokemon.parkLocation.name : '' }} {{ ctrl.pokemon.parkRank != null && ctrl.pokemon.parkRank.requirement != '-' ? '(' + ctrl.pokemon.parkRank.requirement + ')' : 'Unknown' }}
     </div>
     <div class="col-sm-2">
         <strong>MORPHIC</strong><br>
