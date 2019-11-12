@@ -5,14 +5,14 @@ app.service('statsService', ['userService', '$http', '$rootScope', function(user
 
     service.findByName = function(name) {
         if ($rootScope.debug == true) {
-            return $http.get($rootScope.serviceHost + "/pokemon/" + name).then(
+            return $http.get($rootScope.serviceHost + "/stats/" + name).then(
                 function (response) {
                    return service.findByNameDebug();
                 }
             );
         }
         else {
-            return $http.get($rootScope.serviceHost + "/pokemon/" + name).then(
+            return $http.get($rootScope.serviceHost + "/stats/" + name).then(
                  function (response) {
                     return response.data;
                  }
@@ -30,6 +30,10 @@ app.service('statsService', ['userService', '$http', '$rootScope', function(user
 
     service.dummy = {
         "name": "Elrond",
+        "money": 10000,
+        "wins": 10,
+        "losses": 10,
+        "draws": 1,
         "pokemon" : [
             {
                 "dbid": 1,
