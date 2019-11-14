@@ -1,63 +1,66 @@
 NO,(none)
-AD,Adaptability 
+AD,Adaptability
 AE,Aerilate
-AF,Aftermath * 
+AF,Aftermath *
 AI,Air Lock
 AL,Analytic *
-AP,Anger Point * 
-AN,Anticipation * 
+AP,Anger Point *
+AN,Anticipation *
 AT,Arena Trap *
 AR,Aroma Veil *
 AU,Aura Break
-BD,Bad Dreams * 
+BD,Bad Dreams *
+BF,Ball Fetch *
 BT,Battery *
-BA,Battle Armor * 
+BA,Battle Armor *
 BB,Battle Bond *
 BEB,Beast Boost *
 BZ,Berzerk *
 BP,Big Pecks *
-BL,Blaze 
+BL,Blaze
 BU,Bulletproof *
 CP,Cheek Pouch *
-CL,Chlorophyll 
-CB,Clear Body * 
-CN,Cloud Nine 
-CC,Color Change * 
+CL,Chlorophyll
+CB,Clear Body *
+CN,Cloud Nine
+CC,Color Change *
 CT,Comatose *
 CM,Competitive *
-CE,Compoundeyes * 
+CE,Compoundeyes *
 CO,Contrary *
 CR,Corrosion *
+CD,Cotton Down *
 CY,Cursed Body *
-CU,Cute Charm * 
-DA,Damp * 
+CU,Cute Charm *
+DA,Damp *
 DN,Dancer *
 DK,Dark Aura
+DSH,Dauntless Shield *
 DZ,Dazzling *
 DLS,Delta Stream *
 DE,Defeatist
 DF,Defiant *
 DSL,Desolate Land *
 DI,Disguise *
-DL,Download * 
-DR,Drizzle * 
-DO,Drought * 
-DS,Dry Skin 
+DL,Download *
+DR,Drizzle *
+DO,Drought *
+DS,Dry Skin
 EB,Early Bird *
-ES,Effect Spore * 
+ES,Effect Spore *
 ELS,Electric Surge *
 EE,Emergency Exit *
 FA,Fairy Aura
-FI,Filter 
-FB,Flame Body * 
+FI,Filter
+FB,Flame Body *
 FT,Flare Boost
 FF,Flash Fire *
-FFO,Flash Fire On 
+FFO,Flash Fire On
 FG,Flower Gift
 FV,Flower Veil *
 FL,Fluffy *
-FC,Forecast * 
-FW,Forewarn * 
+FC,Forecast *
+FW,Forewarn *
 FI,Friend Guard *
 FR,Frisk *
 FMB,Full Metal Body *
@@ -68,166 +71,185 @@ GL,Gluttony *
 GO,Gooey *
 GP,Grass Pelt *
 GRS,Grassy Surge *
+GM,Gulp Missile *
+GMA,Gulp Missile [Arrokuda] *
+GMP,Gulp Missile [Pikachu] *
 GU,Guts
 HA,Harvest *
 HL,Healer *
-HE,Heatproof 
+HE,Heatproof
 HM,Heavy Metal *
-HG,Honey Gather * 
-HP,Huge Power 
-HU,Hustle 
-HY,Hydration * 
-HC,Hyper Cutter * 
-IB,Ice Body * 
+HG,Honey Gather *
+HP,Huge Power
+HS,Hunger Switch *
+HU,Hustle
+HY,Hydration *
+HC,Hyper Cutter *
+IB,Ice Body *
+IFA,Ice Face *
+ISC,Ice Scales *
 IL,Illuminate *
 IN,Illusion *
-IM,Immunity * 
+IM,Immunity *
 IP,Imposter *
 II,Infiltrator
+ISW,Intrepid Sword *
 IO,Innards Out *
-IF,Inner Focus * 
-IS,Insomnia * 
-IT,Intimidate * 
+IF,Inner Focus *
+IS,Insomnia *
+IT,Intimidate *
 IRB,Iron Barbs *
 IR,Iron Fist *
 JT,Justified *
-KE,Keen Eye * 
-KL,Klutz 
-LG,Leaf Guard * 
+KE,Keen Eye *
+KL,Klutz
+LG,Leaf Guard *
 LE,Levitate
+LB,Libero *
 LT,Light Metal *
 LI,Lightningrod
-LM,Limber * 
-LO,Liquid Ooze * 
+LM,Limber *
+LO,Liquid Ooze *
 LV,Liquid Voice *
 LR,Long Reach *
 MM,Magic Bounce *
 MG,Magic Guard *
 MC,Magician *
-MA,Magma Armor * 
-MP,Magnet Pull * 
-MS,Marvel Scale 
+MA,Magma Armor *
+MP,Magnet Pull *
+MS,Marvel Scale
 ML,Mega Launcher *
 ME,Merciless
-MI,Minus * 
+MI,Minus *
 MIS,Misty Surge *
-MB,Mold Breaker 
+MB,Mold Breaker
 MO,Moody *
-MD,Motor Drive * 
+MD,Motor Drive *
 MX,Moxie *
 MT,Multiscale
 MU,Multitype *
 MY,Mummy *
-NC,Natural Cure * 
-NG,No Guard * 
-NZ,Normalize 
-OB,Oblivious * 
+NC,Natural Cure *
+NG,No Guard *
+NZ,Normalize
+OB,Oblivious *
 OC,Overcoat *
-OG,Overgrow 
+OG,Overgrow
 OT,Own Tempo *
 PB,Parental Bond *
+PEB,Perish Body *
 PK,Pickpocket *
-PI,Pickup * 
+PI,Pickup *
 PX,Pixilate
-PL,Plus * 
-PH,Poison Heal * 
+PL,Plus *
+PH,Poison Heal *
 PP,Poison Point *
 PT,Poison Touch *
 PC,Power Construct *
 POA,Power of Alchemy *
+PSP,Power Spot *
 PN,Prankster *
-PR,Pressure * 
+PR,Pressure *
 PMS,Primordial Sea *
 PA,Prism Armor
+PRT,Propeller Tail *
 PO,Protean *
 PSS,Psychic Surge *
+PKR,Punk Rock *
 PU,Pure Power
 QM,Queenly Majesty *
-QF,Quick Feet 
-RD,Rain Dish * 
+QF,Quick Feet
+RD,Rain Dish *
 RT,Rattled *
 RE,Regenerator *
 RC,Receiver *
-RL,Reckless * 
+RL,Reckless *
 RF,Refrigerate
-RI,Rivalry 
+RP,Ripen *
+RI,Rivalry
 RKS,RKS System *
-RH,Rock Head * 
-RS,Rough Skin * 
-RA,Run Away * 
+RH,Rock Head *
+RS,Rough Skin *
+RA,Run Away *
 SF,Sand Force
 SRH,Sand Rush
-SS,Sand Stream * 
+SSP,Sand Spit *
+SS,Sand Stream *
 SV,Sand Veil *
 SPS,Sap Sipper
 SCH,Schooling *
 SCR,Scrappy
-SG,Serene Grace * 
+SCL,Screen Cleaner *
+SG,Serene Grace *
 SSH,Shadow Shield
-ST,Shadow Tag * 
-SHS,Shed Skin * 
+ST,Shadow Tag *
+SHS,Shed Skin *
 SHF,Sheer Force *
-SA,Shell Armor * 
-SD,Shield Dust * 
+SA,Shell Armor *
+SD,Shield Dust *
 SHD,Sheilds Down *
-SI,Simple * 
-SL,Skill Link * 
-SO,Slow Start * 
+SI,Simple *
+SL,Skill Link *
+SO,Slow Start *
 SLR,Slush Rush
-SN,Sniper 
-SC,Snow Cloak * 
-SW,Snow Warning * 
+SN,Sniper
+SC,Snow Cloak *
+SW,Snow Warning *
 SP,Solar Power
-SR,Solid Rock 
+SR,Solid Rock
 SOH,Soul-Heart *
-SU,Soundproof * 
-SB,Speed Boost * 
+SU,Soundproof *
+SB,Speed Boost *
 STK,Stakeout *
 STA,Stall *
+STL,Stalwart *
 STM,Stamina *
 STN,Stance Change *
-STC,Static * 
-STF,Steadfast * 
+STC,Static *
+STF,Steadfast *
+SE,Steam Engine *
 STW,Steelworker
-STE,Stench * 
-SH,Sticky Hold * 
-STD,Storm Drain 
+STS,Steely Spirit *
+STE,Stench *
+SH,Sticky Hold *
+STD,Storm Drain
 SJ,Strong Jaw *
-STU,Sturdy * 
-SUC,Suction Cups * 
-SPL,Super Luck * 
+STU,Sturdy *
+SUC,Suction Cups *
+SPL,Super Luck *
 SGS,Surge Surfer *
-SWA,Swarm 
+SWA,Swarm
 SWV,Sweet Veil *
-SWS,Swift Swim 
+SWS,Swift Swim
 SYM,Symbiosis *
 SYN,Synchronize *
 TF,Tangled Feet *
 TGH,Tangling Hair *
-TE,Technician 
+TE,Technician
 TP,Telepathy *
 TV,Teravolt
-TH,Thick Fat 
+TH,Thick Fat
 TL,Tinted Lens
 TB,Toxic Boost
-TO,Torrent 
+TO,Torrent
 TC,Tough Claws *
-TA,Trace * 
+TA,Trace *
 TG,Triage *
-TR,Truant * 
+TR,Truant *
 TU,Turbo Blaze
-UB,Unaware 
+UB,Unaware
 UN,Unburden *
 UV,Unnerve *
 VC,Victory Star *
-VS,Vital Spirit * 
-VA,Volt Absorb 
+VS,Vital Spirit *
+VA,Volt Absorb
+WN,Wandering Spirit *
 WA,Water Absorb
 WB,Water Bubble
 WC,Water Compaction
 WE,Weak Armor *
-WV,Water Veil * 
-WS,White Smoke * 
+WV,Water Veil *
+WS,White Smoke *
 WO,Wimp Out *
 WG,Wonder Guard
 WK,Wonder Skin *
