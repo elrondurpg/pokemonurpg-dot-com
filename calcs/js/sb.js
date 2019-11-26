@@ -33,7 +33,7 @@ function levelStat(level, base) {
 function PopulateLists() {
 	//Pokemon	
 	$.ajax({
-		async: false, type: 'GET', url: 'resources/Pokemon.csv', success: function (data) {
+		async: false, type: 'GET', url: '/pokemonurpg-dot-com/calcs/resources/Pokemon.csv', success: function (data) {
 			
 			PokemonList = $.csv.toObjects(data);
 			
@@ -57,7 +57,7 @@ function PopulateLists() {
 	
 	//Stat mods
 	$.ajax({
-		async: false, type: 'GET', url: 'resources/Statmods.csv', success: function (data) {
+		async: false, type: 'GET', url: '/pokemonurpg-dot-com/calcs/resources/Statmods.csv', success: function (data) {
 	
 			var list = $.csv.toArrays(data);
 			

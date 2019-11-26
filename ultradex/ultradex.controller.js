@@ -10,6 +10,7 @@ app.controller('dexCtrl', ['pokemonService', '$routeParams', '$rootScope', '$loc
     .then(function(response) {
         if (response.status == 200 && !ctrl.isMega(response.data.name)) {
             ctrl.pokemon = response.data;
+            console.log(ctrl.pokemon);
             $rootScope.title = '#' + ctrl.pokemon.dexno + ": " + ctrl.pokemon.displayName;
             if (ctrl.pokemon.alteredForms !== undefined) {
                 for (var i = 0; i < ctrl.pokemon.alteredForms.length; i++)
@@ -24,12 +25,15 @@ app.controller('dexCtrl', ['pokemonService', '$routeParams', '$rootScope', '$loc
                         else {
                             ctrl.formWindowStart = i - 1;
                         }
+                        if (ctrl.formWindowStart > ctrl.pokemon.alteredForms.length - 4) {
+                            ctrl.formWindowStart = ctrl.pokemon.alteredForms.length - 4;
+                        }
                     }
                 }
             }
             if (ctrl.pokemon.currentForm === undefined)
                 ctrl.pokemon.currentForm = 0;
-            if (ctrl.pokemon.parkLocation.name == "Abandoned Power Plant") {
+            if (ctrl.pokemon.parkLocation != null && ctrl.pokemon.parkLocation.name == "Abandoned Power Plant") {
                 ctrl.pokemon.parkLocation.name = "Power Plant";
             }
             ctrl.loaded = true;
@@ -101,11 +105,12 @@ app.controller('dexCtrl', ['pokemonService', '$routeParams', '$rootScope', '$loc
         else return "dex-evolution-chain-pokemon";
     };
 
-    ctrl.evolveString = function(method)
+    ctrl.evolveString = function(species)
     {
+        var method = species.method;
         var evolutionFamily = ctrl.pokemon.evolutionFamily;
         var exp = 0;
-        if (evolutionFamily[2].length > 0)
+        if (evolutionFamily[2].length > 0 && species.name != "Mr. Mime")
             exp = 5;
         else exp = 7;
 

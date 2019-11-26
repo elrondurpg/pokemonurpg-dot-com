@@ -7,12 +7,13 @@
             <span class="sr-only">Previous</span>
         </a>
 
-        <a class="btn px-0 border {{ ctrl.pokemon.currentForm == ctrl.formWindowStart + $index ? 'bg-secondary' : '' }}" target="_self" ng-repeat="n in [].constructor(4) track by $index"
-           ng-click="ctrl.pokemon.currentForm = ctrl.formWindowStart + $index"
-           ng-href="{{ ctrl.pokemon.alteredForms[ctrl.formWindowStart + $index].baseName != ctrl.pokemon.name ? '/pokemon/' + ctrl.pokemon.alteredForms[ctrl.formWindowStart + $index].baseName : '' }}"
-           title="{{ ctrl.pokemon.alteredForms[ctrl.formWindowStart + $index].formName != '-1' ? ctrl.pokemon.alteredForms[ctrl.formWindowStart + $index].formName : 'Base Form' }}"
-           ng-if="ctrl.pokemon.alteredForms.length > ctrl.formWindowStart + $index">
-            <img ng-src="{{ iconBase }}{{ ctrl.pokemon.dexno }}{{ ctrl.suffix(ctrl.pokemon.alteredForms[ctrl.formWindowStart + $index].displayName, ctrl.pokemon.alteredForms[ctrl.formWindowStart + $index].name) }}.png" />
+        <a class="btn px-0 border {{ ctrl.pokemon.currentForm == $index ? 'bg-secondary' : '' }}" target="_self"
+           ng-repeat="form in ctrl.pokemon.alteredForms"
+           ng-click="ctrl.pokemon.currentForm = $index"
+           ng-href="{{ form.baseName != ctrl.pokemon.name ? '/pokemon/' + form.baseName : '' }}"
+           title="{{ form.formName != '-1' ? form.formName : 'Base Form' }}"
+           ng-if="$index >= ctrl.formWindowStart && $index < ctrl.formWindowStart + 4">
+            <img ng-src="{{ iconBase }}{{ ctrl.pokemon.dexno }}{{ ctrl.suffix(form.displayName, form.name) }}.png" />
         </a>
 
         <a class="btn border {{ ctrl.formWindowStart >= ctrl.pokemon.alteredForms.length - 4 ? 'disabled' : '' }}" href="#" aria-label="Next"
