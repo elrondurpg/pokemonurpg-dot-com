@@ -13,7 +13,7 @@ function EntryDialog() {
 		$('#entry-dialog').dialog({
 			buttons: [{
 				text: "Go to new version",
-				click: function() { window.location = "/calcs/battlev3" }
+				click: function() { window.location = "/pokemonurpg-dot-com/calcs/battlev3" }
 			}],
 			modal: true,
 			width: 600
@@ -162,7 +162,7 @@ function PopulateLists() {
 	console.log("populating lists");
 	//Pokemon	
 	$.ajax({
-		async: false, type: 'GET', url: '/calcs/resources/Pokemon.csv', success: function (data) {
+		async: false, type: 'GET', url: '/pokemonurpg-dot-com/calcs/resources/Pokemon.csv', success: function (data) {
 			PokemonList = $.csv.toObjects(data);
 
 			for(var i = 0; i < PokemonList.length; i++)
@@ -175,7 +175,7 @@ function PopulateLists() {
 	
 	//Types
 	$.ajax({
-		async: false, type: 'GET', url: '/calcs/resources/Types.csv', success: function (data) {
+		async: false, type: 'GET', url: '/pokemonurpg-dot-com/calcs/resources/Types.csv', success: function (data) {
 	
 			var Types = $.csv.toObjects(data);
 
@@ -194,7 +194,7 @@ function PopulateLists() {
 	
 	//Genders
 	$.ajax({
-		async: false, type: 'GET', url: '/calcs/resources/Genders.csv', success: function (data) {
+		async: false, type: 'GET', url: '/pokemonurpg-dot-com/calcs/resources/Genders.csv', success: function (data) {
 	
 			var list = $.csv.toArrays(data);
 			
@@ -207,7 +207,7 @@ function PopulateLists() {
 	
 	//Abilities
 	$.ajax({
-		async: false, type: 'GET', url: '/calcs/resources/Abilities.csv', success: function (data) {
+		async: false, type: 'GET', url: '/pokemonurpg-dot-com/calcs/resources/Abilities.csv', success: function (data) {
 	
 			var list = $.csv.toArrays(data);
 			
@@ -220,7 +220,7 @@ function PopulateLists() {
 	
 	//Statuses
 	$.ajax({
-		async: false, type: 'GET', url: '/calcs/resources/Statuses.csv', success: function (data) {
+		async: false, type: 'GET', url: '/pokemonurpg-dot-com/calcs/resources/Statuses.csv', success: function (data) {
 	
 			var list = $.csv.toArrays(data);
 			
@@ -233,7 +233,7 @@ function PopulateLists() {
 	
 	//Effects
 	$.ajax({
-		async: false, type: 'GET', url: '/calcs/resources/Effects.csv', success: function (data) {
+		async: false, type: 'GET', url: '/pokemonurpg-dot-com/calcs/resources/Effects.csv', success: function (data) {
 	
 			var list = $.csv.toArrays(data);
 			
@@ -246,7 +246,7 @@ function PopulateLists() {
 	
 	//Stat mods
 	$.ajax({
-		async: false, type: 'GET', url: '/calcs/resources/Statmods.csv', success: function (data) {
+		async: false, type: 'GET', url: '/pokemonurpg-dot-com/calcs/resources/Statmods.csv', success: function (data) {
 	
 			var list = $.csv.toArrays(data);
 			
@@ -260,7 +260,7 @@ function PopulateLists() {
 	
 	//Items
 	$.ajax({
-		async: false, type: 'GET', url: '/calcs/resources/Items.csv', success: function (data) {
+		async: false, type: 'GET', url: '/pokemonurpg-dot-com/calcs/resources/Items.csv', success: function (data) {
 	
 			var list = $.csv.toArrays(data);
 			
