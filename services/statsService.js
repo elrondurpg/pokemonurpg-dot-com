@@ -1,15 +1,13 @@
 'use strict';
-app.service('statsService', ['userService', '$http', '$rootScope', function(userService, $http, $rootScope){
+app.service('statsService', ['userService', '$http', '$rootScope', '$q', function(userService, $http, $rootScope, $q){
 
     var service = this;
 
     service.findByName = function(name) {
         if ($rootScope.debug == true) {
-            return $http.get($rootScope.serviceHost + "/stats/" + name).then(
-                function (response) {
-                   return service.findByNameDebug();
-                }
-            );
+            var deferred = $q.defer()
+            deferred.resolve(service.findByNameDebug());
+            return deferred.promise;
         }
         else {
             return $http.get($rootScope.serviceHost + "/stats/" + name).then(

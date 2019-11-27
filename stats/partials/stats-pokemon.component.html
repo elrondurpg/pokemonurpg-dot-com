@@ -31,7 +31,7 @@
                     <div class="col-8">
                         <div class="row">
                             <div class="col">
-                                {{ pokemon.nickname != "" ? pokemon.nickname + " the " : "" }}{{ pokemon.displayName }}&nbsp;
+                                {{ $index + 1 }}. {{ pokemon.nickname != "" ? pokemon.nickname + " the " : "" }}{{ pokemon.displayName }}&nbsp;
                                 <span ng-show="pokemon.gender == 'M'" class="gender male text-center">M</span>
                                 <span ng-show="pokemon.gender == 'F'" class="gender female text-center">F</span>
                                 <span ng-show="pokemon.gender == 'G'" class="gender genderless text-center">G</span>

@@ -11,11 +11,12 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
 
     statsService.findByName($routeParams.name)
     .then(function(response) {
+        console.log(response);
         if (response.status == 200) {
             ctrl.trainer = response.data;
             $rootScope.title = ctrl.trainer.name + "'s Stats";
 
-            ctrl.zoomPokemon = ctrl.trainer.pokemon[1];
+            //ctrl.zoomPokemon = ctrl.trainer.pokemon[1];
 
             ctrl.loaded = true;
         }

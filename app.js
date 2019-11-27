@@ -45,12 +45,12 @@ app.directive('siteFooter', function() {
 });
 
 app.run(function($rootScope, $location, $anchorScroll) {
-    $rootScope.debug = true;
+    $rootScope.debug = false;
     $rootScope.title = "Pokemon URPG Infohub";
-	$rootScope.webHost = "https://pokemonurpg.com";
+	$rootScope.webHost = "http://localhost";
 	$rootScope.serviceHost = "http://localhost:8080";
 
-	$rootScope.imageBase = "https://staging.pokemonurpg.com/img";
+	$rootScope.imageBase = "https://pokemonurpg.com/img";
 	$rootScope.spriteBase = $rootScope.imageBase + "/sprites/";
 	$rootScope.iconBase = $rootScope.imageBase + "/icons/";
 	$rootScope.modelBase = $rootScope.imageBase + "/models/";
