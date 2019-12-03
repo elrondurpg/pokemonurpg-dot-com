@@ -6,6 +6,15 @@ app.controller('dexCtrl', ['pokemonService', '$routeParams', '$rootScope', '$loc
     ctrl.displayMove = {};
     ctrl.moveHintsType = "battle";
 
+    ctrl.morphicRequirements = {
+        "Easiest": 10,
+        "Simple": 20,
+        "Medium": 35,
+        "Hard": 50,
+        "Complex": 70,
+        "Demanding": 90
+    };
+
     pokemonService.findByName($routeParams.name)
     .then(function(response) {
         if (response.status == 200 && !ctrl.isMega(response.data.name)) {
@@ -366,6 +375,20 @@ app.controller('dexCtrl', ['pokemonService', '$routeParams', '$rootScope', '$loc
             else return 0;
         }
         else return 0;
+    }
+
+    ctrl.getMorphicRequirement = function() {
+        if (ctrl.pokemon.evolutionFamily === undefined || ctrl.pokemon.evolutionFamily.length <= 0 || ctrl.pokemon.evolutionFamily[0].length == 0) {
+            return ctrl.morphicRequirements[ctrl.pokemon.storyRank];
+        }
+        else {
+            for (var i = 0; i < ctrl.pokemon.evolutionFamily[0].length; i++) {
+                if (ctrl.pokemon.evolutionFamily[0][i].name == ctrl.pokemon.name) {
+                    return ctrl.morphicRequirements[ctrl.pokemon.storyRank.name];
+                }
+            }
+        }
+        return null;
     }
 
 }]);
