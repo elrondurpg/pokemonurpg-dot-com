@@ -1,0 +1,191 @@
+.accent {
+    background-color: #474747;
+}
+
+.btn-primary, .btn-primary:hover, .nav-link.active {
+    background-color: #0475ae!important;
+    border-color: #0475ae;
+}
+
+.form-control.undecorated {
+    border: none;
+    border-bottom: 2px solid #ced4da;
+    border-radius:0;
+}
+
+.form-control.undecorated:focus {
+    border: none;
+    border-bottom: 2px solid #80bdff;
+    border-radius:0;
+    box-shadow: none;
+}
+
+.gender {
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    display:inline-block;
+    width:16px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+    font-size:10px;
+    text-transform:uppercase;
+    color:#FFF;
+    line-height:13px;
+}
+
+.gender.male {
+    border:1px solid #1D6386;
+    background-color:#1C7FB1;
+}
+
+.gender.female {
+    border:1px solid #974288;
+    background-color:#BF51AA;
+}
+
+.gender.genderless {
+    border:1px solid #34495e;
+    background-color:#34495e;
+}
+
+.accentTag {
+    border: 1px solid #ced4da;
+    border-left: 15px solid #0475ae;
+}
+
+.accentTag.hoverable:hover {
+    border-left: 15px solid #ab8f35;
+}
+
+.nav-link, .nav-link:hover {
+    color: #0475ae;
+}
+
+.trainer-name {
+    font-family: "Open Sans", Arial, Helvetica, sans-serif!important;
+}
+
+span.type {
+    display:inline-block;
+    width:52px;
+    border:1px solid;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    font-size:10px;
+    line-height:14px;
+    text-align:center;
+    text-transform:uppercase;
+    color:#FFF;
+    text-shadow:1px 1px 1px #4D4D4D;
+    font-family:"Open Sans", Arial, Helvetica, sans-serif;
+    margin: 1px;
+}
+
+.type.bug {
+    background-color:#A8B820;
+    background-image:0 color-stop(1,#8D9A1B) );
+    border-color:#616B13;
+}
+
+.type.dark {
+    background-color:#624D3E;
+    background-image:0 color-stop(1,#513F34) );
+    border-color:#362A23;
+}
+
+.type.dragon {
+    background-color:#7038F8;
+    background-image:0 color-stop(1,#4C08EF) );
+    border-color:#3D07C0;
+}
+
+.type.electric, .type.tough {
+    background-color:#F8D030;
+    background-image:0 color-stop(1,#F0C108) );
+    border-color:#C19B07;
+}
+
+.type.fairy {
+    background-color:#e898e8;
+    background-image:0 color-stop(1,#de6ede) );
+    border-color:#d547d5;
+}
+
+.type.fire, .type.cool {
+    background-color:#D35400;
+    background-image:0 color-stop(1,#DD6610) );
+    border-color:#B4530D;
+}
+
+.type.fighting {
+    background-color:#C03028;
+    background-image:0 color-stop(1,#9D2721) );
+    border-color:#82211B;
+}
+
+.type.flying {
+    background-color:#A890F0;
+    background-image:0 color-stop(1,#9180C4) );
+    border-color:#7762B6;
+}
+
+.type.ghost {
+    background-color:#705898;
+    background-image:0 color-stop(1,#554374) );
+    border-color:#413359;
+}
+
+.type.grass, .type.smart {
+    background-color:#78C850;
+    background-image:0 color-stop(1,#5CA935) );
+    border-color:#4A892B;
+}
+
+.type.ground {
+    background-color:#E0C068;
+    background-image:0 color-stop(1,#D4A82F) );
+    border-color:#AA8623;
+}
+
+.type.ice {
+    background-color:#98D8D8;
+    background-image:0 color-stop(1,#69C6C6) );
+    border-color:#45B6B6;
+}
+
+.type.normal {
+    background-color:#8A8A59;
+    background-image:0 color-stop(1,#8A8A59) );
+    border-color:#79794E;
+}
+
+.type.poison {
+    background-color:#A040A0;
+    background-image:0 color-stop(1,#803380) );
+    border-color:#662966;
+}
+
+.type.type.psychic, .type.cute {
+    background-color:#F85888;
+    background-image:0 color-stop(1,#F61C5D) );
+    border-color:#D60945;
+}
+
+.type.rock {
+    background-color:#B8A038;
+    background-image:0 color-stop(1,#93802D) );
+    border-color:#746523;
+}
+
+.type.steel {
+    background-color:#B8B8D0;
+    background-image:0 color-stop(1,#9797BA) );
+    border-color:#7A7AA7;
+}
+
+.type.water, .type.beauty {
+    background-color:#6890F0;
+    background-image:0 color-stop(1,#386CEB) );
+    border-color:#1753E3;
+}

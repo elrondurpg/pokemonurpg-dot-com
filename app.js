@@ -7,7 +7,7 @@ app.config(function($routeProvider) {
   .when("/pokemon/:name", {
     templateUrl : "/pokemonurpg-dot-com/ultradex/ultradex.component.html"
   })
-  .when("/stats", {
+  .when("/stats/:name", {
     templateUrl : "/pokemonurpg-dot-com/stats/stats.component.html"
   })
   .when("/resources", {
@@ -45,8 +45,9 @@ app.directive('siteFooter', function() {
 });
 
 app.run(function($rootScope, $location, $anchorScroll) {
+    $rootScope.debug = false;
     $rootScope.title = "Pokemon URPG Infohub";
-	$rootScope.webHost = "https://pokemonurpg.com";
+	$rootScope.webHost = "http://localhost";
 	$rootScope.serviceHost = "http://localhost:8080";
 
 	$rootScope.imageBase = "https://pokemonurpg.com/img";

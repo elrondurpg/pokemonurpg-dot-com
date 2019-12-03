@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="row py-2">
+        <div class="col-md-4">
+            <input type="text" class="form-control undecorated" ng-model="ctrl.pokemonFilterByName" placeholder="Filter by name or nickname">
+        </div>
+        <div class="py-2 py-md-0 col-md-4">
+            <select class="form-control undecorated" id="typeSelect" ng-model="ctrl.pokemonFilterByType">
+                <option selected value> -- Filter by type -- </option>
+                <option ng-repeat="type in ctrl.types | orderBy: 'toString()'" value="{{ type }}">{{ type }}</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#newPokemonModal">
+                + New
+            </button>
+        </div>
+    </div>
+    <div class="row mx-xl-n2 p-2">
+        <div class="col-12 col-md-6 col-lg-4 py-2 px-xl-2"
+             ng-repeat="pokemon in ctrl.trainer.pokemon | orderBy: 'name'"
+             ng-show="(pokemon.name.toUpperCase().startsWith(ctrl.pokemonFilterByName.toUpperCase()) ||
+                       pokemon.nickname.toUpperCase().startsWith(ctrl.pokemonFilterByName.toUpperCase())) &&
+                       (ctrl.pokemonFilterByType === undefined || ctrl.pokemonFilterByType == '' ||
+                       pokemon.type1.toUpperCase() == ctrl.pokemonFilterByType ||
+                       pokemon.type2.toUpperCase() == ctrl.pokemonFilterByType)">
+            <div class="p-2 accentTag hoverable clickable" ng-click="ctrl.zoomOnPokemon(pokemon.dbid)">
+                <div class="row d-flex align-items-center">
+                    <div class="col-4">
+                        <img ng-src="{{ spriteBase }}{{ pokemon.dexno }}{{ ctrl.suffix(pokemon.displayName, pokemon.name) }}.gif" />
+                    </div>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col">
+                                {{ $index + 1 }}. {{ pokemon.nickname != "" ? pokemon.nickname + " the " : "" }}{{ pokemon.displayName }}&nbsp;
+                                <span ng-show="pokemon.gender == 'M'" class="gender male text-center">M</span>
+                                <span ng-show="pokemon.gender == 'F'" class="gender female text-center">F</span>
+                                <span ng-show="pokemon.gender == 'G'" class="gender genderless text-center">G</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span class="type" ng-class="pokemon.type1 | lowercase"> {{ pokemon.type1 }} </span>
+                                <span class="type" ng-class="pokemon.type2 | lowercase" ng-show="pokemon.type2 !== 'NONE'"> {{ pokemon.type2 }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
