@@ -23,7 +23,7 @@
                        (ctrl.pokemonFilterByType === undefined || ctrl.pokemonFilterByType == '' ||
                        pokemon.type1.toUpperCase() == ctrl.pokemonFilterByType ||
                        pokemon.type2.toUpperCase() == ctrl.pokemonFilterByType)">
-            <div class="p-2 accentTag hoverable clickable" ng-click="ctrl.zoomPokemon = pokemon">
+            <div class="p-2 accentTag hoverable clickable" ng-click="ctrl.zoomOnPokemon(pokemon.dbid)">
                 <div class="row d-flex align-items-center">
                     <div class="col-4">
                         <img ng-src="{{ spriteBase }}{{ pokemon.dexno }}{{ ctrl.suffix(pokemon.displayName, pokemon.name) }}.gif" />

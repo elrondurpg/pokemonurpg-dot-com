@@ -5,6 +5,7 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
 
     ctrl.pokemonFilterByName = "";
     ctrl.zoomPokemon = undefined;
+    ctrl.loadedPokemon = [];
 
     ctrl.contestRanks = [ "Normal", "Super", "Hyper", "Master" ];
     ctrl.contestAttributes = [ "Beauty", "Cool", "Cute", "Smart", "Tough" ];
@@ -15,8 +16,6 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
         if (response.status == 200) {
             ctrl.trainer = response.data;
             $rootScope.title = ctrl.trainer.name + "'s Stats";
-
-            //ctrl.zoomPokemon = ctrl.trainer.pokemon[1];
 
             ctrl.loaded = true;
         }
@@ -38,6 +37,22 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
     }
 
     ctrl.loadTypes();
+
+    ctrl.zoomOnPokemon = function(dbid) {
+        if (ctrl.loadedPokemon[dbid] !== undefined) {
+            ctrl.zoomPokemon = ctrl.loadedPokemon[dbid];
+        }
+        else {
+            statsService.findOwnedPokemonByDbid(dbid)
+            .then(function(response) {
+                console.log(response);
+                if (response.status == 200) {
+                    ctrl.zoomPokemon = response.data;
+                    ctrl.loadedPokemon[dbid] = ctrl.zoomPokemon;
+                }
+            });
+        }
+    }
 
     ctrl.getRibbonQuantity = function(attribute, rank) {
         var ribbons = ctrl.zoomPokemon.ribbons;
