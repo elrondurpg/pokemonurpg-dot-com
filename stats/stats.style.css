@@ -7,8 +7,15 @@
     border-color: #0475ae;
 }
 
-.card-columns {
-    column-count: 2;
+@media (max-width: 767.98px) {
+    .card-columns {
+        column-count: 1;
+    }
+}
+@media (min-width: 768px) {
+    .card-columns {
+        column-count: 2;
+    }
 }
 
 .form-control.undecorated {
@@ -55,6 +62,11 @@
 .accentTag {
     border: 1px solid #ced4da;
     border-left: 15px solid #0475ae;
+}
+
+.accentTagGreen {
+    border: 1px solid #ced4da;
+    border-left: 15px solid #009900;
 }
 
 .accentTag.hoverable:hover {

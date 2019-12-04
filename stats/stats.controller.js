@@ -9,8 +9,8 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
 
     ctrl.contestRanks = [ "Normal", "Super", "Hyper", "Master" ];
     ctrl.contestAttributes = [ "Beauty", "Cool", "Cute", "Smart", "Tough" ];
-    ctrl.itemTypes = ["TM", "HM", "Berry", "Held", "Evolution", "Mega", "Form", "ZCrystal", "Fossil", "Other" ];
-    ctrl.itemTypesPretty = [ "TMs", "HMs", "Berries", "Held Items", "Evolution Items", "Mega Evolution Items", "Form Changing Items", "Z-Crystals", "Fossils", "Other Items" ];
+    ctrl.itemTypes = [ "Held", "TM", "HM", "Berry", "Evolution", "Mega", "Form", "ZCrystal", "Fossil", "Other" ];
+    ctrl.itemTypesPretty = [ "Held Items", "Technical Machines", "Hidden Machines", "Berries", "Evolution Items", "Mega Evolution Items", "Form Changing Items", "Z-Crystals", "Fossils", "Other Items" ];
 
     statsService.findByName($routeParams.name)
     .then(function(response) {
