@@ -36,11 +36,13 @@
         <div class="row">
             <div class="col p-0">
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="pokemon" role="tabpanel" aria-labelledby="pokemon-tab">
+                    <div class="tab-pane fade" id="pokemon" role="tabpanel" aria-labelledby="pokemon-tab">
                         <stats-pokemon ng-if="ctrl.zoomPokemon === undefined"></stats-pokemon>
                         <stats-pokemon-zoom ng-if="ctrl.zoomPokemon !== undefined"></stats-pokemon-zoom>
                     </div>
-                    <div class="tab-pane fade" id="inventory" role="tabpanel" aria-labelledby="inventory-tab">INVENTORY</div>
+                    <div class="tab-pane fade show active" id="inventory" role="tabpanel" aria-labelledby="inventory-tab">
+                        <stats-inventory></stats-inventory>
+                    </div>
                     <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">MATCH</div>
                     <div class="tab-pane fade" id="achievements" role="tabpanel" aria-labelledby="achievements-tab">ACHIEVEMENTS</div>
                     <div class="tab-pane fade" id="creative" role="tabpanel" aria-labelledby="creative-tab">CREATIVE</div>

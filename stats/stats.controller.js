@@ -9,6 +9,8 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
 
     ctrl.contestRanks = [ "Normal", "Super", "Hyper", "Master" ];
     ctrl.contestAttributes = [ "Beauty", "Cool", "Cute", "Smart", "Tough" ];
+    ctrl.itemTypes = ["TM", "HM", "Berry", "Held", "Evolution", "Mega", "Form", "ZCrystal", "Fossil", "Other" ];
+    ctrl.itemTypesPretty = [ "TMs", "HMs", "Berries", "Held Items", "Evolution Items", "Mega Evolution Items", "Form Changing Items", "Z-Crystals", "Fossils", "Other Items" ];
 
     statsService.findByName($routeParams.name)
     .then(function(response) {
@@ -111,7 +113,18 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
         else return input;
     };
 
+    ctrl.hasItemOfType = function(itemType) {
+        for (var i = 0; i < ctrl.trainer.items.length; i++) {
+            var item = ctrl.trainer.items[i];
+            if (itemType == item.type) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }]);
+
 app.directive('statsPokemon', function() {
     return {
         restrict: 'E',
@@ -123,5 +136,12 @@ app.directive('statsPokemonZoom', function() {
     return {
         restrict: 'E',
         templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-pokemon-zoom.component.html'
+    }
+});
+
+app.directive('statsInventory', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-inventory.component.html'
     }
 });

@@ -126,6 +126,108 @@ app.service('statsService', ['userService', '$http', '$rootScope', '$q', functio
         "wins": 10,
         "losses": 10,
         "draws": 1,
+        "items": [
+            {
+                "name": "HM03 Surf",
+                "quantity": 1,
+                "type": "HM"
+              },
+              {
+                "name": "HM07 Waterfall",
+                "quantity": 1,
+                "type": "HM"
+              },
+              {
+                "name": "Air Balloon",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Expert Belt",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Iron Ball",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Leftovers",
+                "quantity": 3,
+                "type": "Held"
+              },
+              {
+                "name": "Life Orb",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Light Clay",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Rocky Helmet",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Toxic Orb",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Weakness Policy",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Heracronite",
+                "quantity": 1,
+                "type": "Mega"
+              },
+              {
+                "name": "Mawilite",
+                "quantity": 1,
+                "type": "Mega"
+              },
+              {
+                "name": "Medichamite",
+                "quantity": 1,
+                "type": "Mega"
+              },
+              {
+                "name": "Lum Berry",
+                "quantity": 1,
+                "type": "Berry"
+              },
+              {
+                "name": "Mega Ring",
+                "quantity": 1,
+                "type": "Other"
+              },
+              {
+                "name": "Cable Link",
+                "quantity": 1,
+                "type": "Other"
+              },
+              {
+                "name": "Iron Plate",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "TM Sludge Bomb",
+                "quantity": 1,
+                "type": "TM"
+              },
+              {
+                "name": "Normalium Z",
+                "quantity": 1,
+                "type": "ZCrystal"
+              }
+        ],
         "pokemon" : [
             {
                 "dbid": 1,

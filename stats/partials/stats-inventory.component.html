@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="card-columns">
+        <div class="card accentTag" ng-repeat="itemType in ctrl.itemTypes" ng-if="ctrl.hasItemOfType(itemType)">
+            <div class="card-body">
+                <div class="card-title">
+                    <strong>{{ ctrl.itemTypesPretty[$index] }}</strong>
+                </div>
+                <div class="card-text">
+                    <div class="row" ng-repeat="item in ctrl.trainer.items | filter: { type: itemType } | orderBy: 'name' as filteredItems">
+                        <div class="col-10">
+                            {{ item.name }}
+                        </div>
+                        <div class="col-2">
+                            {{ item.quantity }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
