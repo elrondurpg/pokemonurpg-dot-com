@@ -69,6 +69,11 @@
     border-left: 15px solid #009900;
 }
 
+.accentTagRed {
+    border: 1px solid #ced4da;
+    border-left: 15px solid #990000;
+}
+
 .accentTag.hoverable:hover {
     border-left: 15px solid #ab8f35;
 }

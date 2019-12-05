@@ -12,22 +12,19 @@
             <div class="col">
                 <ul class="nav nav-pills nav-fill">
                     <li class="nav-item">
-                        <a class="nav-link active" id="pokemon-tab" data-toggle="tab" href="#" data-target="#pokemon" role="tab" aria-controls="pokemon" aria-selected="true">POKEMON</a>
+                        <a class="nav-link" id="pokemon-tab" data-toggle="tab" href="#" data-target="#pokemon" role="tab" aria-controls="pokemon" aria-selected="true">POKEMON</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="inventory-tab" data-toggle="tab" href="#" data-target="#inventory" role="tab" aria-controls="inventory" aria-selected="false">INVENTORY</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="history-tab" data-toggle="tab" href="#" data-target="#history" role="tab" aria-controls="history" aria-selected="false">MATCH HISTORY</a>
+                        <a class="nav-link active" id="history-tab" data-toggle="tab" href="#" data-target="#history" role="tab" aria-controls="history" aria-selected="false">MATCH HISTORY</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="achievements-tab" data-toggle="tab" href="#" data-target="#achievements" role="tab" aria-controls="achievements" aria-selected="false">ACHIEVEMENTS</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="creative-tab" data-toggle="tab" href="#" data-target="#creative" role="tab" aria-controls="creative" aria-selected="false">CREATIVE WORKS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="wishlist-tab" data-toggle="tab" href="#" data-target="#wishlist" role="tab" aria-controls="pokemon" aria-selected="false">WISHLIST</a>
                     </li>
                 </ul>
             </div>
@@ -40,11 +37,15 @@
                         <stats-pokemon ng-if="ctrl.zoomPokemon === undefined"></stats-pokemon>
                         <stats-pokemon-zoom ng-if="ctrl.zoomPokemon !== undefined"></stats-pokemon-zoom>
                     </div>
-                    <div class="tab-pane fade show active" id="inventory" role="tabpanel" aria-labelledby="inventory-tab">
+                    <div class="tab-pane fade" id="inventory" role="tabpanel" aria-labelledby="inventory-tab">
                         <stats-inventory></stats-inventory>
                     </div>
-                    <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">MATCH</div>
-                    <div class="tab-pane fade" id="achievements" role="tabpanel" aria-labelledby="achievements-tab">ACHIEVEMENTS</div>
+                    <div class="tab-pane fade show active" id="history" role="tabpanel" aria-labelledby="history-tab">
+                        <stats-matches></stats-matches>
+                    </div>
+                    <div class="tab-pane fade" id="achievements" role="tabpanel" aria-labelledby="achievements-tab">
+                        <stats-achievements></stats-achievements>
+                    </div>
                     <div class="tab-pane fade" id="creative" role="tabpanel" aria-labelledby="creative-tab">CREATIVE</div>
                     <div class="tab-pane fade" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">WISHLIST</div>
                 </div>

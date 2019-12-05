@@ -145,3 +145,17 @@ app.directive('statsInventory', function() {
         templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-inventory.component.html'
     }
 });
+
+app.directive('statsMatches', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-matches.component.html'
+    }
+});
+
+app.directive('statsAchievements', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-achievements.component.html'
+    }
+});
