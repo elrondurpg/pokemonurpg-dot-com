@@ -22,8 +22,9 @@ span.type {
     color:#fff!important;
 }
 
-.type-box-25,.type-box-50 {
-    font-size:14px;
+.type-box-null, .type-box-0, .type-box-25,.type-box-50, .type-box-100, .type-box-200, .type-box-400 {
+    font-size:14px!important;
+    font-weight: 600;
 }
 
 .type-box-null {

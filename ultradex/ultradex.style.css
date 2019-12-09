@@ -68,8 +68,12 @@
     text-decoration: none;
 }
 
-.capture-info, .learnset h6, .learnset, .move-hints-inactive {
+.capture-info, .learnset h6, .move-hints-inactive {
     font-size: 12px;
+}
+
+.learnset, .progress-bar {
+    font-size: 14px;
 }
 
 .form-link:hover {
