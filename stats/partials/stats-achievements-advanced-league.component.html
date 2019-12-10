@@ -1,0 +1,62 @@
+<div class="row pt-2">
+    <div class="col text-center">
+        <h3>Advanced League</h3>
+    </div>
+</div>
+<div class="row justify-content-center align-items-center">
+    <div class="col-3 pt-3 col-md-1 text-center d-flex justify-content-center" ng-repeat="n in [].constructor(7) track by $index">
+        <a  href="{{ ctrl.trainer.achievements.advanced.badges[$index].url }}"
+            ng-if="ctrl.trainer.achievements.advanced.badges.length > $index">
+            <img    ng-src="{{ ctrl.getBadgeImage(ctrl.trainer.achievements.advanced.badges[$index].name) }}"
+                    class="pokemon-badge"
+                    height="40"
+                    width="40"
+                    title="Defeated {{ ctrl.trainer.achievements.advanced.badges[$index].leader }} on {{ ctrl.trainer.achievements.advanced.badges[$index].date }} to earn the {{ ctrl.trainer.achievements.advanced.badges[$index].name }} from {{ ctrl.trainer.achievements.advanced.badges[$index].gym }}"/>
+        </a>
+        <span ng-if="ctrl.trainer.achievements.advanced.badges === undefined || ctrl.trainer.achievements.advanced.badges == null || ctrl.trainer.achievements.advanced.badges.length <= $index">
+            &#x25CF;
+        </span>
+    </div>
+</div>
+<div class="row justify-content-center align-items-center">
+    <div class="col-3 pt-3 col-md-1 text-center d-flex justify-content-center" ng-repeat="n in [].constructor(7) track by $index">
+        <a  href="{{ ctrl.trainer.achievements.advanced.badges[$index + 7].url }}"
+            ng-if="ctrl.trainer.achievements.advanced.badges.length > $index + 7">
+            <img    ng-src="{{ ctrl.getBadgeImage(ctrl.trainer.achievements.advanced.badges[$index + 7].name) }}"
+                    class="pokemon-badge"
+                    height="40"
+                    width="40"
+                    title="Defeated {{ ctrl.trainer.achievements.advanced.badges[$index + 7].leader }} on {{ ctrl.trainer.achievements.advanced.badges[$index + 7].date }} to earn the {{ ctrl.trainer.achievements.advanced.badges[$index + 7].name }} from {{ ctrl.trainer.achievements.advanced.badges[$index + 7].gym }}"/>
+        </a>
+        <span ng-if="ctrl.trainer.achievements.advanced.badges === undefined || ctrl.trainer.achievements.advanced.badges == null || ctrl.trainer.achievements.advanced.badges.length <= $index + 7">
+            &#x25CF;
+        </span>
+    </div>
+</div>
+<div class="row pt-2">
+    <div class="col text-center">
+        <h6>BADGES</h6>
+    </div>
+</div>
+<div class="row pt-4 justify-content-center">
+    <a  href="{{ ctrl.trainer.achievements.advanced.champion.url }}"
+        ng-if="ctrl.trainer.achievements.advanced.champion !== undefined && ctrl.trainer.achievements.advanced.champion != null">
+        <img    src="{{ imageBase }}/info/battles/OrangeLeagueTrophy.gif"
+                height="40"
+                width="40"
+                title="Defeated {{ ctrl.trainer.achievements.advanced.champion.opponent }} on {{ ctrl.trainer.achievements.advanced.champion.startDate }}"/>
+    </a>
+    <span ng-if="ctrl.trainer.achievements.advanced.champion === undefined || ctrl.trainer.achievements.advanced.champion == null">
+        <h1>&#x25CF;</h1>
+    </span>
+</div>
+<div class="row pt-2">
+    <div class="col text-center">
+        <h6>CHAMPION</h6>
+    </div>
+</div>
+<div class="row" ng-if="ctrl.trainer.achievements.advanced.champion !== undefined">
+    <div class="col text-center">
+        <span>{{ ctrl.trainer.achievements.advanced.champion.startDate }}</span> - <span ng-if="ctrl.trainer.achievements.advanced.champion.endDate != ''">{{ ctrl.trainer.achievements.advanced.champion.endDate }}</span>
+    </div>
+</div>

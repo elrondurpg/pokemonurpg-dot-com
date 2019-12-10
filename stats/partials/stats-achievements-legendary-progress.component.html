@@ -1,0 +1,34 @@
+<div class="row pt-2">
+    <div class="col text-center">
+        <h3>Legendary Pokemon</h3>
+    </div>
+</div>
+<div class="row pt-2 justify-content-center align-items-end">
+    <div class="col-6 col-md-4 col-lg-3 text-center" ng-repeat="pokemon in ctrl.trainer.achievements.legendary.claimed">
+        <img ng-src="{{ iconBase }}{{ pokemon.dexno }}{{ ctrl.suffix(pokemon.displayName, pokemon.name) }}.png"/>
+        <h5 class="mb-0 pt-2">{{ pokemon.section }}</h5>
+        <h6><small>{{ pokemon.tier }}</small></h6>
+    </div>
+</div><div class="row pt-2">
+    <div class="col text-center">
+        <h3>Progress</h3>
+    </div>
+</div>
+<div class="row pt-2 justify-content-center" ng-repeat="pokemon in ctrl.trainer.achievements.legendary.unclaimed">
+    <div class="col col-lg-6">
+        <h5>{{ pokemon.section }}</h5>
+        <div class="progress my-1">
+            <div class="progress-bar" ng-class="ctrl.getLegendaryTierClass(pokemon.tier)" role="progressbar" style="width: 100%"></div>
+        </div>
+        <h6><small>{{ pokemon.tier }}: {{ pokemon.progress | currency : '$' : 0 }}/{{ pokemon.requirement | currency : '$' : 0 }}</small></h6>
+    </div>
+</div>
+<div class="row pt-2 justify-content-center" ng-repeat="pokemon in ctrl.trainer.achievements.legendary.unearned">
+    <div class="col col-lg-6">
+        <h5>{{ pokemon.section }}</h5>
+        <div class="progress my-1">
+            <div class="progress-bar" ng-class="ctrl.getLegendaryTierClass(pokemon.tier)" role="progressbar" style="width: {{ pokemon.progress / pokemon.requirement * 100 }}%"></div>
+        </div>
+        <h6><small>{{ pokemon.tier }}: {{ pokemon.progress | currency : '$' : 0 }}/{{ pokemon.requirement | currency : '$' : 0 }}</small></h6>
+    </div>
+</div>

@@ -80,6 +80,13 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
         return false;
     }
 
+    ctrl.getLegendaryTierClass = function(tier) {
+        if (tier.indexOf("Silver") != -1) {
+            return "silver";
+        }
+        else return "gold";
+    }
+
     ctrl.suffix = function(base, input) {
         if (input !== undefined) {
             if (input.toLowerCase().indexOf("ultra") != -1)
@@ -123,7 +130,21 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
         return false;
     }
 
+    ctrl.getBadgeImage = function(badgeName) {
+        badgeName = badgeName.toLowerCase();
+        badgeName = badgeName.replace(/\s/g, "-");
+        console.log(badgeName);
+        return $rootScope.imageBase + "/badges/" + badgeName + ".png";
+    }
+
 }]);
+
+app.directive('statsTrainer', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-trainer.component.html'
+    }
+});
 
 app.directive('statsPokemon', function() {
     return {
@@ -157,5 +178,26 @@ app.directive('statsAchievements', function() {
     return {
         restrict: 'E',
         templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-achievements.component.html'
+    }
+});
+
+app.directive('statsAchievementsNoviceLeague', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-achievements-novice-league.component.html'
+    }
+});
+
+app.directive('statsAchievementsAdvancedLeague', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-achievements-advanced-league.component.html'
+    }
+});
+
+app.directive('statsAchievementsLegendaryProgress', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-achievements-legendary-progress.component.html'
     }
 });

@@ -2,6 +2,25 @@
     background-color: #474747;
 }
 
+.accentTag {
+    border: 1px solid #ced4da;
+    border-left: 15px solid #0475ae;
+}
+
+.accentTagGreen {
+    border: 1px solid #ced4da;
+    border-left: 15px solid #009900;
+}
+
+.accentTagRed {
+    border: 1px solid #ced4da;
+    border-left: 15px solid #990000;
+}
+
+.accentTag.hoverable:hover {
+    border-left: 15px solid #ab8f35;
+}
+
 .btn-primary, .btn-primary:hover, .nav-link.active {
     background-color: #0475ae!important;
     border-color: #0475ae;
@@ -59,31 +78,27 @@
     background-color:#34495e;
 }
 
-.accentTag {
-    border: 1px solid #ced4da;
-    border-left: 15px solid #0475ae;
-}
-
-.accentTagGreen {
-    border: 1px solid #ced4da;
-    border-left: 15px solid #009900;
-}
-
-.accentTagRed {
-    border: 1px solid #ced4da;
-    border-left: 15px solid #990000;
-}
-
-.accentTag.hoverable:hover {
-    border-left: 15px solid #ab8f35;
-}
-
 .nav-link, .nav-link:hover {
     color: #0475ae;
 }
 
-.trainer-name {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif!important;
+.pokemon-badge {
+    flex: none;
+}
+
+.progress {
+    height: 20px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
+}
+
+.progress-bar.silver {
+    background: #e6f2ff;
+    border: 1px solid #99ccff;
+}
+
+.progress-bar.gold {
+    background:#ffe680;
+    border: 1px solid #ff9980;
 }
 
 span.type {
@@ -101,6 +116,10 @@ span.type {
     text-shadow:1px 1px 1px #4D4D4D;
     font-family:"Open Sans", Arial, Helvetica, sans-serif;
     margin: 1px;
+}
+
+.trainer-name {
+    font-family: "Open Sans", Arial, Helvetica, sans-serif!important;
 }
 
 .type.bug {
