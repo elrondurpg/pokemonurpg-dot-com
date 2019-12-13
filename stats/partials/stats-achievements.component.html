@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <div class="row pt-2 justify-content-center" ng-if="ctrl.trainer.achievements.legendary !== undefined">
+    <div class="row pt-2 justify-content-center" ng-if="ctrl.trainer.achievements.claimedLegendaries !== undefined || ctrl.trainer.achievements.unearnedLegendaries !== undefined">
         <div class="col-10 p-2 accentTag">
             <stats-achievements-legendary-progress></stats-achievements-legendary-progress>
         </div>

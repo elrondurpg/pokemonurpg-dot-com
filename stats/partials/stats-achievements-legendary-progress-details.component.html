@@ -1,0 +1,36 @@
+<div class="modal fade" id="{{record.section}}LegendModal" tabindex="-1" role="dialog" aria-labelledby="{{record.section}}LegendModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="{{record.section}}LegendModalLabel">Legendary Progress - {{record.section}}</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row pt-2">
+                        <div class="col-4">
+                            <h4>Date</h4>
+                        </div>
+                        <div class="col-4">
+                            <h4>Value</h4>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="log in record.logs | orderBy: 'date'">
+                        <div class="col-4">
+                            {{ log.date }}
+                        </div>
+                        <div class="col-4">
+                            {{ log.value | currency : '$' : 0 }}
+                        </div>
+                        <div class="col-4">
+                            <a ng-href="{{log.url}}">Link</a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

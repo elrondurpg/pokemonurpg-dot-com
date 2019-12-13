@@ -4,31 +4,29 @@
     </div>
 </div>
 <div class="row pt-2 justify-content-center align-items-end">
-    <div class="col-6 col-md-4 col-lg-3 text-center" ng-repeat="pokemon in ctrl.trainer.achievements.legendary.claimed">
+    <div class="col-6 col-md-4 col-lg-3 text-center" ng-repeat="pokemon in ctrl.trainer.achievements.claimedLegendaries">
         <img ng-src="{{ iconBase }}{{ pokemon.dexno }}{{ ctrl.suffix(pokemon.displayName, pokemon.name) }}.png"/>
         <h5 class="mb-0 pt-2">{{ pokemon.section }}</h5>
-        <h6><small>{{ pokemon.tier }}</small></h6>
+        <h6><small>Tier {{ pokemon.tier }}</small></h6>
     </div>
 </div><div class="row pt-2">
     <div class="col text-center">
         <h3>Progress</h3>
     </div>
 </div>
-<div class="row pt-2 justify-content-center" ng-repeat="pokemon in ctrl.trainer.achievements.legendary.unclaimed">
-    <div class="col col-lg-6">
-        <h5>{{ pokemon.section }}</h5>
+<div class="row justify-content-center" ng-repeat="record in ctrl.trainer.achievements.unearnedLegendaries">
+    <div class="col-7 pt-2">
+        <h5 class="d-inline">{{ record.section }}</h5> - <a href="#" data-toggle="modal" data-target="#{{record.section}}LegendModal" >View Details</a>
         <div class="progress my-1">
-            <div class="progress-bar" ng-class="ctrl.getLegendaryTierClass(pokemon.tier)" role="progressbar" style="width: 100%"></div>
+            <div class="progress-bar silver" role="progressbar" style="width: {{ ctrl.getLegendaryProgressPercent(record, 2) }}%"></div>
         </div>
-        <h6><small>{{ pokemon.tier }}: {{ pokemon.progress | currency : '$' : 0 }}/{{ pokemon.requirement | currency : '$' : 0 }}</small></h6>
+        <h6><small>Tier 2: {{ ctrl.getLegendaryProgressString(record, record.requirementTier2) }}</small></h6>
     </div>
-</div>
-<div class="row pt-2 justify-content-center" ng-repeat="pokemon in ctrl.trainer.achievements.legendary.unearned">
-    <div class="col col-lg-6">
-        <h5>{{ pokemon.section }}</h5>
+    <div class="col-7 pt-2">
         <div class="progress my-1">
-            <div class="progress-bar" ng-class="ctrl.getLegendaryTierClass(pokemon.tier)" role="progressbar" style="width: {{ pokemon.progress / pokemon.requirement * 100 }}%"></div>
+            <div class="progress-bar gold" role="progressbar" style="width: {{ ctrl.getLegendaryProgressPercent(record, 1) }}%"></div>
         </div>
-        <h6><small>{{ pokemon.tier }}: {{ pokemon.progress | currency : '$' : 0 }}/{{ pokemon.requirement | currency : '$' : 0 }}</small></h6>
+        <h6><small>Tier 1: {{ ctrl.getLegendaryProgressString(record, record.requirementTier1) }}</small></h6>
     </div>
+    <stats-achievements-legendary-progress-details></stats-achievements-legendary-progress-details>
 </div>

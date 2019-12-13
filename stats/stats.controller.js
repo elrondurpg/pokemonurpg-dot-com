@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$rootScope', '$location', '$window', '$anchorScroll', function(statsService, typeService, $routeParams, $rootScope, $location, $window, $anchorScroll) {
+app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$rootScope', '$location', '$window', '$anchorScroll', '$filter', function(statsService, typeService, $routeParams, $rootScope, $location, $window, $anchorScroll, $filter) {
     var ctrl = this;
 
     ctrl.pokemonFilterByName = "";
@@ -80,11 +80,33 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
         return false;
     }
 
-    ctrl.getLegendaryTierClass = function(tier) {
-        if (tier.indexOf("Silver") != -1) {
-            return "silver";
+    ctrl.getLegendaryProgressPercent = function(record, tier) {
+        if (tier == 1) {
+            return record.progress / record.requirementTier1 * 100;
         }
-        else return "gold";
+        else {
+            return record.progress / record.requirementTier2 * 100;
+        }
+    }
+
+    ctrl.getLegendaryProgressString = function(record, requirement) {
+        if (record.section == "Reffing" || record.section == "Judging" ||
+            record.section == "Art" || record.section == "Curating" ||
+            record.section == "Writing" || record.section == "Grading" || record.section == "Ranger") {
+            return $filter('currency')(record.progress, '$', 0) + "/" + $filter('currency')(requirement, '$', 0);
+        }
+        else if (record.section == "Contests") {
+            return record.progress + "/" + requirement + " Master ribbons";
+        }
+        else if (record.section == "National Park") {
+            return record.progress + "/" + requirement + " characters";
+        }
+        else if (record.section == "Legend Defender") {
+            return record.progress + "/" + requirement + " wins";
+        }
+        else if (record.section == "Morphic") {
+            return record.progress + "/" + requirement + " posts";
+        }
     }
 
     ctrl.suffix = function(base, input) {
@@ -133,7 +155,6 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
     ctrl.getBadgeImage = function(badgeName) {
         badgeName = badgeName.toLowerCase();
         badgeName = badgeName.replace(/\s/g, "-");
-        console.log(badgeName);
         return $rootScope.imageBase + "/badges/" + badgeName + ".png";
     }
 
@@ -199,5 +220,12 @@ app.directive('statsAchievementsLegendaryProgress', function() {
     return {
         restrict: 'E',
         templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-achievements-legendary-progress.component.html'
+    }
+});
+
+app.directive('statsAchievementsLegendaryProgressDetails', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-achievements-legendary-progress-details.component.html'
     }
 });
