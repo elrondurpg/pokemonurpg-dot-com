@@ -122,10 +122,229 @@ app.service('statsService', ['userService', '$http', '$rootScope', '$q', functio
 
     service.dummy = {
         "name": "Elrond",
+        "joinDate": "07/15/2007",
         "money": 10000,
+        "roles": [
+            "URPG Staff", "Game Design", "Lead Grader", "Referee", "Judge", "Curator", "Head of Technology"
+        ],
         "wins": 10,
         "losses": 10,
         "draws": 1,
+        "achievements": {
+            "novice": {
+                "badges": [
+                    {
+                        "gym": "Sunyshore Gym",
+                        "name": "Beacon Badge",
+                        "leader": "Elrond",
+                        "url": "https://pokemonurpg.com/stats/elrond",
+                        "date": "11/30/2019"
+                    },
+                    {
+                        "gym": "Fuchsia Gym",
+                        "name": "Soul Badge",
+                        "leader": "Elrond",
+                        "url": "https://pokemonurpg.com/stats/elrond",
+                        "date": "10/03/2019"
+                    }
+                ],
+                "champion": {
+                    "startDate": "12/05/2019",
+                    "endDate": "12/30/2019",
+                    "url": "https://pokemonurpg.com/stats/elrond",
+                    "opponent": "Elrond"
+                }
+            },
+            "advanced": {
+                "badges": [
+                    {
+                        "gym": "Sunyshore Gym",
+                        "name": "Beacon Badge",
+                        "leader": "Elrond",
+                        "url": "https://pokemonurpg.com/stats/elrond",
+                        "date": "11/30/2019"
+                    },
+                    {
+                        "gym": "Fuchsia Gym",
+                        "name": "Soul Badge",
+                        "leader": "Elrond",
+                        "url": "https://pokemonurpg.com/stats/elrond",
+                        "date": "10/03/2019"
+                    }
+                ],
+                "champion": {
+                    "startDate": "12/05/2019",
+                    "endDate": "12/30/2019",
+                    "url": "https://pokemonurpg.com/stats/elrond",
+                    "opponent": "Elrond"
+                }
+            },
+            "claimedLegendaries": [
+                {
+                    "section": "Art",
+                    "tier": 2,
+                    "name": "Manaphy",
+                    "displayName": "Manaphy",
+                    "dexno": 490,
+                    "nickname": "Sidon's Prince",
+                    "date": "12/09/2019"
+                }
+            ],
+            "unearnedLegendaries": [
+                {
+                    "section": "Art",
+                    "progress": 225000,
+                    "requirementTier1": 500000,
+                    "requirementTier2": 375000,
+                    "logs": [
+                        "https://pokemonurpg.com",
+                        "https://pokemonurpg.com/stats/elrond"
+                    ]
+                },
+                {
+                    "section": "Reffing",
+                    "progress": 250000,
+                    "requirementTier1": 1000000,
+                    "requirementTier2": 500000,
+                    "logs": [
+                        "https://pokemonurpg.com",
+                        "https://pokemonurpg.com/stats/elrond"
+                    ]
+                },
+                {
+                    "section": "Judging",
+                    "progress": 50000,
+                    "requirementTier1": 1000000,
+                    "requirementTier2": 500000,
+                    "logs": [
+                        "https://pokemonurpg.com",
+                        "https://pokemonurpg.com/stats/elrond"
+                    ]
+                },
+                {
+                    "section": "Grading",
+                    "progress": 50000,
+                    "requirementTier1": 500000,
+                    "requirementTier2": 250000,
+                    "logs": [
+                        "https://pokemonurpg.com",
+                        "https://pokemonurpg.com/stats/elrond"
+                    ]
+                },
+                {
+                    "section": "Curating",
+                    "progress": 200000,
+                    "requirementTier1": 500000,
+                    "requirementTier2": 250000,
+                    "logs": [
+                        "https://pokemonurpg.com",
+                        "https://pokemonurpg.com/stats/elrond"
+                    ]
+                }
+            ]
+        },
+        "items": [
+            {
+                "name": "HM03 Surf",
+                "quantity": 1,
+                "type": "HM"
+              },
+              {
+                "name": "HM07 Waterfall",
+                "quantity": 1,
+                "type": "HM"
+              },
+              {
+                "name": "Air Balloon",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Expert Belt",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Iron Ball",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Leftovers",
+                "quantity": 3,
+                "type": "Held"
+              },
+              {
+                "name": "Life Orb",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Light Clay",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Rocky Helmet",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Toxic Orb",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Weakness Policy",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "Heracronite",
+                "quantity": 1,
+                "type": "Mega"
+              },
+              {
+                "name": "Mawilite",
+                "quantity": 1,
+                "type": "Mega"
+              },
+              {
+                "name": "Medichamite",
+                "quantity": 1,
+                "type": "Mega"
+              },
+              {
+                "name": "Lum Berry",
+                "quantity": 1,
+                "type": "Berry"
+              },
+              {
+                "name": "Mega Ring",
+                "quantity": 1,
+                "type": "Other"
+              },
+              {
+                "name": "Cable Link",
+                "quantity": 1,
+                "type": "Other"
+              },
+              {
+                "name": "Iron Plate",
+                "quantity": 1,
+                "type": "Held"
+              },
+              {
+                "name": "TM Sludge Bomb",
+                "quantity": 1,
+                "type": "TM"
+              },
+              {
+                "name": "Normalium Z",
+                "quantity": 1,
+                "type": "ZCrystal"
+              }
+        ],
         "pokemon" : [
             {
                 "dbid": 1,

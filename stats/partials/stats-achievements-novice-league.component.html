@@ -1,0 +1,52 @@
+<div class="row pt-2">
+    <div class="col text-center">
+        <h3>Novice League</h3>
+    </div>
+</div>
+<div class="row pt-3 d-none d-md-flex">
+    <div class="col">
+        &nbsp;
+    </div>
+</div>
+<div class="row pt-3 justify-content-center align-items-center">
+    <div class="col-3 col-md-1 text-center d-flex justify-content-center" ng-repeat="n in [].constructor(8) track by $index">
+        <a  href="{{ ctrl.trainer.achievements.novice.badges[$index].url }}"
+            ng-if="ctrl.trainer.achievements.novice.badges.length > $index">
+            <img    ng-src="{{ ctrl.getBadgeImage(ctrl.trainer.achievements.novice.badges[$index].name) }}"
+                    class="pokemon-badge"
+                    height="40"
+                    width="40"
+                    title="Defeated {{ ctrl.trainer.achievements.novice.badges[$index].leader }} on {{ ctrl.trainer.achievements.novice.badges[$index].date }} to earn the {{ ctrl.trainer.achievements.novice.badges[$index].name }} from {{ ctrl.trainer.achievements.novice.badges[$index].gym }}"/>
+        </a>
+        <span ng-if="ctrl.trainer.achievements.novice.badges === undefined || ctrl.trainer.achievements.novice.badges == null || ctrl.trainer.achievements.novice.badges.length <= $index">
+            &#x25CF;
+        </span>
+    </div>
+</div>
+<div class="row pt-2">
+    <div class="col text-center">
+        <h6>BADGES</h6>
+    </div>
+</div>
+<div class="row pt-4 justify-content-center">
+    <a  href="{{ ctrl.trainer.achievements.novice.champion.url }}"
+        ng-if="ctrl.trainer.achievements.novice.champion !== undefined && ctrl.trainer.achievements.novice.champion != null">
+        <img    src="{{ imageBase }}/info/battles/OrangeLeagueTrophy.gif"
+                height="40"
+                width="40"
+                title="Defeated {{ ctrl.trainer.achievements.novice.champion.opponent }} on {{ ctrl.trainer.achievements.novice.champion.startDate }}"/>
+    </a>
+    <span ng-if="ctrl.trainer.achievements.novice.champion === undefined || ctrl.trainer.achievements.novice.champion == null">
+        <h1>&#x25CF;</h1>
+    </span>
+</div>
+<div class="row pt-2">
+    <div class="col text-center">
+        <h6>CHAMPION</h6>
+    </div>
+</div>
+<div class="row" ng-if="ctrl.trainer.achievements.novice.champion !== undefined && ctrl.trainer.achievements.novice.champion != null">
+    <div class="col text-center">
+        <span>{{ ctrl.trainer.achievements.novice.champion.startDate }}</span> - <span ng-if="ctrl.trainer.achievements.novice.champion.endDate != ''">{{ ctrl.trainer.achievements.novice.champion.endDate }}</span>
+    </div>
+</div>

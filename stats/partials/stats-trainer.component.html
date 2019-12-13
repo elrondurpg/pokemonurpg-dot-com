@@ -1,0 +1,10 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-6 p-2 accentTag">
+            <h4>{{ ctrl.trainer.name }}</h4>
+            <h6><strong>Member Since</strong>: <small>{{ ctrl.trainer.joinDate }}</small></h6>
+            <h6><strong>Money</strong>: <small>{{ ctrl.trainer.money | currency : '$' : 0 }}</small></h6>
+            <h6><strong>Roles</strong>: <small ng-repeat="role in ctrl.trainer.roles">{{ !$last ? role + ", " : role }}</small></h6>
+        </div>
+    </div>
+</div>

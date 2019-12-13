@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$rootScope', '$location', '$window', '$anchorScroll', function(statsService, typeService, $routeParams, $rootScope, $location, $window, $anchorScroll) {
+app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$rootScope', '$location', '$window', '$anchorScroll', '$filter', function(statsService, typeService, $routeParams, $rootScope, $location, $window, $anchorScroll, $filter) {
     var ctrl = this;
 
     ctrl.pokemonFilterByName = "";
@@ -9,6 +9,8 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
 
     ctrl.contestRanks = [ "Normal", "Super", "Hyper", "Master" ];
     ctrl.contestAttributes = [ "Beauty", "Cool", "Cute", "Smart", "Tough" ];
+    ctrl.itemTypes = [ "Held", "TM", "HM", "Berry", "Evolution", "Mega", "Form", "ZCrystal", "Fossil", "Other" ];
+    ctrl.itemTypesPretty = [ "Held Items", "Technical Machines", "Hidden Machines", "Berries", "Evolution Items", "Mega Evolution Items", "Form Changing Items", "Z-Crystals", "Fossils", "Other Items" ];
 
     statsService.findByName($routeParams.name)
     .then(function(response) {
@@ -78,6 +80,35 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
         return false;
     }
 
+    ctrl.getLegendaryProgressPercent = function(record, tier) {
+        if (tier == 1) {
+            return record.progress / record.requirementTier1 * 100;
+        }
+        else {
+            return record.progress / record.requirementTier2 * 100;
+        }
+    }
+
+    ctrl.getLegendaryProgressString = function(record, requirement) {
+        if (record.section == "Reffing" || record.section == "Judging" ||
+            record.section == "Art" || record.section == "Curating" ||
+            record.section == "Writing" || record.section == "Grading" || record.section == "Ranger") {
+            return $filter('currency')(record.progress, '$', 0) + "/" + $filter('currency')(requirement, '$', 0);
+        }
+        else if (record.section == "Contests") {
+            return record.progress + "/" + requirement + " Master ribbons";
+        }
+        else if (record.section == "National Park") {
+            return record.progress + "/" + requirement + " characters";
+        }
+        else if (record.section == "Legend Defender") {
+            return record.progress + "/" + requirement + " wins";
+        }
+        else if (record.section == "Morphic") {
+            return record.progress + "/" + requirement + " posts";
+        }
+    }
+
     ctrl.suffix = function(base, input) {
         if (input !== undefined) {
             if (input.toLowerCase().indexOf("ultra") != -1)
@@ -111,7 +142,31 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
         else return input;
     };
 
+    ctrl.hasItemOfType = function(itemType) {
+        for (var i = 0; i < ctrl.trainer.items.length; i++) {
+            var item = ctrl.trainer.items[i];
+            if (itemType == item.type) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    ctrl.getBadgeImage = function(badgeName) {
+        badgeName = badgeName.toLowerCase();
+        badgeName = badgeName.replace(/\s/g, "-");
+        return $rootScope.imageBase + "/badges/" + badgeName + ".png";
+    }
+
 }]);
+
+app.directive('statsTrainer', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-trainer.component.html'
+    }
+});
+
 app.directive('statsPokemon', function() {
     return {
         restrict: 'E',
@@ -123,5 +178,54 @@ app.directive('statsPokemonZoom', function() {
     return {
         restrict: 'E',
         templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-pokemon-zoom.component.html'
+    }
+});
+
+app.directive('statsInventory', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-inventory.component.html'
+    }
+});
+
+app.directive('statsMatches', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-matches.component.html'
+    }
+});
+
+app.directive('statsAchievements', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-achievements.component.html'
+    }
+});
+
+app.directive('statsAchievementsNoviceLeague', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-achievements-novice-league.component.html'
+    }
+});
+
+app.directive('statsAchievementsAdvancedLeague', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-achievements-advanced-league.component.html'
+    }
+});
+
+app.directive('statsAchievementsLegendaryProgress', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-achievements-legendary-progress.component.html'
+    }
+});
+
+app.directive('statsAchievementsLegendaryProgressDetails', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-achievements-legendary-progress-details.component.html'
     }
 });

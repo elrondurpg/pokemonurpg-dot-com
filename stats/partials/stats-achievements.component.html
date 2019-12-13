@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-5 p-2 accentTag">
+            <stats-achievements-novice-league></stats-achievements-novice-league>
+        </div>
+        <div class="col-10 col-md-5 mt-2 mt-md-0 ml-md-2 p-2 accentTag">
+            <stats-achievements-advanced-league></stats-achievements-advanced-league>
+        </div>
+    </div>
+
+    <div class="row pt-2 justify-content-center" ng-if="ctrl.trainer.achievements.claimedLegendaries !== undefined || ctrl.trainer.achievements.unearnedLegendaries !== undefined">
+        <div class="col-10 p-2 accentTag">
+            <stats-achievements-legendary-progress></stats-achievements-legendary-progress>
+        </div>
+    </div>
+</div>

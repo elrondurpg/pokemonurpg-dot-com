@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-6 p-2 text-center accentTagGreen">
+            <strong>Money</strong>: {{ ctrl.trainer.money | currency : '$' : 0 }}
+        </div>
+    </div>
+    <div class="card-columns py-3" ng-if="ctrl.trainer.items !== undefined && ctrl.trainer.items.length > 0">
+        <div class="card accentTag" ng-repeat="itemType in ctrl.itemTypes" ng-if="ctrl.hasItemOfType(itemType)">
+            <div class="card-body">
+                <div class="card-title">
+                    <strong>{{ ctrl.itemTypesPretty[$index] }}</strong>
+                </div>
+                <div class="card-text">
+                    <div class="row" ng-repeat="item in ctrl.trainer.items | filter: { type: itemType } | orderBy: 'name' as filteredItems">
+                        <div class="col-10">
+                            {{ item.name }}
+                        </div>
+                        <div class="col-2">
+                            {{ item.quantity }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-2" ng-if="ctrl.trainer.items === undefined">
+        <div class="col">
+            <strong>... LOADING ...</strong>
+            <p>If this message does not go away, please contact a system administrator.</p>
+        </div>
+    </div>
+    <div class="row py-2" ng-if="ctrl.trainer.items !== undefined && ctrl.trainer.items.length == 0">
+        <div class="col justify-content-center">
+            <p>This trainer has no items.</p>
+        </div>
+    </div>
+</div>
