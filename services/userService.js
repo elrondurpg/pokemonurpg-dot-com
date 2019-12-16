@@ -1,6 +1,6 @@
 'use strict';
 
-app.service('userService', ['$http', '$rootScope', '$window', function($http, $rootScope, $window){
+app.service('userService', ['$http', '$rootScope', '$window', '$q', function($http, $rootScope, $window, $q){
 
     var service = this;
 
@@ -51,6 +51,7 @@ app.service('userService', ['$http', '$rootScope', '$window', function($http, $r
             if (response != undefined && response.status == 200) {
                 if (response.data !== undefined && response.data != '')
                 {
+                    service.user = response.data;
                     return response.data;
                 }
             }

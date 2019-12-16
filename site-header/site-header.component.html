@@ -11,14 +11,15 @@
 			<li class="nav-item d-none d-sm-block">
 				<a class="nav-link" href="https://discord.gg/9HWgp95">Discord</a>
 			</li>
-			<li class="nav-item d-block d-sm-none text-secondary" ng-if="ctrl.user != ''">
-				{{ ctrl.user }}
+			<li class="nav-item d-block d-sm-none text-secondary" ng-if="username != ''">
+				{{ username }}
 			</li>
-			<li class="nav-item dropdown d-none d-sm-block" ng-if="ctrl.user != ''">
+			<li class="nav-item dropdown d-none d-sm-block" ng-if="username != ''">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					{{ ctrl.user }}
+					{{ username }}
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="/stats/{{ username }}">My Stats</a>
 					<a class="dropdown-item" href="/dashboard" target="_self">My Dashboard</a>
 					<a class="dropdown-item" href="/wp/wp-login.php" target="_self">Wordpress Login</a>
 					<div class="dropdown-divider"></div>
@@ -26,7 +27,7 @@
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal" ng-if="ctrl.user == ''">Login</a>
+				<a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal" ng-if="username == ''">Login</a>
 			</li>
 		</ul>
 		<form class="form-inline my-2 my-lg-0 d-none d-lg-block">

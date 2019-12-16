@@ -1,4 +1,4 @@
-app.controller('headerCtrl', [ 'userService', '$window', function(userService, $window) {
+app.controller('headerCtrl', [ 'userService', '$window', '$rootScope', function(userService, $window, $rootScope) {
 	var ctrl = this;
 
     ctrl.loginDto = { };
@@ -20,9 +20,8 @@ app.controller('headerCtrl', [ 'userService', '$window', function(userService, $
     ctrl.load = function() {
         userService.getUser().then(function(response) {
             if (response !== undefined && response != null && response != '') {
-                ctrl.user = response;
+                $rootScope.username = response;
             }
-            else ctrl.user = '';
         });
     }
 
@@ -56,13 +55,6 @@ app.directive('loginModal', function() {
     return {
         restrict: 'E',
         templateUrl: "/pokemonurpg-dot-com/site-header/modals/login-modal.component.html"
-    };
-});
-
-app.directive('userToolbarDropdown', function() {
-    return {
-        restrict: 'E',
-        templateUrl: "/pokemonurpg-dot-com/site-header/modals/user-toolbar-dropdown.component.html"
     };
 });
 

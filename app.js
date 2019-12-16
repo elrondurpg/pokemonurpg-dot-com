@@ -49,6 +49,7 @@ app.run(function($rootScope, $location, $anchorScroll) {
     $rootScope.title = "Pokemon URPG Infohub";
 	$rootScope.webHost = "http://localhost";
 	$rootScope.serviceHost = "http://localhost:8080";
+	$rootScope.username = "";
 
 	$rootScope.imageBase = "https://pokemonurpg.com/img";
 	$rootScope.spriteBase = $rootScope.imageBase + "/sprites/";

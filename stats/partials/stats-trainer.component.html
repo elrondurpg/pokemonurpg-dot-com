@@ -1,10 +1,47 @@
 <div class="container-fluid">
+    <div class="row justify-content-center" ng-if="username == ctrl.trainer.name">
+        <button type="button" class="btn btn-primary" ng-click="ctrl.save()">Save</button>
+    </div>
+
     <div class="row justify-content-center">
-        <div class="col-10 col-md-6 p-2 accentTag">
-            <h4>{{ ctrl.trainer.name }}</h4>
-            <h6><strong>Member Since</strong>: <small>{{ ctrl.trainer.joinDate }}</small></h6>
-            <h6><strong>Money</strong>: <small>{{ ctrl.trainer.money | currency : '$' : 0 }}</small></h6>
-            <h6><strong>Roles</strong>: <small ng-repeat="role in ctrl.trainer.roles">{{ !$last ? role + ", " : role }}</small></h6>
+        <div class="col-10 col-md-6 p-2 m-2 accentTag">
+
+            <div class="row">
+                <div class="col">
+                    <h4>{{ ctrl.trainer.name }}</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span ng-if="username != ctrl.trainer.name">
+                        <h6 class="d-inline"><strong>Member Since</strong></h6>: {{ ctrl.trainer.joinDate }}
+                    </span>
+                    <span ng-if="username == ctrl.trainer.name">
+                        <h6 class="d-inline"><strong>Member Since</strong></h6>:
+                        <input type="text" class="form-control d-inline undecorated" ng-model="ctrl.trainer.joinDate">
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span ng-if="username != ctrl.trainer.name">
+                        <h6 class="d-inline"><strong>Money</strong></h6>: {{ ctrl.trainer.money | currency : '$' : 0 }}
+                    </span>
+                    <span ng-if="username == ctrl.trainer.name">
+                        <h6 class="d-inline"><strong>Money</strong></h6>:
+                        <input type="text" class="form-control d-inline undecorated" ng-model="ctrl.trainer.money">
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <h6><strong>Roles</strong>: <small ng-repeat="role in ctrl.trainer.roles">{{ !$last ? role + ", " : role }}</small></h6>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

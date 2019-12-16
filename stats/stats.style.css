@@ -37,6 +37,13 @@
     }
 }
 
+.form-control.d-inline {
+    width: auto;
+    min-width: 0;
+    padding: 0;
+    text-align: center;
+}
+
 .form-control.undecorated {
     border: none;
     border-bottom: 2px solid #ced4da;

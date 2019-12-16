@@ -25,10 +25,15 @@
     }
 
     function createSessionDto() {
+        $username = '';
         $id = '';
         $accessToken = '';
         $refreshToken = '';
         if (isset($_SESSION)) {
+            if (array_key_exists('username', $_SESSION)) {
+                $username = $_SESSION['username'];
+            }
+
             if (array_key_exists('id', $_SESSION)) {
                 $id = $_SESSION['id'];
             }
@@ -43,6 +48,7 @@
         }
 
         $session = (object) [
+            'username' => $username,
             'id' => $id,
             'accessToken' => $accessToken,
             'refreshToken' => $refreshToken

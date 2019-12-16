@@ -1,6 +1,8 @@
 'use strict';
 
-app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$rootScope', '$location', '$window', '$anchorScroll', '$filter', function(statsService, typeService, $routeParams, $rootScope, $location, $window, $anchorScroll, $filter) {
+app.controller('statsCtrl', ['statsService', 'typeService', 'userService', '$routeParams', '$rootScope', '$location', '$window', '$anchorScroll', '$filter',
+    function(statsService, typeService, userService, $routeParams, $rootScope, $location, $window, $anchorScroll, $filter) {
+
     var ctrl = this;
 
     ctrl.pokemonFilterByName = "";
@@ -14,9 +16,10 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
 
     statsService.findByName($routeParams.name)
     .then(function(response) {
-        console.log(response);
         if (response.status == 200) {
+            console.log(response.data);
             ctrl.trainer = response.data;
+            ctrl.savedName = ctrl.trainer.name;
             $rootScope.title = ctrl.trainer.name + "'s Stats";
 
             ctrl.loaded = true;
@@ -47,13 +50,26 @@ app.controller('statsCtrl', ['statsService', 'typeService', '$routeParams', '$ro
         else {
             statsService.findOwnedPokemonByDbid(dbid)
             .then(function(response) {
-                console.log(response);
                 if (response.status == 200) {
                     ctrl.zoomPokemon = response.data;
                     ctrl.loadedPokemon[dbid] = ctrl.zoomPokemon;
                 }
             });
         }
+    }
+
+    ctrl.save = function() {
+        statsService.updateStats(ctrl.trainer, ctrl.savedName)
+        .success(
+            function(response) {
+                $window.location.assign('/stats/' + ctrl.trainer.name);
+            }
+        )
+        .error(
+            function(response) {
+                ctrl.error = response.data;
+            }
+        );
     }
 
     ctrl.getRibbonQuantity = function(attribute, rank) {

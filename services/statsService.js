@@ -39,6 +39,20 @@ app.service('statsService', ['userService', '$http', '$rootScope', '$q', functio
         }
     }
 
+    service.updateStats = function(payload, trainerName) {
+        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/stats/" + trainerName, payload)
+        .success(
+            function (response) {
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
+            }
+        );
+    }
+
     service.dummyPokemon = {
         "dbid": 11,
         "dexno": 25,
@@ -122,7 +136,7 @@ app.service('statsService', ['userService', '$http', '$rootScope', '$q', functio
 
     service.dummy = {
         "name": "Elrond",
-        "joinDate": "07/15/2007",
+        "joinDate": "07-15-2007",
         "money": 10000,
         "roles": [
             "URPG Staff", "Game Design", "Lead Grader", "Referee", "Judge", "Curator", "Head of Technology"
@@ -197,8 +211,16 @@ app.service('statsService', ['userService', '$http', '$rootScope', '$q', functio
                     "requirementTier1": 500000,
                     "requirementTier2": 375000,
                     "logs": [
-                        "https://pokemonurpg.com",
-                        "https://pokemonurpg.com/stats/elrond"
+                        {
+                            "url": "pokemonurpg.com",
+                            "value": 10000,
+                            "date": "2019-12-01"
+                        },
+                        {
+                            "url": "pokemonurpg.com",
+                            "value": 20000,
+                            "date": "2019-12-02"
+                        }
                     ]
                 },
                 {
@@ -207,8 +229,16 @@ app.service('statsService', ['userService', '$http', '$rootScope', '$q', functio
                     "requirementTier1": 1000000,
                     "requirementTier2": 500000,
                     "logs": [
-                        "https://pokemonurpg.com",
-                        "https://pokemonurpg.com/stats/elrond"
+                        {
+                            "url": "pokemonurpg.com",
+                            "value": 10000,
+                            "date": "2019-12-01"
+                        },
+                        {
+                            "url": "pokemonurpg.com",
+                            "value": 20000,
+                            "date": "2019-12-02"
+                        }
                     ]
                 },
                 {
@@ -217,8 +247,16 @@ app.service('statsService', ['userService', '$http', '$rootScope', '$q', functio
                     "requirementTier1": 1000000,
                     "requirementTier2": 500000,
                     "logs": [
-                        "https://pokemonurpg.com",
-                        "https://pokemonurpg.com/stats/elrond"
+                        {
+                            "url": "pokemonurpg.com",
+                            "value": 10000,
+                            "date": "2019-12-01"
+                        },
+                        {
+                            "url": "pokemonurpg.com",
+                            "value": 20000,
+                            "date": "2019-12-02"
+                        }
                     ]
                 },
                 {
@@ -227,8 +265,16 @@ app.service('statsService', ['userService', '$http', '$rootScope', '$q', functio
                     "requirementTier1": 500000,
                     "requirementTier2": 250000,
                     "logs": [
-                        "https://pokemonurpg.com",
-                        "https://pokemonurpg.com/stats/elrond"
+                        {
+                            "url": "pokemonurpg.com",
+                            "value": 10000,
+                            "date": "2019-12-01"
+                        },
+                        {
+                            "url": "pokemonurpg.com",
+                            "value": 20000,
+                            "date": "2019-12-02"
+                        }
                     ]
                 },
                 {
@@ -237,8 +283,16 @@ app.service('statsService', ['userService', '$http', '$rootScope', '$q', functio
                     "requirementTier1": 500000,
                     "requirementTier2": 250000,
                     "logs": [
-                        "https://pokemonurpg.com",
-                        "https://pokemonurpg.com/stats/elrond"
+                        {
+                            "url": "pokemonurpg.com",
+                            "value": 10000,
+                            "date": "2019-12-01"
+                        },
+                        {
+                            "url": "pokemonurpg.com",
+                            "value": 20000,
+                            "date": "2019-12-02"
+                        }
                     ]
                 }
             ]
