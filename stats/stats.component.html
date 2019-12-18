@@ -10,9 +10,9 @@
         <hr/>
         <div class="row">
             <div class="col">
-                <ul class="nav nav-pills nav-fill">
+                <ul class="nav nav-pills justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link active" id="trainer-tab" data-toggle="tab" href="#" data-target="#trainer" role="tab" aria-controls="trainer" aria-selected="false">TRAINER CARD</a>
+                        <a class="nav-link" id="trainer-tab" data-toggle="tab" href="#" data-target="#trainer" role="tab" aria-controls="trainer" aria-selected="false">TRAINER CARD</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pokemon-tab" data-toggle="tab" href="#" data-target="#pokemon" role="tab" aria-controls="pokemon" aria-selected="true">POKEMON</a>
@@ -26,6 +26,9 @@
                     <li class="nav-item">
                         <a class="nav-link" id="achievements-tab" data-toggle="tab" href="#" data-target="#achievements" role="tab" aria-controls="achievements" aria-selected="false">ACHIEVEMENTS</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="logs-tab" data-toggle="tab" href="#" data-target="#logs" role="tab" aria-controls="logs" aria-selected="false">CHANGE LOG</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -33,7 +36,7 @@
         <div class="row">
             <div class="col p-0">
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="trainer" role="tabpanel" aria-labelledby="trainer-tab">
+                    <div class="tab-pane fade" id="trainer" role="tabpanel" aria-labelledby="trainer-tab">
                         <stats-trainer></stats-trainer>
                     </div>
                     <div class="tab-pane fade" id="pokemon" role="tabpanel" aria-labelledby="pokemon-tab">
@@ -48,6 +51,9 @@
                     </div>
                     <div class="tab-pane fade" id="achievements" role="tabpanel" aria-labelledby="achievements-tab">
                         <stats-achievements></stats-achievements>
+                    </div>
+                    <div class="tab-pane fade show active" id="logs" role="tabpanel" aria-labelledby="logs-tab">
+                        <stats-logs></stats-logs>
                     </div>
                 </div>
             </div>

@@ -1,13 +1,35 @@
 <div class="container-fluid">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" ng-if="username == ctrl.savedName">
+        <button type="button" class="btn btn-primary" ng-click="ctrl.save()">Save</button>
+    </div>
+
+    <div class="row pt-2 justify-content-center">
         <div class="col-10 col-md-3 p-2 text-center accentTagGreen">
-            <strong>Wins</strong>: {{ ctrl.trainer.wins }}
+            <span ng-if="username != ctrl.savedName">
+                <h6 class="d-inline"><strong>Wins</strong></h6>: {{ ctrl.trainer.wins }}
+            </span>
+            <span ng-if="username == ctrl.savedName">
+                <h6 class="d-inline"><strong>Wins</strong></h6>:
+                <input type="number" class="form-control d-inline undecorated" ng-model="ctrl.trainer.wins">
+            </span>
         </div>
         <div class="col-10 col-md-3 mt-2 mt-md-0 ml-md-2 p-2 text-center accentTagRed">
-            <strong>Losses</strong>: {{ ctrl.trainer.losses }}
+            <span ng-if="username != ctrl.savedName">
+                <h6 class="d-inline"><strong>Losses</strong></h6>: {{ ctrl.trainer.losses }}
+            </span>
+            <span ng-if="username == ctrl.savedName">
+                <h6 class="d-inline"><strong>Losses</strong></h6>:
+                <input type="number" class="form-control d-inline undecorated" ng-model="ctrl.trainer.losses">
+            </span>
         </div>
         <div class="col-10 col-md-3 mt-2 mt-md-0 ml-md-2 p-2 text-center accentTag">
-            <strong>Draws</strong>: {{ ctrl.trainer.draws }}
+            <span ng-if="username != ctrl.savedName">
+                <h6 class="d-inline"><strong>Draws</strong></h6>: {{ ctrl.trainer.draws }}
+            </span>
+            <span ng-if="username == ctrl.savedName">
+                <h6 class="d-inline"><strong>Draws</strong></h6>:
+                <input type="number" class="form-control d-inline undecorated" ng-model="ctrl.trainer.draws">
+            </span>
         </div>
     </div>
 </div>

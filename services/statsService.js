@@ -144,6 +144,28 @@ app.service('statsService', ['userService', '$http', '$rootScope', '$q', functio
         "wins": 10,
         "losses": 10,
         "draws": 1,
+        "logs": [
+            {
+                "timestamp": 1576618680,
+                "message": "Gained $25,000"
+            },
+            {
+                "timestamp": 1576618685,
+                "message": "Used TM06 Toxic on Weavile (281)"
+            },
+            {
+                "timestamp": 1576618690,
+                "message": "Manaphy (90) learned Surf, Waterfall, and Fire Blast"
+            },
+            {
+                "timestamp": 1575236290,
+                "message": "Manaphy (90) learned Flamethrower, Earthquake, and Tombstoner"
+            },
+            {
+                "timestamp": 1575236290,
+                "message": "Manaphy (90) learned Flamethrower, Earthquake, Flamethrower, Earthquake, Flamethrower, Earthquake, Flamethrower, Earthquake, Flamethrower, Earthquake, Flamethrower, Earthquake, Flamethrower, Earthquake, Flamethrower, Earthquake, Flamethrower, Earthquake, Flamethrower, Earthquake, Flamethrower, Earthquake, Flamethrower, Earthquake, and Tombstoner"
+            }
+        ],
         "achievements": {
             "novice": {
                 "badges": [

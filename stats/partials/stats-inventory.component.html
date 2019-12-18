@@ -1,7 +1,22 @@
 <div class="container-fluid">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" ng-if="username == ctrl.savedName">
+        <div class="col-md-2">
+            <a class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#newItemModal">+ New</a>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary btn-block" ng-click="ctrl.save()">Save</button>
+        </div>
+    </div>
+
+    <div class="row pt-2 justify-content-center">
         <div class="col-10 col-md-6 p-2 text-center accentTagGreen">
-            <strong>Money</strong>: {{ ctrl.trainer.money | currency : '$' : 0 }}
+            <span ng-if="username != ctrl.savedName">
+                <h6 class="d-inline"><strong>Money</strong></h6>: {{ ctrl.trainer.money | currency : '$' : 0 }}
+            </span>
+            <span ng-if="username == ctrl.savedName">
+                <h6 class="d-inline"><strong>Money</strong></h6>:
+                <input type="number" class="form-control d-inline undecorated" ng-model="ctrl.trainer.money">
+            </span>
         </div>
     </div>
     <div class="card-columns py-3" ng-if="ctrl.trainer.items !== undefined && ctrl.trainer.items.length > 0">
@@ -12,11 +27,16 @@
                 </div>
                 <div class="card-text">
                     <div class="row" ng-repeat="item in ctrl.trainer.items | filter: { type: itemType } | orderBy: 'name' as filteredItems">
-                        <div class="col-10">
+                        <div class="col-8">
                             {{ item.name }}
                         </div>
-                        <div class="col-2">
-                            {{ item.quantity }}
+                        <div class="col-4">
+                            <span ng-if="username != ctrl.savedName">
+                                {{ item.quantity }}
+                            </span>
+                            <span ng-if="username == ctrl.savedName">
+                                <input type="number" class="form-control undecorated" ng-model="item.quantity">
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -35,3 +55,5 @@
         </div>
     </div>
 </div>
+
+<stats-inventory-add-item-modal></stats-inventory-add-item-modal>

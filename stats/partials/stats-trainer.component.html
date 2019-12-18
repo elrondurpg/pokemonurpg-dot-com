@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row justify-content-center" ng-if="username == ctrl.trainer.name">
+    <div class="row justify-content-center" ng-if="username == ctrl.savedName">
         <button type="button" class="btn btn-primary" ng-click="ctrl.save()">Save</button>
     </div>
 
@@ -8,16 +8,22 @@
 
             <div class="row">
                 <div class="col">
-                    <h4>{{ ctrl.trainer.name }}</h4>
+                    <span ng-if="username != ctrl.savedName">
+                        <h4>{{ ctrl.trainer.name }}</h4>
+                    </span>
+                    <span ng-if="username == ctrl.savedName">
+                        <h4 class="d-inline"><strong>Username</strong></h4>:
+                        <input type="text" class="form-control d-inline undecorated" ng-model="ctrl.trainer.name">
+                    </span>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <span ng-if="username != ctrl.trainer.name">
+                    <span ng-if="username != ctrl.savedName">
                         <h6 class="d-inline"><strong>Member Since</strong></h6>: {{ ctrl.trainer.joinDate }}
                     </span>
-                    <span ng-if="username == ctrl.trainer.name">
+                    <span ng-if="username == ctrl.savedName">
                         <h6 class="d-inline"><strong>Member Since</strong></h6>:
                         <input type="text" class="form-control d-inline undecorated" ng-model="ctrl.trainer.joinDate">
                     </span>
@@ -26,12 +32,12 @@
 
             <div class="row">
                 <div class="col">
-                    <span ng-if="username != ctrl.trainer.name">
+                    <span ng-if="username != ctrl.savedName">
                         <h6 class="d-inline"><strong>Money</strong></h6>: {{ ctrl.trainer.money | currency : '$' : 0 }}
                     </span>
-                    <span ng-if="username == ctrl.trainer.name">
+                    <span ng-if="username == ctrl.savedName">
                         <h6 class="d-inline"><strong>Money</strong></h6>:
-                        <input type="text" class="form-control d-inline undecorated" ng-model="ctrl.trainer.money">
+                        <input type="number" class="form-control d-inline undecorated" ng-model="ctrl.trainer.money">
                     </span>
                 </div>
             </div>

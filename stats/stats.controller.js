@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('statsCtrl', ['statsService', 'typeService', 'userService', '$routeParams', '$rootScope', '$location', '$window', '$anchorScroll', '$filter',
-    function(statsService, typeService, userService, $routeParams, $rootScope, $location, $window, $anchorScroll, $filter) {
+app.controller('statsCtrl', ['statsService', 'itemService', 'typeService', 'userService', '$routeParams', '$rootScope', '$location', '$window', '$anchorScroll', '$filter',
+    function(statsService, itemService, typeService, userService, $routeParams, $rootScope, $location, $window, $anchorScroll, $filter) {
 
     var ctrl = this;
 
@@ -11,8 +11,10 @@ app.controller('statsCtrl', ['statsService', 'typeService', 'userService', '$rou
 
     ctrl.contestRanks = [ "Normal", "Super", "Hyper", "Master" ];
     ctrl.contestAttributes = [ "Beauty", "Cool", "Cute", "Smart", "Tough" ];
-    ctrl.itemTypes = [ "Held", "TM", "HM", "Berry", "Evolution", "Mega", "Form", "ZCrystal", "Fossil", "Other" ];
-    ctrl.itemTypesPretty = [ "Held Items", "Technical Machines", "Hidden Machines", "Berries", "Evolution Items", "Mega Evolution Items", "Form Changing Items", "Z-Crystals", "Fossils", "Other Items" ];
+    ctrl.itemTypes = [ "New", "Held", "TM", "HM", "Berry", "Evolution", "Mega", "Form", "ZCrystal", "Fossil", "Other" ];
+    ctrl.itemTypesPretty = [ "Newly Added Items", "Held Items", "Technical Machines", "Hidden Machines", "Berries", "Evolution Items", "Mega Evolution Items", "Form Changing Items", "Z-Crystals", "Fossils", "Other Items" ];
+
+    ctrl.logFilterByDate = 7;
 
     statsService.findByName($routeParams.name)
     .then(function(response) {
@@ -41,7 +43,19 @@ app.controller('statsCtrl', ['statsService', 'typeService', 'userService', '$rou
         });
     }
 
+    ctrl.loadItems = function() {
+        itemService.findAll().then(function(response) {
+            if (response.status == 200) {
+                ctrl.items = response.data;
+            }
+            else {
+                console.log("Encountered an error while trying to load the list of items from URPG Server. Please contact a system administrator if this issue persists after refreshing your browser.");
+            }
+        });
+    }
+
     ctrl.loadTypes();
+    ctrl.loadItems();
 
     ctrl.zoomOnPokemon = function(dbid) {
         if (ctrl.loadedPokemon[dbid] !== undefined) {
@@ -62,6 +76,9 @@ app.controller('statsCtrl', ['statsService', 'typeService', 'userService', '$rou
         statsService.updateStats(ctrl.trainer, ctrl.savedName)
         .success(
             function(response) {
+                if (ctrl.trainer.name != ctrl.savedName) {
+                    userService.logout();
+                }
                 $window.location.assign('/stats/' + ctrl.trainer.name);
             }
         )
@@ -168,10 +185,50 @@ app.controller('statsCtrl', ['statsService', 'typeService', 'userService', '$rou
         return false;
     }
 
+    ctrl.hasItem = function(item) {
+        if (ctrl.trainer.items !== undefined) {
+            for (var i = 0; i < ctrl.trainer.items.length; i++) {
+                var check = ctrl.trainer.items[i];
+                if (check.name == item) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    ctrl.addItem = function(item, quantity) {
+        var newItem = {};
+        newItem.name = item;
+        newItem.quantity = quantity;
+        newItem.type = "New";
+        ctrl.trainer.items.push(newItem);
+        $('#newItemModal').modal('hide');
+    }
+
+    ctrl.clearItem = function() {
+        ctrl.newItem = "";
+        ctrl.newItemQuantity = 1;
+    }
+
     ctrl.getBadgeImage = function(badgeName) {
         badgeName = badgeName.toLowerCase();
         badgeName = badgeName.replace(/\s/g, "-");
         return $rootScope.imageBase + "/badges/" + badgeName + ".png";
+    }
+
+    ctrl.toLocalDate = function(utc) {
+        var d = new Date(0);
+        d.setUTCMilliseconds(utc);
+        return d.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
+    }
+
+    ctrl.logWithinLimit = function(log) {
+        var d = new Date();
+        var limitDate = new Date();
+        limitDate.setDate(d.getDate() - ctrl.logFilterByDate);
+
+        return log.timestamp > limitDate.getTime() / 1000;
     }
 
 }]);
@@ -201,6 +258,20 @@ app.directive('statsInventory', function() {
     return {
         restrict: 'E',
         templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-inventory.component.html'
+    }
+});
+
+app.directive('statsInventoryAddItemModal', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-inventory-add-item-modal.component.html'
+    }
+});
+
+app.directive('statsLogs', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-logs.component.html'
     }
 });
 

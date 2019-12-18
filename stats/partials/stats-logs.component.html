@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="row py-2 d-flex text-center">
+        <div class="col">
+            Show messages since <input type="number" class="form-control d-inline undecorated" ng-model="ctrl.logFilterByDate"> days ago
+        </div>
+        <!--div class="col-md-4">
+            <button type="button" class="btn btn-primary btn-block" ng-click="ctrl.loadMoreLogs()">
+                See More
+            </button>
+        </div-->
+    </div>
+
+    <div class="row p-2 justify-content-center" ng-repeat="log in ctrl.trainer.logs | orderBy: '-timestamp'" ng-if="ctrl.logWithinLimit(log)">
+        <div class="col-4 p-2 bg-secondary text-white rounded-left">
+            {{ ctrl.toLocalDate(log.timestamp) }}
+        </div>
+        <div class="col-8 p-2 border rounded-right">
+            {{ log.message }}
+        </div>
+    </div>
+</div>
