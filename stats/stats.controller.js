@@ -186,7 +186,7 @@ app.controller('statsCtrl', ['statsService', 'itemService', 'typeService', 'user
     }
 
     ctrl.hasItem = function(item) {
-        if (ctrl.trainer.items !== undefined) {
+        if (ctrl.trainer !== undefined && ctrl.trainer.items !== undefined) {
             for (var i = 0; i < ctrl.trainer.items.length; i++) {
                 var check = ctrl.trainer.items[i];
                 if (check.name == item) {
@@ -203,6 +203,7 @@ app.controller('statsCtrl', ['statsService', 'itemService', 'typeService', 'user
         newItem.quantity = quantity;
         newItem.type = "New";
         ctrl.trainer.items.push(newItem);
+        ctrl.clearItem();
         $('#newItemModal').modal('hide');
     }
 
