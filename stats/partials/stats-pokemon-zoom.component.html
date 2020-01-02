@@ -7,9 +7,12 @@
             <button type="button" class="btn btn-secondary btn-block">Add to Team Viewer</button>
         </div>
         <div class="col-3 offset-1 py-2">
-            <button type="button" class="btn btn-secondary btn-block">Save</button>
+            <button type="button" class="btn btn-block" ng-class="ctrl.zoomPokemon.changed ? 'btn-warning' : 'btn-secondary'" ng-click="ctrl.savePokemon()">Save</button>
         </div>
     </div>
+
+    <resources-message></resources-message>
+
     <div class="row pt-3 d-flex align-items-center text-center">
         <div class="col-md-4">
             <img ng-src="{{ modelBase }}{{ ctrl.zoomPokemon.dexno }}{{ ctrl.suffix(ctrl.zoomPokemon.displayName, ctrl.zoomPokemon.name) }}.gif" />
@@ -62,8 +65,13 @@
                 <div class="col-6">
                     <h6>EXP</h6>
                 </div>
-                <div class="col-6">
+                <div class="col-6" ng-if="username != ctrl.savedName">
                     {{ ctrl.zoomPokemon.exp }}
+                </div>
+                <div class="col-6" ng-if="username == ctrl.savedName">
+                    <input type="number" class="form-control d-inline undecorated"
+                           ng-model="ctrl.zoomPokemon.exp"
+                           ng-change="ctrl.zoomPokemon.changed = true">
                 </div>
             </div>
             <div class="row">

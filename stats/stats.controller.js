@@ -89,6 +89,32 @@ app.controller('statsCtrl', ['statsService', 'itemService', 'typeService', 'user
         );
     }
 
+    ctrl.savePokemon = function() {
+        statsService.updatePokemon(ctrl.zoomPokemon, ctrl.zoomPokemon.dbid)
+        .success(
+            function(response) {
+                if (ctrl.trainer.name != ctrl.savedName) {
+                    userService.logout();
+                }
+                ctrl.success = response.data;
+                ctrl.loadedPokemon = [];
+                ctrl.zoomPokemon.changed = false;
+                ctrl.zoomOnPokemon(ctrl.zoomPokemon.dbid);
+            }
+        )
+        .error(
+            function(response) {
+                if (Array.isArray(response.data)) {
+                    ctrl.errorArray = response.data;
+                    console.log(ctrl.errorArray);
+                }
+                else {
+                    ctrl.error = response.data;
+                }
+            }
+        );
+    }
+
     ctrl.getRibbonQuantity = function(attribute, rank) {
         var ribbons = ctrl.zoomPokemon.ribbons;
         for (var i = 0; i < ribbons.length; i++) {

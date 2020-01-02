@@ -21,6 +21,20 @@ app.service('statsService', ['userService', '$http', '$rootScope', '$q', functio
         }
     }
 
+    service.updateStats = function(payload, trainerName) {
+        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/stats/" + trainerName, payload)
+        .success(
+            function (response) {
+                return response;
+            }
+        )
+        .error(
+            function(response) {
+                return response;
+            }
+        );
+    }
+
     service.findOwnedPokemonByDbid = function(dbid) {
         if ($rootScope.debug == true) {
             var deferred = $q.defer()
@@ -39,8 +53,8 @@ app.service('statsService', ['userService', '$http', '$rootScope', '$q', functio
         }
     }
 
-    service.updateStats = function(payload, trainerName) {
-        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/stats/" + trainerName, payload)
+    service.updatePokemon = function(payload, dbid) {
+        return userService.sendAuthenticatedRequest("PUT", $rootScope.serviceHost + "/stats/pokemon/" + dbid, payload)
         .success(
             function (response) {
                 return response;
