@@ -1,0 +1,28 @@
+<div class="modal fade" id="hiddenPowerModal" tabindex="-1" role="dialog" aria-labelledby="hiddenPowerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Hidden Power</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="ctrl.newHiddenPowerType = ''; ctrl.newHiddenPowerLink = ''">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <select class="form-control" id="hiddenPowerSelect" ng-model="ctrl.newHiddenPowerType">
+                    <option selected value> -- Choose a type -- </option>
+                    <option ng-repeat="type in ctrl.hiddenPowerTypes | orderBy" value="{{ type }}">{{ type }}</option>
+                </select>
+                <input type="text" class="form-control mt-2"
+                       ng-model="ctrl.newHiddenPowerLink"
+                       ng-change="ctrl.zoomPokemon.changed = true"
+                       placeholder="Insert a new link">
+                <small id="hiddenPowerHelp" class="form-text text-muted">Your link should start with https://forum.pokemonurpg.com or https://pokemonurpg.com/archive</small>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="ctrl.updateHiddenPower()" ng-disabled="ctrl.abilitiesDelta[ctrl.newAbility] !== undefined" data-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-secondary" ng-click="ctrl.newHiddenPowerType = ''; ctrl.newHiddenPowerLink = ''" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

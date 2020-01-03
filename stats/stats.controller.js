@@ -19,7 +19,6 @@ app.controller('statsCtrl', ['statsService', 'itemService', 'typeService', 'user
     statsService.findByName($routeParams.name)
     .then(function(response) {
         if (response.status == 200) {
-            console.log(response.data);
             ctrl.trainer = response.data;
             ctrl.savedName = ctrl.trainer.name;
             $rootScope.title = ctrl.trainer.name + "'s Stats";
@@ -36,6 +35,13 @@ app.controller('statsCtrl', ['statsService', 'itemService', 'typeService', 'user
             if (response.status == 200) {
                 ctrl.types = response.data;
                 ctrl.types.splice(ctrl.types.indexOf("NONE"), 1);
+
+                ctrl.hiddenPowerTypes = response.data;
+                ctrl.hiddenPowerTypes = ctrl.types.filter(function(value, index, arr){
+
+                    return value != "NORMAL" && value != "FAIRY";
+
+                });
             }
             else {
                 console.log("Encountered an error while trying to load the list of types from URPG Server. Please contact a system administrator if this issue persists after refreshing your browser.");
@@ -58,6 +64,11 @@ app.controller('statsCtrl', ['statsService', 'itemService', 'typeService', 'user
     ctrl.loadItems();
 
     ctrl.zoomOnPokemon = function(dbid) {
+        if (ctrl.zoomPokemon === undefined) {
+            ctrl.success = undefined;
+            ctrl.error = undefined;
+            ctrl.errorArray = undefined;
+        }
         if (ctrl.loadedPokemon[dbid] !== undefined) {
             ctrl.zoomPokemon = ctrl.loadedPokemon[dbid];
         }
@@ -106,7 +117,6 @@ app.controller('statsCtrl', ['statsService', 'itemService', 'typeService', 'user
             function(response) {
                 if (Array.isArray(response.data)) {
                     ctrl.errorArray = response.data;
-                    console.log(ctrl.errorArray);
                 }
                 else {
                     ctrl.error = response.data;
@@ -258,6 +268,19 @@ app.controller('statsCtrl', ['statsService', 'itemService', 'typeService', 'user
         return log.timestamp > limitDate.getTime() / 1000;
     }
 
+    ctrl.updateHiddenPower = function() {
+        if (ctrl.newHiddenPowerType !== undefined && ctrl.zoomPokemon.hiddenPowerType != ctrl.newHiddenPowerType) {
+            ctrl.zoomPokemon.hiddenPowerType = ctrl.newHiddenPowerType;
+            ctrl.zoomPokemon.changed = true;
+        }
+        if (ctrl.newHiddenPowerLink !== undefined && ctrl.zoomPokemon.hiddenPowerLink != ctrl.newHiddenPowerLink) {
+            ctrl.zoomPokemon.hiddenPowerLink = ctrl.newHiddenPowerLink;
+            ctrl.zoomPokemon.changed = true;
+        }
+        ctrl.newHiddenPowerType = undefined;
+        ctrl.newHiddenPowerLink = undefined;
+    }
+
 }]);
 
 app.directive('statsTrainer', function() {
@@ -278,6 +301,13 @@ app.directive('statsPokemonZoom', function() {
     return {
         restrict: 'E',
         templateUrl: '/pokemonurpg-dot-com/stats/partials/stats-pokemon-zoom.component.html'
+    }
+});
+
+app.directive('hiddenPowerModal', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/pokemonurpg-dot-com/stats/partials/hidden-power-modal.component.html'
     }
 });
 

@@ -61,9 +61,9 @@
         </div>
         <div class="col-xl-5 offset-xl-1 py-3 accentTag">
             <h6><strong>Other Information</strong></h6>
-            <div class="row">
+            <div class="row d-flex align-items-center">
                 <div class="col-6">
-                    <h6>EXP</h6>
+                    <strong>EXP</strong>
                 </div>
                 <div class="col-6" ng-if="username != ctrl.savedName">
                     {{ ctrl.zoomPokemon.exp }}
@@ -74,39 +74,53 @@
                            ng-change="ctrl.zoomPokemon.changed = true">
                 </div>
             </div>
-            <div class="row">
+            <div class="row d-flex align-items-center" ng-class="username == ctrl.savedName ? 'pt-2' : ''">
                 <div class="col-6">
-                    <h6>Obtained</h6>
+                    <strong>Obtained</strong>
                 </div>
-                <div class="col-6">
+                <div ng-class="username != ctrl.savedName ? 'col-6' : 'col-3'">
                     <a href="{{ ctrl.zoomPokemon.obtainedLink }}">{{ ctrl.zoomPokemon.obtained }}</a>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <h6>Hidden Power</h6>
+                <div class="col-3" ng-if="username == ctrl.savedName">
+                    <button type="button" class="btn btn-primary btn-block">Edit</button>
                 </div>
-                <div class="col-6" ng-if="ctrl.zoomPokemon.hiddenPowerType !== undefined && ctrl.zoomPokemon.hiddenPowerType != null">
+            </div>
+            <div class="row d-flex align-items-center" ng-class="username == ctrl.savedName ? 'pt-2' : ''">
+                <div class="col-6">
+                    <strong>Hidden Power</strong>
+                </div>
+                <div ng-class="username != ctrl.savedName ? 'col-6' : 'col-3'" ng-if="ctrl.zoomPokemon.hiddenPowerType !== undefined && ctrl.zoomPokemon.hiddenPowerType != null">
                     <a href="{{ ctrl.zoomPokemon.hiddenPowerLink }}">{{ ctrl.zoomPokemon.hiddenPowerType }}</a>
                 </div>
-                <div class="col-6" ng-if="ctrl.zoomPokemon.hiddenPowerType === undefined || ctrl.zoomPokemon.hiddenPowerType == null">
+                <div ng-class="username != ctrl.savedName ? 'col-6' : 'col-3'" ng-if="ctrl.zoomPokemon.hiddenPowerType === undefined || ctrl.zoomPokemon.hiddenPowerType == null">
                     -
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <h6>Nature</h6>
+                <div class="col-3" ng-if="username == ctrl.savedName">
+                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#hiddenPowerModal">Edit</button>
                 </div>
+            </div>
+            <div class="row" ng-class="username == ctrl.savedName ? 'pt-2' : ''">
                 <div class="col-6">
+                    <strong>Nature</strong>
+                </div>
+                <div class="col-6" ng-if="username != ctrl.savedName">
                     {{ ctrl.zoomPokemon.nature }}
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <h6>Ribbons</h6>
+                <div class="col-6" ng-if="username == ctrl.savedName">
+                    <input type="text" class="form-control d-inline undecorated"
+                           ng-model="ctrl.zoomPokemon.nature"
+                           ng-change="ctrl.zoomPokemon.changed = true">
                 </div>
-                <div class="col-6" ng-if="ctrl.zoomPokemon.ribbons.length == 0">
+            </div>
+            <div class="row d-flex align-items-center" ng-class="username == ctrl.savedName ? 'pt-2' : ''">
+                <div class="col-6">
+                    <strong>Ribbons</strong>
+                </div>
+                <div ng-class="username != ctrl.savedName ? 'col-6' : 'col-3'" ng-if="ctrl.zoomPokemon.ribbons.length == 0">
                     None
+                </div>
+                <div ng-class="ctrl.zoomPokemon.ribbons.length == 0 ? 'col-3' : 'col-6'" ng-if="username == ctrl.savedName">
+                    <button type="button" class="btn btn-primary btn-block">Edit</button>
                 </div>
             </div>
             <div class="row" ng-if="ctrl.hasRibbons(attribute) > 0" ng-repeat="attribute in ctrl.contestAttributes">
@@ -119,3 +133,5 @@
         </div>
     </div>
 </div>
+
+<hidden-power-modal></hidden-power-modal>
