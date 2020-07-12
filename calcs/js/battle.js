@@ -902,7 +902,7 @@ function Calculate_Attack(sender)
 		}
 
 		// TRB FAIRY
-		if(Defender.Item == "Roselie Berry" && Defender.Ability != "KL" && AttackType == "FA" && Compatibility > 1)
+		if(Defender.Item == "Roseli Berry" && Defender.Ability != "KL" && AttackType == "FA" && Compatibility > 1)
 		{
 			TRB = .5; alert("The berry was used.");
 			$('#hitem'+d)[0].selectize.setValue("(none)");
