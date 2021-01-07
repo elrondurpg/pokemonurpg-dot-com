@@ -685,6 +685,8 @@ function Calculate_Attack(sender)
 	if(Attacker.Ability == "SF" && weather == "SAND" && (AttackType == "GD" || AttackType == "R" || AttackType == "S")) UA = 1.3;
 	if(Attacker.Ability == "WB" && AttackType == "W") UA = 2.0;
 	if(Attacker.Ability == "STW" && AttackType == "S") UA = 1.5;
+	if(Attacker.Ability == "DM" && AttackType == "DR") UA = 1.5;
+	if(Attacker.Ability == "TS" && AttackType == "E") UA = 1.5;
 	//Dark Aura and Fairy Aura
 	if(Attacker.Ability == "DK" && AttackType == "DK" && Defender.Ability != "AU") UA = 1.33333;
 	if(Attacker.Ability == "FA" && AttackType == "FA" && Defender.Ability != "AU") UA = 1.33333;
