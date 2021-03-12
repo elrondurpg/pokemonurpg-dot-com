@@ -316,75 +316,74 @@ function Percents(sender)
 	$('#percent'+p).val(parseFloat(.01 * Math.floor(AP[p].DP / AP[p].HP * 10000)).toFixed(2) + "%");
 }
 
-function speed_stats()
-{
-	if(!triggerEvents) return;
+function speed_stats() {
+  if (!triggerEvents) return;
 
-	var speedvar = 1;
-	var par = 1;
-	var IMS = 1;
+  if (AP[1] != null && AP[1] != emptyPoke()) {
+    let speedvar1 = 1;
+    let par1 = 1;
+    let IMS1 = 1;
 
-	if(AP[1] != null && AP[1] != emptyPoke()) {
-		if(AP[1].Status == "PAR" && AP[1].Ability != "QF")
-			par *= 0.5;
+    if (AP[1].Status == "PAR" && AP[1].Ability != "QF")
+      par1 *= 0.5;
 
-		//Ability Mods
-		if(AP[1].Ability == "CL" && ($('#weather').val() == "SUN" || $('#weather').val() == "HSUN") && AP[2].Ability != "CN" && AP[2].Ability != "AI")
-			speedvar = 2;
-		else if(AP[1].Ability == "SWS" && ($('#weather').val() == "RAIN" || $('#weather').val() == "HRAIN") && AP[2].Ability != "CN" && AP[2].Ability != "AI")
-			speedvar = 2;
-		else if(AP[1].Ability == "SRH" && $('#weather').val() == "SAND" && AP[2].Ability != "CN" && AP[2].Ability != "AI")
-			speedvar = 2;
-		else if(AP[1].Ability == "SLR" && $('#weather').val() == "HAIL" && AP[2].Ability != "CN" && AP[2].Ability != "AI")
-			speedvar = 2;
-		else if(AP[1].Ability == "QF" && AP[1].Status != "NO")
-			speedvar = 1.5;
+    //Ability Mods
+    if (AP[1].Ability == "CL" && ($('#weather').val() == "SUN" || $('#weather').val() == "HSUN") && AP[2].Ability != "CN" && AP[2].Ability != "AI")
+      speedvar1 *= 2;
+    else if (AP[1].Ability == "SWS" && ($('#weather').val() == "RAIN" || $('#weather').val() == "HRAIN") && AP[2].Ability != "CN" && AP[2].Ability != "AI")
+      speedvar1 *= 2;
+    else if (AP[1].Ability == "SRH" && $('#weather').val() == "SAND" && AP[2].Ability != "CN" && AP[2].Ability != "AI")
+      speedvar1 *= 2;
+    else if (AP[1].Ability == "SLR" && $('#weather').val() == "HAIL" && AP[2].Ability != "CN" && AP[2].Ability != "AI")
+      speedvar1 *= 2;
+    else if (AP[1].Ability == "QF" && AP[1].Status != "NO")
+      speedvar1 *= 1.5;
 
-		//Item Mods
-		if (AP[1].Item == "Choice Scarf" && AP[1].Ability != "KL")
-			IMS = 1.5;
-		if ((AP[1].Item == "Iron Ball" || AP[1].Item == "Macho Brace" ||
-			AP[1].Item == "Power Anklet" || AP[1].Item == "Power Band" ||
-			AP[1].Item == "Power Belt" || AP[1].Item == "Power Brace" ||
-			AP[1].Item == "Power Lens" || AP[1].Item == "Power Weight")
-			&& AP[1].Ability != "KL")
-			IMS = .5;
+    //Item Mods
+    if (AP[1].Item == "Choice Scarf" && AP[1].Ability != "KL")
+      IMS1 *= 1.5;
+    if ((AP[1].Item == "Iron Ball" || AP[1].Item == "Macho Brace" ||
+      AP[1].Item == "Power Anklet" || AP[1].Item == "Power Band" ||
+      AP[1].Item == "Power Belt" || AP[1].Item == "Power Brace" ||
+      AP[1].Item == "Power Lens" || AP[1].Item == "Power Weight")
+      && AP[1].Ability != "KL")
+      IMS1 *= .5;
 
-		$('#speed1').val(Math.floor(AP[1].Speed_Modded * parseFloat(AP[1].SS) * speedvar * par * IMS));
-	}
+    $('#speed1').val(Math.floor(AP[1].Speed_Modded * parseFloat(AP[1].SS) * speedvar1 * par1 * IMS1));
+  }
 
-	var speedvar = 1;
-	var par = 1;
-	var IMS = 1;
+  if (AP[2] != null && AP[2] != emptyPoke()) {
+    let speedvar2 = 1;
+    let par2 = 1;
+    let IMS2 = 1;
 
-	if(AP[2] != null && AP[2] != emptyPoke()) {
-		if(AP[2].Status == "PAR" && AP[2].Ability != "QF")
-			par = 0.5;
+    if (AP[2].Status == "PAR" && AP[2].Ability != "QF")
+      par2 *= 0.5;
 
-		//Ability Mods
-		else if(AP[2].Ability == "CL" && ($('#weather').val() == "SUN" || $('#weather').val() == "HSUN") && AP[1].Ability != "CN" && AP[1].Ability != "AI")
-			speedvar = 2;
-		else if(AP[2].Ability == "SWS" && ($('#weather').val() == "RAIN" || $('#weather').val() == "HRAIN") && AP[1].Ability != "CN" && AP[1].Ability != "AI")
-			speedvar = 2;
-		else if(AP[2].Ability == "SRH" && $('#weather').val() == "SAND" && AP[1].Ability != "CN" && AP[1].Ability != "AI")
-			speedvar = 2;
-		else if(AP[2].Ability == "SLR" && $('#weather').val() == "HAIL" && AP[1].Ability != "CN" && AP[1].Ability != "AI")
-			speedvar = 2;
-		else if(AP[2].Ability == "QF" && AP[2].Status != "NO")
-			speedvar = 1.5;
+    //Ability Mods
+    if (AP[2].Ability == "CL" && ($('#weather').val() == "SUN" || $('#weather').val() == "HSUN") && AP[1].Ability != "CN" && AP[1].Ability != "AI")
+      speedvar2 *= 2;
+    else if (AP[2].Ability == "SWS" && ($('#weather').val() == "RAIN" || $('#weather').val() == "HRAIN") && AP[1].Ability != "CN" && AP[1].Ability != "AI")
+      speedvar2 *= 2;
+    else if (AP[2].Ability == "SRH" && $('#weather').val() == "SAND" && AP[1].Ability != "CN" && AP[1].Ability != "AI")
+      speedvar2 *= 2;
+    else if (AP[2].Ability == "SLR" && $('#weather').val() == "HAIL" && AP[1].Ability != "CN" && AP[1].Ability != "AI")
+      speedvar2 *= 2;
+    else if (AP[2].Ability == "QF" && AP[2].Status != "NO")
+      speedvar2 *= 1.5;
 
-		//Item Mods
-		if (AP[2].Item == "Choice Scarf" && AP[2].Ability != "KL")
-			IMS = 1.5;
-		if ((AP[2].Item == "Iron Ball" || AP[2].Item == "Macho Brace" ||
-			AP[2].Item == "Power Anklet" || AP[2].Item == "Power Band" ||
-			AP[2].Item == "Power Belt" || AP[2].Item == "Power Brace" ||
-			AP[2].Item == "Power Lens" || AP[2].Item == "Power Weight")
-			&& AP[2].Ability != "KL")
-			IMS = .5;
+    //Item Mods
+    if (AP[2].Item == "Choice Scarf" && AP[2].Ability != "KL")
+      IMS2 *= 1.5;
+    if ((AP[2].Item == "Iron Ball" || AP[2].Item == "Macho Brace" ||
+      AP[2].Item == "Power Anklet" || AP[2].Item == "Power Band" ||
+      AP[2].Item == "Power Belt" || AP[2].Item == "Power Brace" ||
+      AP[2].Item == "Power Lens" || AP[2].Item == "Power Weight")
+      && AP[2].Ability != "KL")
+      IMS2 *= .5;
 
-		$('#speed2').val(Math.floor(AP[2].Speed_Modded * parseFloat(AP[2].SS) * speedvar * par * IMS));
-	}
+    $('#speed2').val(Math.floor(AP[2].Speed_Modded * parseFloat(AP[2].SS) * speedvar2 * par2 * IMS2));
+  }
 }
 
 function statMod(sender)
@@ -685,6 +684,8 @@ function Calculate_Attack(sender)
 	if(Attacker.Ability == "SF" && weather == "SAND" && (AttackType == "GD" || AttackType == "R" || AttackType == "S")) UA = 1.3;
 	if(Attacker.Ability == "WB" && AttackType == "W") UA = 2.0;
 	if(Attacker.Ability == "STW" && AttackType == "S") UA = 1.5;
+	if(Attacker.Ability == "DM" && AttackType == "DR") UA = 1.5;
+	if(Attacker.Ability == "TS" && AttackType == "E") UA = 1.5;
 	//Dark Aura and Fairy Aura
 	if(Attacker.Ability == "DK" && AttackType == "DK" && Defender.Ability != "AU") UA = 1.33333;
 	if(Attacker.Ability == "FA" && AttackType == "FA" && Defender.Ability != "AU") UA = 1.33333;
