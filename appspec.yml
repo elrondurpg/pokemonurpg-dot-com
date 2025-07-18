@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/html
+    destination: /var/www/html/pokemonurpg-dot-com
 hooks:
   ApplicationStop: 
     - location: deploy/stop.sh
